@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "name": "Kastangel",
+        "price": 60000,
+        "image": "kue1.jpg"
+    },
+    {
+        "id": "2",
+        "name": "Nastar",
+        "price": 80000,
+        "image": "kue2.jpg"
+    },
+    {
+        "id": "3",
+        "name": "Putri Salju",
+        "price": 40000,
+        "image": "kue4.jpg"
+    },
+    {
+        "id": "4",
+        "name": "Coklat Mete",
+        "price": 45000,
+        "image": "kue4.jpg"
+    }
+]
