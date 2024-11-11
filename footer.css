@@ -1,0 +1,15 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #d8d4c9;
+}
+/* Footer */
+footer {
+    background-color: #033043;
+    color: #d8d4c9;
+    text-align: center;
+    padding: 20px;
+}
