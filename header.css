@@ -13,6 +13,7 @@
     font-size: 0.9em;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .top-bar span {
@@ -37,6 +38,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 /* Logo and Brand Name */
@@ -53,7 +55,7 @@
 }
 
 /* Logo and Brand Name Wrapper */
-brand {
+.brand {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -64,6 +66,7 @@ brand {
     display: flex;
     gap: 20px;
     font-family: "Signika", sans-serif;
+    flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -169,4 +172,61 @@ brand {
 
 .profile {
     cursor: pointer;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    /* Stack top bar items */
+    .top-bar {
+        display: none;
+    }
+
+    /* Adjust navbar layout */
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    /* Center align brand logo and name */
+    .brand {
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Stack nav links */
+    .nav-links {
+        justify-content: center;
+        width: 100%;
+        gap: 15px;
+    }
+
+    /* Resize search bar */
+    .search-bar {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    /* Align user and cart section to center */
+    .user-cart {
+        justify-content: center;
+        width: 100%;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further adjustments for very small screens */
+    .brand-name {
+        font-size: 1.2em;
+    }
+
+    .nav-links a {
+        font-size: medium;
+    }
+
+    .search-button {
+        padding: 10px;
+        font-size: 16px;
+    }
 }
