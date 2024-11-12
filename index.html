@@ -55,21 +55,22 @@
     <!-- Main Header -->
 <header class="header">
   <div class="navbar">
+    <brand>
       <img src="assets/logo_logic.png" alt="Brand Logo" class="brand-logo">
-      <h1 class="brand-name">Logic Coffee</h1>
+      <h1 class="brand-name">Logic Coffee</h1></brand>
       
 
       <!-- Search Bar -->
       <div class="search-bar">
         <input type="text" placeholder="Cari produk...">
-        <button class="search-button">&#128269;</button>
+        <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
     </div>
 
 
       <nav class="nav-links">
-          <a href="#">Beranda</a>
-          <a href="#">Kategori</a>
-          <a href="#">Pesan Sekarang</a>
+        <a href="#"><i class="fa fa-house"></i> Beranda</a>
+        <a href="#"><i class="fa-solid fa-mug-saucer"></i> Kategori</a>
+        <a href="#"><i class="fa fa-mug-hot"></i> Pesan Sekarang</a>
       </nav>
 
       <!-- Profile and Cart -->
@@ -103,7 +104,7 @@
         <div class="payment-method">
           <label for="paymentMethod">Pilih Metode Pembayaran:</label>
           <select id="paymentMethod" name="paymentMethod">
-            <!-- <option value="Transfer">Transfer</option> -->
+            <option value="Transfer">Transfer</option>
             <option value="COD">COD</option>
           </select>
         </div>

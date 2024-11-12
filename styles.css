@@ -170,25 +170,6 @@ input:valid+label {
     /* Darker red on hover */
 }
 
-
-
-/* .header {
-    width: 100%;
-    background-color: #ffffff;
-    padding: 10px 20px;
-    text-align: center;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-} */
-
-
-/* .banner-image {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
-    border-radius: 20px;
-} */
-
 .container-wrapper {
     display: flex;
     gap: 20px;
