@@ -1,174 +1,122 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: white;
+    font-family: Arial, sans-serif;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-    font-size: x-large;
-}
-
-/* Top Bar */
+/* Top Bar Styling */
 .top-bar {
-    background-color: #033043;
+    background-color: #805700 ;
+    color: #ffffff;
+    padding: 5px 10px;
+    font-size: 0.9em;
     display: flex;
+    justify-content: space-between;
 }
 
-@media (max-width: 768px) {
-    .top-bar {
-        display: none; /* Top bar disembunyikan pada layar kecil */
-    }
+.top-bar span {
+    margin: 0 10px;
 }
 
-/* Navbar */
-header {
-    background-color: #aacdd0;
+.address {
+    margin-left: auto;
 }
-.navbar-brand {
+
+/* Main Header Styling */
+.header {
     font-family: "Signika", Arial, sans-serif;
-    color: #033043;
-    font-size: x-large;
-  }
-
-.navbar .search-form {
-    margin-left: 0px;
-    width: 100%; /* Menjadikan search form responsif */
-    max-width: 500px; /* Batas maksimum 500px pada layar besar */
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.navbar .search-form .btn {
-    color: #033043;
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.navbar .search-form .btn:hover {
-    background-color: white;
+/* Logo and Brand Name */
+.brand-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
 }
 
-/* Responsive Navbar */
-@media (max-width: 768px) {
-    .navbar .search-form {
-        width: 100%; /* Full width pada layar kecil */
-        margin: 0; /* Menghapus margin */
-    }
-
-    .navbar-brand {
-        flex-grow: 1; /* Agar logo dan nama toko menyesuaikan */
-        text-align: center;
-    }
-
-    .btn-auth {
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-    }
+.brand-name {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    margin-right: 30px;
 }
 
-/* General Icon Styling */
-.btn-auth a {
-    color: #033043;
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
     text-decoration: none;
-    font-size: 20px;
+    color: #333;
+    font-weight: 500;
 }
 
-.btn-auth a:hover {
-    color: white;
+/* Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin-right: 30px;
+    width: 250px;
 }
 
-/* Cart Icon */
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    padding-left: 5px;
+    font-size: 0.9em;
+}
+
+.search-button {
+    background-color: #ffcc00;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+/* User and Cart Section */
+.user-cart {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 .cart-icon {
     position: relative;
+    font-size: 1.2em;
 }
 
-.cart-icon i {
-    color: #033043;
-    transition: color 0.3s ease;
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: red;
+    color: #ffffff;
+    border-radius: 50%;
+    padding: 2px 5px;
+    font-size: 0.7em;
 }
 
-.cart-icon:hover i {
-    color: white;
-}
-
-/* Orders Icon */
-.orders-icon i {
-    color: #033043;
-    transition: color 0.3s ease;
-}
-
-.orders-icon:hover i {
-    color: white;
-}
-
-/* Profile Icon */
-.profile-icon {
-    color: #033043;
-    display: flex;
-    align-items: center;
-    
-    transition: color 0.3s ease;
-}
-
-.profile-icon:hover {
-    color: white;
-}
-
-.profile-icon .ms-2 {
-    font-size: 20px;
-}
-/* Navbar - Kategori & Nama Pengguna Size */
-.navbar-nav .nav-link {
-    font-size: 20px; /* Sesuaikan ukuran dengan Nama Pengguna */
-    padding: 10px 15px; /* Memberi jarak yang cukup */
-}
-
-/* Dropdown Menu - Ubah Profil dan Logout */
-.dropdown-menu .dropdown-item {
-    font-size: 16px; /* Perkecil ukuran dropdown */
-    padding: 10px 15px; /* Atur jarak padding */
-    margin-right: 8px;
-    color: #033043;
-}
-
-
-
-/* Icon untuk Ubah Profil dan Logout */
-.dropdown-item.profile-edit::before {
-   
-    font-family: 'FontAwesome';
-}
-
-.dropdown-item.logout::before {
-   
-    font-family: 'FontAwesome';
-}
-
-/* Profile Icon */
-.profile-icon {
-    color: #033043;
-    display: flex;
-    align-items: center;
-    transition: color 0.3s ease;
-}
-
-.profile-icon:hover {
-    color: #FDA521;
-}
-
-/* Dropdown Menu Styling */
-.dropdown-menu {
-    background-color: #033043;
-    border: none;
-}
-
-.dropdown-menu .dropdown-item {
-    color: white;
-}
-
-.dropdown-menu .dropdown-item:hover {
-    background-color: #FDA521;
-    color: #033043;
+.profile {
+    cursor: pointer;
 }

@@ -3,15 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Titha Cookies</title>
+    <title>Menu | Logic Coffee</title>
     <!-- css -->
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="footer.css">
-
     <!-- Favicon -->
     <link rel="icon" href="assets/logo_logic.png" type="image/x-icon" />
-
     <!-- Meta Tags for Open Graph -->
     <meta property="og:title" content="Pasakan Ambu" />
     <meta
@@ -22,7 +19,6 @@
     <meta property="og:url" content="./page" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Titha Cookies" />
-
     <!-- Meta Tags for Twitter (Optional) -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Titha Cookies" />
@@ -31,7 +27,6 @@
       content="Nikmati berbagai pilihan menu makanan lezat di Pasakan Ambu. Mulai dari Jengkol Rendang, Babat Serundeng, dan masih banyak lagi!"
     />
     <meta name="twitter:image" content="./page/bg/gambar.jpg" />
-
     <!-- google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,97 +41,44 @@
     />
   </head>
   <body>
+
     <!-- Top Bar -->
-   <div class="container-fluid top-bar text-light py-2 d-none d-md-block">
-    <div class="row">
-        <div class="col-md-8 text-center text-md-start">
-            <a class="nav-link text-light d-inline-block me-3" href="about.html"><i
-                    class="fa-solid fa-info-circle"></i> Tentang Kami</a>
-            <a class="nav-link text-light d-inline-block me-3" href="https://wa.me/123456789"><i
-                    class="fa-solid fa-phone"></i> Kontak</a>
-                    <a class="nav-link text-light d-inline-block" href="https://wa.me/+62887435359524" class="help-icon mx-2" title="Bantuan">
-                        <i class="fa-solid fa-question-circle help-icon-white"></i> Bantuan
-                    </a>
-        </div>
-        <div class="col-md-4 text-center text-md-end">
-            <i class="fa-solid fa-map-marker-alt"></i> Jalan Sejahtera No. 45
-        </div>
-    </div>
+<div class="top-bar">
+  <span><i
+    class="fa-solid fa-info-circle"></i> Tentang Kami</span>
+  <span><i
+    class="fa-solid fa-phone"></i> Kontak</span>
+  <span><i class="fa-solid fa-question-circle help-icon-white"></i> Bantuan</span>
+  <span class="address"><i class="fa-solid fa-map-marker-alt"></i> Jl. Sariasih No. 54, Sarijadi</span>
 </div>
-<!-- Include Header -->
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="/assets/logo_logic.png" alt="Logic Coffee" height="50">
-                Logic Coffee
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="kategoriDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Kategori
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="kategoriDropdown">
-                            <li><a class="dropdown-item" href="#">Plastik Makanan</a></li>
-                            <li><a class="dropdown-item" href="#">Plastik Minuman</a></li>
-                            <li><a class="dropdown-item" href="#">Kemasan Kertas</a></li>
-                            <li><a class="dropdown-item" href="#">dan lain-lain</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <form class="d-flex mx-auto my-2 search-form">
-                    <input class="form-control me-2 search-input" type="search" placeholder="Cari produk..."
-                        aria-label="Search">
-                    <button class="btn btn-warning" type="submit">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </form>
-                <a href="cart.html" class="cart-icon mx-2 position-relative">
-                    <i class="fa-solid fa-shopping-cart"></i>
-                    <span class="badge badge-pill bg-danger position-absolute top-0 start-100 translate-middle"
-                        id="cart-count">0</span>
-                </a>
 
-                <a href="pesanan.html" class="orders-icon mx-2">
-                    <i class="fa-solid fa-box"></i>
-                </a>
+    <!-- Main Header -->
+<header class="header">
+  <div class="navbar">
+      <img src="assets/logo_logic.png" alt="Brand Logo" class="brand-logo">
+      <h1 class="brand-name">Logic Coffee</h1>
+      
 
-               
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <input type="text" placeholder="Cari produk...">
+        <button class="search-button">&#128269;</button>
+    </div>
 
-                <script>
-                    // Fungsi untuk memperbarui angka di ikon keranjang
-                    function updateCartIcon() {
-                        let cartItemCount = localStorage.getItem('cartItemCount') || 0;
-                        document.getElementById('cart-count').textContent = cartItemCount;
-                    }
 
-                    // Panggil fungsi ini setiap kali halaman dimuat
-                    updateCartIcon();
-                </script>
+      <nav class="nav-links">
+          <a href="#">Beranda</a>
+          <a href="#">Kategori</a>
+          <a href="#">Pesan Sekarang</a>
+      </nav>
 
-                <div class="dropdown">
-                    <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2 no-underline"
-                        id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-circle-user"></i>
-                        <span class="ms-2">Nama Pengguna</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                        <li><a class="dropdown-item profile-edit" href="/profile"><i
-                                    class="fa-solid fa-user-edit"></i> Ubah Profil</a></li>
-                        <li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i>
-                                Logout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
+      <!-- Profile and Cart -->
+      <!-- <div class="user-cart">
+          <span class="cart-icon">&#128722;<span class="cart-count">0</span></span>
+          <span class="profile">Nama Pengguna &#9662;</span>
+      </div> -->
+  </div>
 </header>
-
     <div class="container-wrapper">
       <main class="main-container">
         <h2>Form Pemesanan</h2>
@@ -145,7 +87,6 @@
           <!-- Elemen menu akan diisi oleh JavaScript -->
         </div>
       </main>
-
       <!-- konten kanan: receipt -->
       <div id="totalContainer" class="total-container">
         <h2 class="title">Pesanan Anda</h2>
@@ -166,17 +107,14 @@
             <option value="COD">COD</option>
           </select>
         </div>
-
         <button id="editUserInfoButton" class="edit-info-button">
           Ubah Identitas Pemesan?
         </button>
-
         <a id="whatsappLink" href="#" class="whatsapp-button" target="_blank"
           >Kirim Pesanan via WhatsApp</a
         >
       </div>
     </div>
-
     <div class="total-summary" id="totalSummary">
       <div class="total-summary-content">
         <div class="right">
@@ -190,19 +128,16 @@
         </div>
       </div>
     </div>
-
     <!-- Modal untuk input nama, nomor WhatsApp, dan alamat -->
     <div id="userModal" class="modal">
       <div class="modal-content">
         <img src="./bg/titha_banner.png" alt="" />
         <h2 id="modalTitle">Masukkan Informasi Anda</h2>
-
         <!-- Input Nama -->
         <div class="input-group">
           <input type="text" id="name" required />
           <label for="name" style="font-size: 16px">Nama</label>
         </div>
-
         <!-- Input Nomor Whatsapp -->
         <div class="input-group">
           <input type="text" id="whatsapp" required />
@@ -214,7 +149,6 @@
           <label for="address" style="font-size: 16px">Alamat</label>
         </div>
         <button id="buttonsimpaninfouser" class="save-button">Simpan</button>
-
         <button
           id="buttonbatalinfouser"
           class="cancel-button"
@@ -224,18 +158,18 @@
         </button>
       </div>
     </div>
-
-    <footer class="bg-dark text-light py-4">
-      <div class="container text-center">
-          <div class="mb-2">
-              <a class="nav-link text-light d-inline-block me-3" href="about.html"><i class="fa-solid fa-info-circle"></i> Tentang Kami</a>
-              <a class="nav-link text-light d-inline-block me-3" href="https://wa.me/+62887435359524"><i class="fa-solid fa-phone"></i> Kontak</a>
-              <a href="nav-link text-light d-inline-block"><i class="fa-solid fa-map-marker-alt"></i> Jl. Sariasih No. 54, Sarijadi</a>
-          </div>
-          <p>Logic Coffee &copy; 2024  All rights reserved.</p>
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <div class="footer-logo-icon">jual.in.my.id</div>
+        </div>
+        <p>Disediakan oleh Platform Jualin</p>
+        <p>
+          Isi Menu dan harga merupakan tangung jawab tenant |
+          <a href="#">Laporkan Penyalahgunaan</a>
+        </p>
       </div>
-  </footer>
-
+    </footer>
     <script src="script.js" type="module"></script>
     <script>
       document
