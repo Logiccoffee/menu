@@ -20,6 +20,15 @@
     margin: 0 10px;
 }
 
+.top-bar a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.top-bar a:hover{
+    color: #c9994c;
+}
+
 .address {
     margin-left: auto;
 }
