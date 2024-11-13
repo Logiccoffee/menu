@@ -43,6 +43,26 @@ h3,
     text-align: center;
 }
 
+.modal .brand {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    justify-items: center;
+}
+
+.modal .brand-logo {
+    width: 50px;
+    height: 50px;
+}
+
+.modal .brand-name {
+    font-weight: bold;
+    color: #09431f;
+    font-family: "Signika", sans-serif;
+    height: 50px; /* Ensures alignment with the logo's height */
+}
+
+
 .input-group {
     position: relative;
     margin-bottom: 20px;
@@ -362,7 +382,7 @@ h2 {
 }
 
 .total-container h2 {
-    color: #942b41;
+    color: #0e6b37 ;
     font-size: 1.5em;
     margin: 0;
 }
@@ -574,7 +594,7 @@ option {
     font-size: 14px;
     color: whitesmoke;
     margin-top: 40px;
-    background-color: #942b41;
+    background-color: #0e6b37;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -623,8 +643,8 @@ option {
 }
 
 .footer-content a:hover {
-    color: #942b41;
-    border-bottom: 1px solid #942b41;
+    color: #0e6b37;
+    border-bottom: 1px solid #0e6b37;
 }
 
 
@@ -765,7 +785,7 @@ option {
     .total-summary .left .total-price {
         font-weight: bold;
         font-size: 16px;
-        color: #942b41;
+        color: #0e6b37;
         text-align: end;
         margin-bottom: 4px
     }
