@@ -1,26 +1,26 @@
 [
     {
         "id": "1",
-        "name": "Kastangel",
-        "price": 60000,
-        "image": "kue1.jpg"
+        "name": "Kopi Susu",
+        "price": 16000,
+        "image": "kopsu_1.png"
     },
     {
         "id": "2",
-        "name": "Nastar",
-        "price": 80000,
-        "image": "kue2.jpg"
+        "name": "Matcha",
+        "price": 15000,
+        "image": "Matcha_Latte.png"
     },
     {
         "id": "3",
-        "name": "Putri Salju",
-        "price": 40000,
-        "image": "kue4.jpg"
+        "name": "Vanila Bliss",
+        "price": 15000,
+        "image": "vanilla_bliss_2.png"
     },
     {
         "id": "4",
-        "name": "Coklat Mete",
-        "price": 45000,
-        "image": "kue4.jpg"
+        "name": "Matcha Strawberry",
+        "price": 18000,
+        "image": "sm.png"
     }
 ]
