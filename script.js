@@ -130,44 +130,55 @@ window.changeQuantity = function(id, price, delta, itemId) {
     calculateTotal(); // Update total setiap kali kuantitas berubah
 };
 
+// Global variable to store queue information for each checkout process
+let currentQueueData = null;
+
 function getDailyQueueNumber() {
-    const today = new Date();
-    const formattedDate = today.getFullYear().toString() +
-                          (today.getMonth() + 1).toString().padStart(2, '0') +
-                          today.getDate().toString().padStart(2, '0') +
-                          today.getHours().toString().padStart(2, '0') +
-                          today.getMinutes().toString().padStart(2, '0');
+    const currentDate = new Date();
     const companyCode = "LGC";
     
-    const storedDate = localStorage.getItem("lastQueueDate");
-    let queueNumber;
+    // Format the date as YYYYMMDDHHMM
+    const formattedDate = currentDate.getFullYear().toString() +
+                          (currentDate.getMonth() + 1).toString().padStart(2, '0') +
+                          currentDate.getDate().toString().padStart(2, '0') +
+                          currentDate.getHours().toString().padStart(2, '0') +
+                          currentDate.getMinutes().toString().padStart(2, '0');
 
-    if (storedDate === today.toLocaleDateString()) {
-        // Increment daily counter if the date hasn't changed
-        queueNumber = parseInt(localStorage.getItem("dailyQueueCounter") || "0") + 1;
-    } else {
-        // Reset counter for a new day
-        queueNumber = 1;
-        localStorage.setItem("lastQueueDate", today.toLocaleDateString());
+    // Check if the last saved date is different from today, and reset if so
+    const lastQueueDate = localStorage.getItem("lastQueueDate");
+    if (lastQueueDate !== currentDate.toLocaleDateString()) {
+        localStorage.setItem("lastQueueDate", currentDate.toLocaleDateString());
+        localStorage.setItem("dailyQueueCounter", "1"); // Reset queue number to 1 for a new day
     }
 
-    localStorage.setItem("dailyQueueCounter", queueNumber);
+    // Get the latest queue number, increment it by 1, then store it again
+    const currentQueueNumber = parseInt(localStorage.getItem("dailyQueueCounter") || "0");
+    const newQueueNumber = currentQueueNumber + 1;
+    
+    // Immediately save the new queue number after calculating it
+    localStorage.setItem("dailyQueueCounter", newQueueNumber.toString());
 
-    // Generate a unique order number with company code, date/time, and queue number
-    const uniqueOrderNumber = `${companyCode}${formattedDate}${queueNumber}`;
+    // Generate the unique order number
+    const uniqueOrderNumber = `${companyCode}${formattedDate}${newQueueNumber.toString().padStart(3, '0')}`;
 
-    return { queueNumber, uniqueOrderNumber };
+    return { queueNumber: newQueueNumber, uniqueOrderNumber };
 }
 
-
+function initializeQueueData() {
+    if (!currentQueueData) {
+        currentQueueData = getDailyQueueNumber(); // Fetch and store queue data once
+    }
+}
 
 function calculateTotal() {
+    initializeQueueData(); // Ensure we get queue data only once
+
     const inputs = document.querySelectorAll('input[type="number"]');
     let total = 0;
     let totalItems = 0;
     const orderList = document.getElementById('orderList');
     orderList.innerHTML = '';
-  
+
     inputs.forEach(input => {
         const quantity = parseInt(input.value);
         const price = parseInt(input.getAttribute('data-price'));
@@ -196,13 +207,13 @@ function calculateTotal() {
             orderList.appendChild(menuItem);
         }
     });
-  
+
     document.getElementById('totalPrice').innerText = total.toLocaleString();
     document.getElementById('totalItems').innerText = totalItems;
     document.querySelector('.total-summary .total-price span').innerText = total.toLocaleString();
   
-    // Update WhatsApp link with daily queue number and unique order number
-    const { queueNumber, uniqueOrderNumber } = getDailyQueueNumber();
+    // Update WhatsApp link with queue data
+    const { queueNumber, uniqueOrderNumber } = currentQueueData;
     const userName = getCookie("name");
     const userWhatsapp = getCookie("whatsapp");
     const userAddress = getCookie("address");
@@ -218,7 +229,8 @@ function calculateTotal() {
 document.getElementById('whatsappLink').addEventListener('click', function(event) {
     event.preventDefault();
 
-    const { queueNumber, uniqueOrderNumber } = getDailyQueueNumber();
+    initializeQueueData(); // Ensure queue data is only retrieved once
+    const { queueNumber, uniqueOrderNumber } = currentQueueData;
     const paymentMethod = document.getElementById('paymentMethod').value;
     const rek = "Pembayaran akan dilakukan dengan transfer ke rekening\nBCA 2820321726\nKiki Santi Noviana";
     const userName = getCookie("name");
@@ -242,7 +254,7 @@ document.getElementById('whatsappLink').addEventListener('click', function(event
 
     let paymentInfo = paymentMethod === "Transfer" ? rek : "Pembayaran akan dilakukan dengan metode COD.";
     
-    const message = `Nomor Antrian Anda: ${queueNumber}\nNomor Unik Antrian: ${uniqueOrderNumber}\n\nSaya ingin memesan:\n${orders.map(order => `${order.name} x${order.quantity} - Rp ${order.price.toLocaleString()}`).join('\n')}\n\nTotal: Rp ${total.toLocaleString()}\n\n${paymentInfo}\n\nNama: ${userName}\nNomor WhatsApp: ${userWhatsapp}\nAlamat: ${userAddress}`;
+    const message = `${uniqueOrderNumber}\nNo. Antrian: ${queueNumber}\nSaya ingin memesan:\n${orders.map(order => `${order.name} x${order.quantity} - Rp ${order.price.toLocaleString()}`).join('\n')}\n\nTotal: Rp ${total.toLocaleString()}\n\n${paymentInfo}\n\nNama: ${userName}\nNomor WhatsApp: ${userWhatsapp}\nAlamat: ${userAddress}`;
     const whatsappUrl = `https://wa.me/6285183104981?text=${encodeURIComponent(message)}`;
 
     // Open WhatsApp
@@ -267,6 +279,7 @@ document.getElementById('whatsappLink').addEventListener('click', function(event
         console.log('API Response:', response);
     });
 });
+
 
 function getLastPathSegment() {
     // Ambil pathname dari URL
