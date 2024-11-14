@@ -792,7 +792,7 @@ option {
     .total-summary-content {
         display: flex;
         align-items: center;
-        /* justify-content: space-between; */
+        justify-content: space-between;
         background-color: #c9994c;
         color: #fff;
         /* White text color */
@@ -813,7 +813,7 @@ option {
     .total-summary .total-items {
         font-weight: bold;
         font-size: 16px;
-        text-align: start;
+        /* text-align: start; */
     }
 
     .total-summary .left .total-price {
