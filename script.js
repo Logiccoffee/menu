@@ -130,10 +130,41 @@ window.changeQuantity = function(id, price, delta, itemId) {
     calculateTotal(); // Update total setiap kali kuantitas berubah
 };
 
+function getDailyQueueNumber() {
+    const today = new Date();
+    const formattedDate = today.getFullYear().toString() +
+                          (today.getMonth() + 1).toString().padStart(2, '0') +
+                          today.getDate().toString().padStart(2, '0') +
+                          today.getHours().toString().padStart(2, '0') +
+                          today.getMinutes().toString().padStart(2, '0');
+    const companyCode = "LGC";
+    
+    const storedDate = localStorage.getItem("lastQueueDate");
+    let queueNumber;
+
+    if (storedDate === today.toLocaleDateString()) {
+        // Increment daily counter if the date hasn't changed
+        queueNumber = parseInt(localStorage.getItem("dailyQueueCounter") || "0") + 1;
+    } else {
+        // Reset counter for a new day
+        queueNumber = 1;
+        localStorage.setItem("lastQueueDate", today.toLocaleDateString());
+    }
+
+    localStorage.setItem("dailyQueueCounter", queueNumber);
+
+    // Generate a unique order number with company code, date/time, and queue number
+    const uniqueOrderNumber = `${companyCode}${formattedDate}${queueNumber}`;
+
+    return { queueNumber, uniqueOrderNumber };
+}
+
+
+
 function calculateTotal() {
     const inputs = document.querySelectorAll('input[type="number"]');
     let total = 0;
-    let totalItems = 0; // Tambahkan variabel totalItems untuk menghitung jumlah barang
+    let totalItems = 0;
     const orderList = document.getElementById('orderList');
     orderList.innerHTML = '';
   
@@ -144,7 +175,7 @@ function calculateTotal() {
         
         if (quantity > 0) {
             total += quantity * price;
-            totalItems += quantity; // Hitung total barang
+            totalItems += quantity;
 
             const menuItem = document.createElement('div');
             menuItem.classList.add('order-item');
@@ -167,27 +198,28 @@ function calculateTotal() {
     });
   
     document.getElementById('totalPrice').innerText = total.toLocaleString();
-    document.getElementById('totalItems').innerText = totalItems; // Update total barang di total-summary
-    document.querySelector('.total-summary .total-price span').innerText = total.toLocaleString(); // Update total harga di total-summary
-
+    document.getElementById('totalItems').innerText = totalItems;
+    document.querySelector('.total-summary .total-price span').innerText = total.toLocaleString();
   
-    // Update WhatsApp link
-    const whatsappLink = document.getElementById('whatsappLink');
-    const message = `Saya ingin memesan:\n${orders.join('\n')}\n\nTotal: Rp ${total.toLocaleString()}\n\n${rek}\n\nNama: ${userName}\nNomor WhatsApp: ${userWhatsapp}\nAlamat: ${userAddress}`;
-    whatsappLink.href = `https://wa.me/6283195800022?text=${encodeURIComponent(message)}`;
+    // Update WhatsApp link with daily queue number and unique order number
+    const { queueNumber, uniqueOrderNumber } = getDailyQueueNumber();
+    const userName = getCookie("name");
+    const userWhatsapp = getCookie("whatsapp");
+    const userAddress = getCookie("address");
+    const orders = Array.from(inputs)
+        .filter(input => parseInt(input.value) > 0)
+        .map(input => `${input.getAttribute('data-name')} x${input.value} - Rp ${(input.value * input.getAttribute('data-price')).toLocaleString()}`);
+
+    const message = `Nomor Antrian Anda: ${queueNumber}\nNomor Unik Antrian: ${uniqueOrderNumber}\n\nSaya ingin memesan:\n${orders.join('\n')}\n\nTotal: Rp ${total.toLocaleString()}\n\nNama: ${userName}\nNomor WhatsApp: ${userWhatsapp}\nAlamat: ${userAddress}`;
+    document.getElementById('whatsappLink').href = `https://wa.me/6285183104981?text=${encodeURIComponent(message)}`;
 }
 
-
-// Panggil updateTotal setiap kali quantity berubah
-document.querySelectorAll('.quantity-controls input').forEach(input => {
-    input.addEventListener('change', updateTotal);
-});
-
-
+// WhatsApp event handler
 document.getElementById('whatsappLink').addEventListener('click', function(event) {
     event.preventDefault();
 
-    const paymentMethod = document.getElementById('paymentMethod').value; // Ambil metode pembayaran yang dipilih
+    const { queueNumber, uniqueOrderNumber } = getDailyQueueNumber();
+    const paymentMethod = document.getElementById('paymentMethod').value;
     const rek = "Pembayaran akan dilakukan dengan transfer ke rekening\nBCA 2820321726\nKiki Santi Noviana";
     const userName = getCookie("name");
     const userWhatsapp = getCookie("whatsapp");
@@ -210,14 +242,16 @@ document.getElementById('whatsappLink').addEventListener('click', function(event
 
     let paymentInfo = paymentMethod === "Transfer" ? rek : "Pembayaran akan dilakukan dengan metode COD.";
     
-    const message = `Saya ingin memesan:\n${orders.map(order => `${order.name} x${order.quantity} - Rp ${order.price.toLocaleString()}`).join('\n')}\n\nTotal: Rp ${total.toLocaleString()}\n\n${paymentInfo}\n\nNama: ${userName}\nNomor WhatsApp: ${userWhatsapp}\nAlamat: ${userAddress}`;
-    const whatsappUrl = `https://wa.me/6283195800022?text=${encodeURIComponent(message)}`;
+    const message = `Nomor Antrian Anda: ${queueNumber}\nNomor Unik Antrian: ${uniqueOrderNumber}\n\nSaya ingin memesan:\n${orders.map(order => `${order.name} x${order.quantity} - Rp ${order.price.toLocaleString()}`).join('\n')}\n\nTotal: Rp ${total.toLocaleString()}\n\n${paymentInfo}\n\nNama: ${userName}\nNomor WhatsApp: ${userWhatsapp}\nAlamat: ${userAddress}`;
+    const whatsappUrl = `https://wa.me/6285183104981?text=${encodeURIComponent(message)}`;
 
-    // Redirect to WhatsApp
+    // Open WhatsApp
     window.open(whatsappUrl, '_blank');
 
     // POST request to API
     const postData = {
+        queueNumber: queueNumber,
+        uniqueOrderNumber: uniqueOrderNumber,
         orders: orders,
         total: total,
         user: {
@@ -226,16 +260,13 @@ document.getElementById('whatsappLink').addEventListener('click', function(event
             address: userAddress
         },
         payment: paymentInfo,
-        paymentMethod: paymentMethod // Tambahkan paymentMethod ke postData
+        paymentMethod: paymentMethod
     };
 
     postJSON('https://asia-southeast2-awangga.cloudfunctions.net/jualin/data/order/'+getLastPathSegment(), 'login', '', postData, function(response) {
         console.log('API Response:', response);
     });
 });
-
-
-
 
 function getLastPathSegment() {
     // Ambil pathname dari URL
