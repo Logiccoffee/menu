@@ -5,6 +5,12 @@
     font-family: Arial, sans-serif;
 }
 
+
+.top-bar-responsive {
+display: none;
+
+}
+
 /* Top Bar Styling */
 .top-bar {
     background-color: #09431f;
@@ -189,6 +195,30 @@
         display: none;
     }
 
+    /* Top Bar Styling */
+.top-bar-responsive {
+    background-color: #09431f;
+    color: #ffffff;
+    padding: 5px 10px;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.top-bar-responsive span {
+    margin: 0 10px;
+}
+
+.top-bar-responsive a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.top-bar-responsive a:hover{
+    color: #c9994c;
+}
+
     /* Adjust navbar layout */
     .navbar {
         flex-direction: column;
@@ -221,6 +251,7 @@
         width: 100%;
         gap: 10px;
     }
+
 }
 
 @media (max-width: 480px) {
