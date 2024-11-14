@@ -11,10 +11,7 @@
     <link rel="icon" href="assets/logo_logic.png" type="image/x-icon" />
     <!-- Meta Tags for Open Graph -->
     <meta property="og:title" content="Logic Coffee" />
-    <meta
-      property="og:description"
-      content="Kopinya Mahasiswa"
-    />
+    <meta property="og:description" content="Kopinya Mahasiswa" />
     <meta property="og:image" content="./bg/gambar.jpg" />
     <meta property="og:url" content="./page" />
     <meta property="og:type" content="website" />
@@ -22,10 +19,7 @@
     <!-- Meta Tags for Twitter (Optional) -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Logic Coffee" />
-    <meta
-      name="twitter:description"
-      content="Kopinya Mahasiswa"
-    />
+    <meta name="twitter:description" content="Kopinya Mahasiswa" />
     <meta name="twitter:image" content="./page/bg/gambar.jpg" />
     <!-- google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -55,8 +49,7 @@
         ></span
       >
       <span class="openhour"
-        ><a><i class="fa-solid fa-clock"></i> Buka Jam 08.00 - 18.00</a
-        ></span
+        ><a><i class="fa-solid fa-clock"></i> Buka Jam 08.00 - 18.00</a></span
       >
       <span class="address"
         ><a href="https://g.co/kgs/3VB5ztr"
@@ -74,8 +67,7 @@
         ></span
       >
       <span class="openhour"
-        ><a><i class="fa-solid fa-clock"></i> Buka Jam 08.00 - 18.00</a
-        ></span
+        ><a><i class="fa-solid fa-clock"></i> Buka Jam 08.00 - 18.00</a></span
       >
     </div>
 
@@ -239,27 +231,30 @@
             .scrollIntoView({ behavior: "smooth" });
         });
 
-        // untuk scroll dari total summary
-        document.addEventListener("scroll", function() {
-  const totalSummary = document.getElementById("totalSummary");
-  const totalContainer = document.getElementById("totalContainer");
-  const footer = document.querySelector("footer");
+      // untuk scroll dari total summary
+      document.addEventListener("scroll", function () {
+        const totalSummary = document.getElementById("totalSummary");
+        const totalContainer = document.getElementById("totalContainer");
+        const footer = document.querySelector("footer");
 
-  // Mendapatkan posisi bawah dari totalContainer dan posisi atas dari footer
-  const totalContainerBottom = totalContainer.getBoundingClientRect().bottom + window.scrollY;
-  const footerTop = footer.getBoundingClientRect().top + window.scrollY;
+        // Mendapatkan posisi bawah dari totalContainer dan posisi atas dari footer
+        const totalContainerBottom =
+          totalContainer.getBoundingClientRect().bottom + window.scrollY;
+        const footerTop = footer.getBoundingClientRect().top + window.scrollY;
 
-  // Mendapatkan posisi scroll saat ini
-  const scrollPosition = window.scrollY + window.innerHeight;
+        // Mendapatkan posisi scroll saat ini
+        const scrollPosition = window.scrollY + window.innerHeight;
 
-  // Memeriksa apakah posisi scroll telah mencapai totalContainer atau footer
-  if (scrollPosition >= totalContainerBottom || scrollPosition >= footerTop) {
-    totalSummary.style.display = "none";
-  } else {
-    totalSummary.style.display = "block";
-  }
-});
-
+        // Memeriksa apakah posisi scroll telah mencapai totalContainer atau footer
+        if (
+          scrollPosition >= totalContainerBottom ||
+          scrollPosition >= footerTop
+        ) {
+          totalSummary.style.display = "none";
+        } else {
+          totalSummary.style.display = "block";
+        }
+      });
     </script>
   </body>
 </html>

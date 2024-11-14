@@ -60,7 +60,8 @@ h3,
     font-weight: bold;
     color: #09431f;
     font-family: "Signika", sans-serif;
-    height: 50px; /* Ensures alignment with the logo's height */
+    height: 50px;
+    /* Ensures alignment with the logo's height */
 }
 
 
@@ -369,7 +370,7 @@ h2 {
 }
 
 .total-container h2 {
-    color: #0e6b37 ;
+    color: #0e6b37;
     font-size: 1.5em;
     margin: 0;
 }
@@ -639,11 +640,12 @@ option {
 }
 
 .footer-links i {
-    font-size: 18px; /* Larger icon size */
+    font-size: 18px;
+    /* Larger icon size */
 }
 
 .footer-content p {
-    font-weight:bold;
+    font-weight: bold;
     margin: 0;
     line-height: 1.4;
     margin-top: 10px;
