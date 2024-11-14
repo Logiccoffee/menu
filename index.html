@@ -238,6 +238,28 @@
             .getElementById("totalContainer")
             .scrollIntoView({ behavior: "smooth" });
         });
+
+        // untuk scroll dari total summary
+        document.addEventListener("scroll", function() {
+  const totalSummary = document.getElementById("totalSummary");
+  const totalContainer = document.getElementById("totalContainer");
+  const footer = document.querySelector("footer");
+
+  // Mendapatkan posisi bawah dari totalContainer dan posisi atas dari footer
+  const totalContainerBottom = totalContainer.getBoundingClientRect().bottom + window.scrollY;
+  const footerTop = footer.getBoundingClientRect().top + window.scrollY;
+
+  // Mendapatkan posisi scroll saat ini
+  const scrollPosition = window.scrollY + window.innerHeight;
+
+  // Memeriksa apakah posisi scroll telah mencapai totalContainer atau footer
+  if (scrollPosition >= totalContainerBottom || scrollPosition >= footerTop) {
+    totalSummary.style.display = "none";
+  } else {
+    totalSummary.style.display = "block";
+  }
+});
+
     </script>
   </body>
 </html>
