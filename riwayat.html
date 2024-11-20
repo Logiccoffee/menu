@@ -83,52 +83,51 @@
     <main>
         <aside class="sidebar">
             <div class="profile">
-                <img src="menu/sm.png" alt="Profile Picture">
-                <h3>Pengguna</h3>
-                <a href="#" class="edit-profile">Ubah Profil</a>
-                <nav>
-                    <a href="#">Akun Saya</a>
-                    <a href="#" class="active">Riwayat Pesanan</a>
+                <div class="profile-header">
+                    <img src="menu/sm.png" alt="Profile Picture" class="profile-picture">
+                    <div class="profile-info">
+                        <h3 class="profile-name">Pengguna</h3>
+                        <a href="#" class="edit-profile">
+                            <i class="fas fa-pencil-alt"></i> Ubah Profil
+                        </a>
+                    </div>
+                </div>
+                <nav class="menu">
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-user menu-icon"></i> Akun Saya
+                    </a>
+                    <a href="#" class="menu-item active">
+                        <i class="fas fa-history menu-icon"></i> Riwayat Pesanan
+                    </a>
                 </nav>
             </div>
         </aside>
 
         <section class="content">
-            <!-- Tab Navigation -->
             <div class="tabs">
-                <button class="active">Semua</button>
-                <button>Diproses</button>
-                <button>Diteruskan</button>
-                <button>Dalam Pengiriman</button>
-                <button>Selesai</button>
-                <button>Dibatalkan</button>
+                <button class="tab active">Semua</button>
+                <button class="tab">Diproses</button>
+                <button class="tab">Dikirim</button>
+                <button class="tab">Selesai</button>
+                <button class="tab">Dibatalkan</button>
             </div>
 
-            <!-- Order Card -->
             <div class="order-card">
-                <div class="order-header">
-                    <h4>Pesanan Cappuccino dan Croissant</h4>
-                    <span class="status diproses">Diproses</span>
+                <div class="card-header">
+                    <h3>Pesanan LogicCoffee</h3>
+                    <span class="order-code">Kode Pesanan: LC-001</span>
                 </div>
-                <div class="order-body">
-                    <div class="order-info">
-                        <p><strong>Nama Pelanggan:</strong> Budi Santoso</p>
-                        <p><strong>Email:</strong> budi@gmail.com</p>
-                        <p><strong>No. Telp/WA:</strong> 081234567890</p>
-                        <p><strong>Alamat Pengiriman:</strong> Jl. Kopi No. 45, Bandung</p>
-                        <p><strong>Tanggal Pesanan:</strong> 2024-11-20 08:45</p>
-                    </div>
-                    <div class="order-detail">
-                        <p>Cappuccino (1x) - Rp25,000</p>
-                        <p>Croissant (1x) - Rp15,000</p>
-                    </div>
+                <div class="card-body">
+                    <p><strong>Nama Pemesan:</strong> Pengguna</p>
+                    <p><strong>Email:</strong> pengguna@gmail.com</p>
+                    <p><strong>No. Telepon/WA:</strong> 08123456789</p>
+                    <p><strong>Pesanan:</strong> 1x Cappuccino, 2x Croissant</p>
+                    <p><strong>Total:</strong> Rp50.000</p>
+                    <p><strong>Alamat:</strong> Jl. Kopi Sejahtera No. 12</p>
+                    <p><strong>Tanggal Pesanan:</strong> 2024-08-13 13:45</p>
                 </div>
-                <div class="order-footer">
-                    <div class="order-code">
-                        <p>Kode Pesanan</p>
-                        <strong>ORD-2024-001</strong>
-                    </div>
-                    <a href="#" class="email-icon">📧</a>
+                <div class="card-footer">
+                    <span class="status sent">Diproses</span>
                 </div>
             </div>
         </section>

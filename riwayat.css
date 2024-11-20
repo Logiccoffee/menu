@@ -22,14 +22,85 @@ main {
 /* Sidebar Styles */
 .sidebar {
     width: 250px;
-    background: #f8f8f8;
+    background-color: #e0e0e0;
     padding: 20px;
-    float: left;
-    border-right: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .profile {
     text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-picture {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.profile-name {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+}
+
+.edit-profile {
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.edit-profile:hover {
+    text-decoration: underline;
+}
+
+.menu {
+    margin-top: 20px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    gap: 10px;
+}
+
+.menu-icon {
+    font-size: 18px;
+}
+
+.menu-item:hover {
+    background-color: #d6d6d6;
+}
+
+.menu-item.active {
+    font-weight: bold;
+    color: #ffc107;
 }
 
 .profile img {
@@ -70,92 +141,87 @@ main {
     padding: 20px;
 }
 
+/* Tabs */
 .tabs {
-    margin-bottom: 20px;
     display: flex;
     gap: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-bottom: 2px solid #ddd;
 }
 
-.tabs button {
-    padding: 10px 15px;
-    background: #ddd;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.tabs button.active {
-    background: #00543d;
-    color: #fff;
-}
-
-.ticket {
-    background: #fff;
+.tab {
+    padding: 10px 20px;
+    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-.ticket-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background: #f1f1f1;
-    border-bottom: 1px solid #ddd;
-}
-
-.ticket-header h4 {
-    font-size: 16px;
-}
-
-.ticket-header .status {
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 12px;
+.tab.active {
+    background-color: #00543d;
     color: #fff;
-    background: #4CAF50;
+    border-color: #00543d;
 }
 
-.ticket-header .status.terkirim {
-    background: #007bff;
+.tab:hover {
+    background-color: #00543d;
+    color: #fff;
 }
 
-.ticket-body {
+/* Card */
+.order-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     padding: 20px;
-    display: flex;
-    justify-content: space-between;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.ticket-info p {
-    margin: 5px 0;
-    font-size: 14px;
-}
-
-.ticket-detail {
-    flex-basis: 50%;
-    font-size: 14px;
-    color: #555;
-}
-
-.ticket-footer {
+.card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    background: #f8f8f8;
-    border-top: 1px solid #ddd;
+    margin-bottom: 10px;
 }
 
-.ticket-footer .kode-laporan {
-    text-align: left;
-    font-size: 14px;
+.card-header h3 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.order-code {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #999;
+}
+
+.card-body p {
+    margin: 5px 0;
     color: #555;
 }
 
-.ticket-footer .email-icon {
-    font-size: 18px;
-    text-decoration: none;
-    color: #007bff;
+.card-body strong {
+    color: #333;
+}
+
+.card-footer {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.status.sent {
+    background-color: #00543d;
 }
