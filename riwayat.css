@@ -225,11 +225,29 @@ main {
     color: #333;
 }
 
+/* Header Content (Logo + Title) */
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Jarak antara logo dan teks */
+}
+
+/* Logo Styling */
+.logo {
+    width: 40px; /* Ukuran logo */
+    height: 40px; /* Pastikan logo berbentuk persegi */
+    object-fit: cover; /* Mengatur gambar agar tidak terdistorsi */
+    border-radius: 50%; /* Membuat logo berbentuk lingkaran */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Menambahkan sedikit bayangan */
+}
+
 .order-code {
     font-size: 0.9rem;
     font-weight: bold;
     color: #999;
 }
+
+
 
 .card-body p {
     margin: 5px 0;
