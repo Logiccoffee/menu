@@ -7,6 +7,18 @@ h4 {
     margin: 0;
 }
 
+/* General Layout */
+main {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Main Content Layout */
+.main-content-container {
+    display: flex; /* Menggunakan flexbox untuk menyusun sidebar dan content sejajar */
+    margin: 20px;
+}
+
 /* Sidebar Styles */
 .sidebar {
     width: 250px;
