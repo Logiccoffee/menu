@@ -145,32 +145,62 @@ main {
 /* Tabs */
 .tabs {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 10px;
     margin-bottom: 20px;
-    padding: 10px;
+    padding: 0;
     background-color: #ffff;
     border-bottom: 2px solid #ddd;
 }
 
 .tab {
-    padding: 10px 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    flex-grow: 1;
+    text-align: center;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    color: #555;
+    font-size: 16px;
+    position: relative;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
     transition: 0.3s;
+    margin: 0 5px;
 }
 
 .tab.active {
-    background-color: #00543d;
-    color: #fff;
-    border-color: #00543d;
+    font-weight: bold;
+    color: #00543d;
+}
+
+.tab.active::after {
+    content: ''; /* Pseudo-element untuk garis bawah */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #09431F; /* Warna hijau untuk garis */
+    border-radius: 2px; /* Membuat garis lebih halus */
 }
 
 .tab:hover {
-    background-color: #00543d;
-    color: #fff;
+    color: #09431F;
+}
+
+.tab:hover::after {
+    content: ''; /* Pseudo-element untuk garis bawah */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #09431F; /* Warna hijau untuk garis saat hover */
+    border-radius: 2px; /* Membuat garis lebih halus */
+    opacity: 0.7; /* Sedikit transparan untuk membedakan dengan active */
+    transition: all 0.3s ease;
 }
 
 /* Card */
