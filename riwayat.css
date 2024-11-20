@@ -1,0 +1,149 @@
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+h4 {
+    margin: 0;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background: #f8f8f8;
+    padding: 20px;
+    float: left;
+    border-right: 1px solid #ddd;
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile h3 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.profile .edit-profile {
+    display: inline-block;
+    margin: 10px 0;
+    color: #00543d;
+    font-size: 14px;
+}
+
+.profile nav a {
+    display: block;
+    margin: 10px 0;
+    padding: 8px;
+    color: #333;
+    border-radius: 5px;
+}
+
+.profile nav a.active {
+    background: #00543d;
+    color: #fff;
+}
+
+/* Content Styles */
+.content {
+    margin-left: 270px;
+    padding: 20px;
+}
+
+.tabs {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.tabs button {
+    padding: 10px 15px;
+    background: #ddd;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tabs button.active {
+    background: #00543d;
+    color: #fff;
+}
+
+.ticket {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+}
+
+.ticket-header h4 {
+    font-size: 16px;
+}
+
+.ticket-header .status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #fff;
+    background: #4CAF50;
+}
+
+.ticket-header .status.terkirim {
+    background: #007bff;
+}
+
+.ticket-body {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ticket-info p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.ticket-detail {
+    flex-basis: 50%;
+    font-size: 14px;
+    color: #555;
+}
+
+.ticket-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #f8f8f8;
+    border-top: 1px solid #ddd;
+}
+
+.ticket-footer .kode-laporan {
+    text-align: left;
+    font-size: 14px;
+    color: #555;
+}
+
+.ticket-footer .email-icon {
+    font-size: 18px;
+    text-decoration: none;
+    color: #007bff;
+}

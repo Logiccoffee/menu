@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Riwayat Pemesanan | Logic Coffee</title>
+    <!-- css -->
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="footer.css" />
+    <link rel="stylesheet" href="riwayat.css" />
+    <!-- Favicon -->
+    <link rel="icon" href="assets/logo_logic.png" type="image/x-icon" />
+    <!-- Meta Tags for Open Graph -->
+    <meta property="og:title" content="Logic Coffee" />
+    <meta property="og:description" content="Kopinya Mahasiswa" />
+    <meta property="og:image" content="./bg/gambar.jpg" />
+    <meta property="og:url" content="./page" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Logic Coffee" />
+    <!-- Meta Tags for Twitter (Optional) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Logic Coffee" />
+    <meta name="twitter:description" content="Kopinya Mahasiswa" />
+    <meta name="twitter:image" content="./page/bg/gambar.jpg" />
+    <!-- google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Signika:wght@300..700&display=swap"
+        rel="stylesheet" />
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <span class="about"><a href=""><i class="fa-solid fa-info-circle"></i> Tentang</a></span>
+        <span class="contact"><a href="http://"> <i class="fa-solid fa-phone"></i> Kontak</a></span>
+        <span class="instagram"><a href="http://www.instagram.com/logic_coffeee"><i class="fa-brands fa-instagram"></i>
+                Instagram</a></span>
+        <span class="openhour"><a><i class="fa-solid fa-clock"></i> Buka Jam 08.00 - 18.00</a></span>
+        <span class="address"><a href="https://g.co/kgs/3VB5ztr"><i class="fa-solid fa-map-marker-alt"></i> Jl. Sariasih
+                No. 54,
+                Sarijadi</a></span>
+    </div>
+
+    <!-- Top Bar Responsive Mode -->
+    <div class="top-bar-responsive">
+        <span class="address"><a href="https://g.co/kgs/3VB5ztr"><i class="fa-solid fa-map-marker-alt"></i> Jl. Sariasih
+                No. 54</a></span>
+        <span class="openhour"><a><i class="fa-solid fa-clock"></i> Buka Jam 08.00 - 18.00</a></span>
+    </div>
+
+    <!-- Main Header -->
+    <header class="header">
+        <div class="navbar">
+            <div class="brand">
+                <img src="assets/logo_logic.png" alt="Brand Logo" class="brand-logo" />
+                <h1 class="brand-name">Logic Coffee</h1>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" placeholder="Cari produk..." />
+                <button class="search-button">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+
+            <nav class="nav-links">
+                <a href="#"><i class="fa fa-house"></i> Beranda</a>
+                <a href="#"><i class="fa-solid fa-mug-saucer"></i> Kategori</a>
+                <a href="#"><i class="fa fa-mug-hot"></i> Pesan Sekarang</a>
+                <a href="riwayat.html"><i class="fa-solid fa-receipt"></i> Riwayat Pesanan</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="profile.png" alt="Profile Picture">
+                <h3>Pengguna</h3>
+                <a href="#" class="edit-profile">Ubah Profil</a>
+                <nav>
+                    <a href="#">Akun Saya</a>
+                    <a href="#" class="active">Riwayat Pesanan</a>
+                </nav>
+            </div>
+        </aside>
+
+        <section class="content">
+            <!-- Tab Navigation -->
+            <div class="tabs">
+                <button class="active">Semua</button>
+                <button>Diproses</button>
+                <button>Diteruskan</button>
+                <button>Dalam Pengiriman</button>
+                <button>Selesai</button>
+                <button>Dibatalkan</button>
+            </div>
+
+            <!-- Order Card -->
+            <div class="order-card">
+                <div class="order-header">
+                    <h4>Pesanan Cappuccino dan Croissant</h4>
+                    <span class="status diproses">Diproses</span>
+                </div>
+                <div class="order-body">
+                    <div class="order-info">
+                        <p><strong>Nama Pelanggan:</strong> Budi Santoso</p>
+                        <p><strong>Email:</strong> budi@gmail.com</p>
+                        <p><strong>No. Telp/WA:</strong> 081234567890</p>
+                        <p><strong>Alamat Pengiriman:</strong> Jl. Kopi No. 45, Bandung</p>
+                        <p><strong>Tanggal Pesanan:</strong> 2024-11-20 08:45</p>
+                    </div>
+                    <div class="order-detail">
+                        <p>Cappuccino (1x) - Rp25,000</p>
+                        <p>Croissant (1x) - Rp15,000</p>
+                    </div>
+                </div>
+                <div class="order-footer">
+                    <div class="order-code">
+                        <p>Kode Pesanan</p>
+                        <strong>ORD-2024-001</strong>
+                    </div>
+                    <a href="#" class="email-icon">📧</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p class="footer-intro">Kenali lebih dekat dan temui kami di</p>
+            <div class="footer-links">
+                <span class="about"><a href=""><i class="fa-solid fa-info-circle"></i> Tentang</a></span>
+                <span class="contact"><a href="http://">
+                        <i class="fa-solid fa-phone"></i> Kontak</a></span>
+                <span class="instagram"><a href="http://www.instagram.com/logic_coffeee"><i
+                            class="fa-brands fa-instagram"></i> Instagram</a></span>
+                <span class="address"><a href="https://g.co/kgs/3VB5ztr"><i class="fa-solid fa-map-marker-alt"></i> Jl.
+                        Sariasih No. 54,
+                        Sarijadi</a></span>
+            </div>
+            <p>Logic Coffee &copy; 2024 All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js" type="module"></script>
+    <script>
+        document
+            .getElementById("totalSummary")
+            .addEventListener("click", function () {
+                document
+                    .getElementById("totalContainer")
+                    .scrollIntoView({ behavior: "smooth" });
+            });
+
+        // untuk scroll dari total summary
+        document.addEventListener("scroll", function () {
+            const totalSummary = document.getElementById("totalSummary");
+            const totalContainer = document.getElementById("totalContainer");
+            const footer = document.querySelector("footer");
+
+            // Mendapatkan posisi bawah dari totalContainer dan posisi atas dari footer
+            const totalContainerBottom =
+                totalContainer.getBoundingClientRect().bottom + window.scrollY;
+            const footerTop = footer.getBoundingClientRect().top + window.scrollY;
+
+            // Mendapatkan posisi scroll saat ini
+            const scrollPosition = window.scrollY + window.innerHeight;
+
+            // Memeriksa apakah posisi scroll telah mencapai totalContainer atau footer
+            if (
+                scrollPosition >= totalContainerBottom ||
+                scrollPosition >= footerTop
+            ) {
+                totalSummary.style.display = "none";
+            } else {
+                totalSummary.style.display = "block";
+            }
+        });
+    </script>
+</body>
+
+</html>
