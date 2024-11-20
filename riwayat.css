@@ -207,7 +207,6 @@ main {
 .order-card {
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -247,6 +246,14 @@ main {
     color: #999;
 }
 
+/* Order Status Section */
+.order-status {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
 
 .card-body p {
@@ -271,6 +278,20 @@ main {
     color: #fff;
 }
 
+/* Status Icon and Text */
+.status-icon {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Jarak antara ikon dan teks */
+    margin-top: 5px;
+}
+
+.status-icon-fa {
+    font-size: 24px; /* Ukuran ikon */
+    color: #805700; /* Warna ikon */
+    line-height: 1;
+}
+
 .status.sent {
-    background-color: #00543d;
+    color: #00543d;
 }
