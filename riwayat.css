@@ -18,7 +18,8 @@ main {
 
 /* Main Content Layout */
 .main-content-container {
-    display: flex; /* Menggunakan flexbox untuk menyusun sidebar dan content sejajar */
+    display: flex;
+    /* Menggunakan flexbox untuk menyusun sidebar dan content sejajar */
     margin: 20px;
 }
 
@@ -176,14 +177,17 @@ main {
 }
 
 .tab.active::after {
-    content: ''; /* Pseudo-element untuk garis bawah */
+    content: '';
+    /* Pseudo-element untuk garis bawah */
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     height: 3px;
-    background-color: #09431F; /* Warna hijau untuk garis */
-    border-radius: 2px; /* Membuat garis lebih halus */
+    background-color: #09431F;
+    /* Warna hijau untuk garis */
+    border-radius: 2px;
+    /* Membuat garis lebih halus */
 }
 
 .tab:hover {
@@ -191,15 +195,19 @@ main {
 }
 
 .tab:hover::after {
-    content: ''; /* Pseudo-element untuk garis bawah */
+    content: '';
+    /* Pseudo-element untuk garis bawah */
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     height: 3px;
-    background-color: #09431F; /* Warna hijau untuk garis saat hover */
-    border-radius: 2px; /* Membuat garis lebih halus */
-    opacity: 0.7; /* Sedikit transparan untuk membedakan dengan active */
+    background-color: #09431F;
+    /* Warna hijau untuk garis saat hover */
+    border-radius: 2px;
+    /* Membuat garis lebih halus */
+    opacity: 0.7;
+    /* Sedikit transparan untuk membedakan dengan active */
     transition: all 0.3s ease;
 }
 
@@ -210,6 +218,19 @@ main {
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.order-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    /* Lebar garis */
+    height: 100%;
+    background-color: #09431F;
+    /* Warna garis */
 }
 
 .card-header {
@@ -217,6 +238,7 @@ main {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .card-header h3 {
@@ -228,16 +250,22 @@ main {
 .header-content {
     display: flex;
     align-items: center;
-    gap: 10px; /* Jarak antara logo dan teks */
+    gap: 10px;
+    /* Jarak antara logo dan teks */
 }
 
 /* Logo Styling */
 .logo {
-    width: 40px; /* Ukuran logo */
-    height: 40px; /* Pastikan logo berbentuk persegi */
-    object-fit: cover; /* Mengatur gambar agar tidak terdistorsi */
-    border-radius: 50%; /* Membuat logo berbentuk lingkaran */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Menambahkan sedikit bayangan */
+    width: 40px;
+    /* Ukuran logo */
+    height: 40px;
+    /* Pastikan logo berbentuk persegi */
+    object-fit: cover;
+    /* Mengatur gambar agar tidak terdistorsi */
+    border-radius: 50%;
+    /* Membuat logo berbentuk lingkaran */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Menambahkan sedikit bayangan */
 }
 
 .order-code {
@@ -255,6 +283,31 @@ main {
     text-align: center;
 }
 
+.order-date {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Center secara horizontal */
+    font-size: 14px;
+    font-weight: bold;
+    color: #999;
+}
+
+.order-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Mengatur elemen agar tersebar */
+    margin-top: 10px;
+  }
+
+  .divider {
+    width: 1px; /* Atau set sesuai lebar yang diinginkan */
+    height: 20px;
+    border-left: 1px dashed #000; /* Garis titik-titik */
+    margin: 0 15px; /* Jarak antar elemen */
+    align-self: center; /* Menyesuaikan garis dengan elemen di sekitarnya */
+    z-index: 1; /* Pastikan garis berada di atas elemen lainnya */
+  }
 
 .card-body p {
     margin: 5px 0;
@@ -282,13 +335,16 @@ main {
 .status-icon {
     display: flex;
     align-items: center;
-    gap: 5px; /* Jarak antara ikon dan teks */
+    gap: 5px;
+    /* Jarak antara ikon dan teks */
     margin-top: 5px;
 }
 
 .status-icon-fa {
-    font-size: 24px; /* Ukuran ikon */
-    color: #805700; /* Warna ikon */
+    font-size: 24px;
+    /* Ukuran ikon */
+    color: #805700;
+    /* Warna ikon */
     line-height: 1;
 }
 
