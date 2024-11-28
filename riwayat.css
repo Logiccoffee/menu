@@ -211,14 +211,17 @@ main {
     transition: all 0.3s ease;
 }
 
-/* Card */
+/* Container utama */
 .order-card {
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Untuk divider absolut */
     background-color: #fff;
     border: 1px solid #ddd;
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: relative;
+    width: 100%;
 }
 
 .order-card::before {
@@ -233,25 +236,25 @@ main {
     /* Warna garis */
 }
 
+/* Header */
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
+    position: relative; /* Agar divider tetap di tengah */
+    padding-bottom: 20px;
 }
 
 .card-header h3 {
     font-size: 1.5rem;
-    color: #333;
+    color: #805700;
 }
 
-/* Header Content (Logo + Title) */
+/* Header konten */
 .header-content {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* Jarak antara logo dan teks */
 }
 
 /* Logo Styling */
@@ -271,7 +274,7 @@ main {
 .order-code {
     font-size: 0.9rem;
     font-weight: bold;
-    color: #999;
+    color: #555;
 }
 
 /* Order Status Section */
@@ -283,35 +286,54 @@ main {
     text-align: center;
 }
 
+/* Elemen lainnya */
 .order-date {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    /* Center secara horizontal */
-    font-size: 14px;
+    transform: translateX(-50%); /* Center secara horizontal */
+    font-size: 0.9rem;
     font-weight: bold;
-    color: #999;
+    color: #555;
+    white-space: nowrap; /* Mencegah teks membungkus */
+    text-align: center;
 }
 
-.order-info {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Mengatur elemen agar tersebar */
-    margin-top: 10px;
-  }
+.order-date,
+.order-code {
+    flex: 1; /* Agar elemen membagi ruang dengan proporsional */
+}
 
-  .divider {
-    width: 1px; /* Atau set sesuai lebar yang diinginkan */
-    height: 20px;
-    border-left: 1px dashed #000; /* Garis titik-titik */
-    margin: 0 15px; /* Jarak antar elemen */
-    align-self: center; /* Menyesuaikan garis dengan elemen di sekitarnya */
-    z-index: 1; /* Pastikan garis berada di atas elemen lainnya */
-  }
+/* Order Info */
+.order-info {
+    display: flex; /* Elemen berjajar horizontal */
+    align-items: center !important;
+    justify-content: center !important; /* Horizontally center */
+    gap: 10px;
+    position: relative;
+    z-index: 1; /* Pastikan elemen tetap terlihat */
+}
+
+/* Garis putus-putus */
+.divider {
+    text-align: center;
+    position: absolute;
+    top: -29px;
+    bottom: 0;
+    left: calc(45% - 1px); /* Di tengah antara .order-date dan .order-code */
+    width: 2px; /* Lebar garis */
+    height: calc(100% + 227px); /* Tambah tinggi sedikit agar penuh */
+    background: repeating-linear-gradient(
+        to bottom,
+        #09431F 0,
+        #09431F 4px,
+        transparent 4px,
+        transparent 8px
+    );
+    z-index: 1; /* Pastikan garis berada di atas */
+}
 
 .card-body p {
     margin: 5px 0;
     color: #555;
+    padding: 0px 0;
 }
 
 .card-body strong {
