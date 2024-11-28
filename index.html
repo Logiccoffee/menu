@@ -129,12 +129,11 @@
         <div class="payment-method">
           <label for="paymentMethod">Pilih Metode Pembayaran:</label>
           <select id="paymentMethod" name="paymentMethod">
-            <option value="Transfer">Transfer</option>
-            <option value="COD">COD</option>
+            <option value="Transfer">Cash</option>
           </select>
         </div>
         <button id="editUserInfoButton" class="edit-info-button">
-          Ubah Identitas Pemesan?
+          Ubah Informasi pemesanan?
         </button>
         <a id="whatsappLink" href="#" class="whatsapp-button" target="_blank"
           >Kirim Pesanan via WhatsApp</a
@@ -154,7 +153,7 @@
         </div>
       </div>
     </div>
-    <!-- Modal untuk input nama, nomor WhatsApp, dan alamat -->
+    <!-- Modal untuk input nama, nomor WhatsApp, dan catatan -->
     <div id="userModal" class="modal">
       <div class="modal-content">
         <div class="brand">
@@ -176,10 +175,10 @@
           <input type="text" id="whatsapp" required />
           <label for="whatsapp" style="font-size: 16px">Nomor WhatsApp</label>
         </div>
-        <!-- Input Alamat -->
+        <!-- Input Catatan -->
         <div class="input-group">
-          <input type="text" id="address" required />
-          <label for="address" style="font-size: 16px">Alamat</label>
+          <input type="text" id="note" required />
+          <label for="note" style="font-size: 16px">Catatan</label>
         </div>
         <button id="buttonsimpaninfouser" class="save-button">Simpan</button>
         <button

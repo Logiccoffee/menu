@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
 function checkCookies() {
   const userName = getCookie("name");
   const userWhatsapp = getCookie("whatsapp");
-  const userAddress = getCookie("address");
+  const userNote = getCookie("note");
 
   document.getElementById("userModal").style.display =
-    userName && userWhatsapp && userAddress ? "none" : "flex";
+    userName && userWhatsapp && userNote ? "none" : "flex";
   document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
   document.getElementById("buttonbatalinfouser").style.display = "none"; // Hide "Batal" initially
 }
@@ -26,12 +26,12 @@ function checkCookies() {
 function saveUserInfo() {
   const name = document.getElementById("name").value;
   const whatsapp = document.getElementById("whatsapp").value;
-  const address = document.getElementById("address").value;
+  const note = document.getElementById("note").value;
 
-  if (name && whatsapp && address) {
+  if (name && whatsapp && note) {
     setCookie("name", name, 365);
     setCookie("whatsapp", whatsapp, 365);
-    setCookie("address", address, 365);
+    setCookie("note", note, 365);
     closeUserModal();
   } else {
     alert("Silakan masukkan semua informasi.");
@@ -61,7 +61,7 @@ document
   .addEventListener("click", function () {
     document.getElementById("name").value = getCookie("name") || "";
     document.getElementById("whatsapp").value = getCookie("whatsapp") || "";
-    document.getElementById("address").value = getCookie("address") || "";
+    document.getElementById("note").value = getCookie("note") || "";
     document.getElementById("modalTitle").textContent = "Ubah Informasi Anda";
     document.getElementById("userModal").style.display = "flex";
     document.getElementById("buttonbatalinfouser").style.display =
@@ -244,7 +244,7 @@ function calculateTotal() {
   const { queueNumber, uniqueOrderNumber } = currentQueueData;
   const userName = getCookie("name");
   const userWhatsapp = getCookie("whatsapp");
-  const userAddress = getCookie("address");
+  const userNote = getCookie("note");
   const orders = Array.from(inputs)
     .filter((input) => parseInt(input.value) > 0)
     .map(
@@ -256,7 +256,7 @@ function calculateTotal() {
 
   const message = `Nomor Antrian Anda: ${queueNumber}\nNomor Unik Antrian: ${uniqueOrderNumber}\n\nSaya ingin memesan:\n${orders.join(
     "\n"
-  )}\n\nTotal: Rp ${total.toLocaleString()}\n\nNama: ${userName}\nNomor WhatsApp: ${userWhatsapp}\nAlamat: ${userAddress}`;
+  )}\n\nTotal: Rp ${total.toLocaleString()}\n\nNama: ${userName}\nNomor WhatsApp: ${userWhatsapp}\nCatatan: ${userNote}`;
   document.getElementById(
     "whatsappLink"
   ).href = `https://wa.me/6285183104981?text=${encodeURIComponent(message)}`;
@@ -275,7 +275,7 @@ document
       "Pembayaran akan dilakukan dengan transfer ke rekening\nBCA 2820321726\nKiki Santi Noviana";
     const userName = getCookie("name");
     const userWhatsapp = getCookie("whatsapp");
-    const userAddress = getCookie("address");
+    const userNote = getCookie("note");
 
     const inputs = document.querySelectorAll('input[type="number"]');
     let orders = [];
@@ -306,7 +306,7 @@ document
       )
       .join(
         "\n"
-      )}\n\nTotal: Rp ${total.toLocaleString()}\n\n${paymentInfo}\n\nNama: ${userName}\nNomor WhatsApp: ${userWhatsapp}\nAlamat: ${userAddress}`;
+      )}\n\nTotal: Rp ${total.toLocaleString()}\n\n${paymentInfo}\n\nNama: ${userName}\nNomor WhatsApp: ${userWhatsapp}\nCatatan: ${userNote}`;
     const whatsappUrl = `https://wa.me/6285183104981?text=${encodeURIComponent(
       message
     )}`;
@@ -323,7 +323,7 @@ document
       user: {
         name: userName,
         whatsapp: userWhatsapp,
-        address: userAddress,
+        note: userNote,
       },
       payment: paymentInfo,
       paymentMethod: paymentMethod,
