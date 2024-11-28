@@ -756,14 +756,16 @@ option {
     display: flex;
     align-items: center;
     font-size: 16px;
-    font-family: 'Signika', sans-serif;
+    font-family: "Signika", Arial, sans-serif;
   }
   
   .user-info .user-name {
-    color: #333;
-    margin-right: 20px;
-    display: flex;
-    align-items: center;
+    text-decoration: none;
+    color: #805700;
+    font-weight: 500;
+    font-size: large;
+    font-family: "Signika", Arial, sans-serif;
+    position: relative;
   }
   
   .user-info .user-name i {
