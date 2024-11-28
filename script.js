@@ -330,7 +330,7 @@ document
     };
 
     postJSON(
-      "https://asia-southeast2-awangga.cloudfunctions.net/jualin/data/order/" +
+      "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order/" +
         getLastPathSegment(),
       "login",
       "",

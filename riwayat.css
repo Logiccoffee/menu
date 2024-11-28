@@ -1,0 +1,297 @@
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+h4 {
+    margin: 0;
+}
+
+/* General Layout */
+main {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Main Content Layout */
+.main-content-container {
+    display: flex; /* Menggunakan flexbox untuk menyusun sidebar dan content sejajar */
+    margin: 20px;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    padding: 20px;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-picture {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.profile-name {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+}
+
+.edit-profile {
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.edit-profile:hover {
+    text-decoration: underline;
+}
+
+.menu {
+    margin-top: 20px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    gap: 10px;
+}
+
+.menu-icon {
+    font-size: 18px;
+}
+
+.menu-item:hover {
+    background-color: #d6d6d6;
+}
+
+.menu-item.active {
+    font-weight: bold;
+    color: #ffc107;
+}
+
+.profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile h3 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.profile .edit-profile {
+    display: inline-block;
+    margin: 10px 0;
+    color: #00543d;
+    font-size: 14px;
+}
+
+.profile nav a {
+    display: block;
+    margin: 10px 0;
+    padding: 8px;
+    color: #333;
+    border-radius: 5px;
+}
+
+.profile nav a.active {
+    background: #00543d;
+    color: #fff;
+}
+
+/* Content Styles */
+.content {
+    margin-left: 0;
+    padding: 20px;
+    flex: 1;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 0;
+    background-color: #ffff;
+    border-bottom: 2px solid #ddd;
+}
+
+.tab {
+    flex-grow: 1;
+    text-align: center;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    color: #555;
+    font-size: 16px;
+    position: relative;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    margin: 0 5px;
+}
+
+.tab.active {
+    font-weight: bold;
+    color: #00543d;
+}
+
+.tab.active::after {
+    content: ''; /* Pseudo-element untuk garis bawah */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #09431F; /* Warna hijau untuk garis */
+    border-radius: 2px; /* Membuat garis lebih halus */
+}
+
+.tab:hover {
+    color: #09431F;
+}
+
+.tab:hover::after {
+    content: ''; /* Pseudo-element untuk garis bawah */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #09431F; /* Warna hijau untuk garis saat hover */
+    border-radius: 2px; /* Membuat garis lebih halus */
+    opacity: 0.7; /* Sedikit transparan untuk membedakan dengan active */
+    transition: all 0.3s ease;
+}
+
+/* Card */
+.order-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.card-header h3 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Header Content (Logo + Title) */
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Jarak antara logo dan teks */
+}
+
+/* Logo Styling */
+.logo {
+    width: 40px; /* Ukuran logo */
+    height: 40px; /* Pastikan logo berbentuk persegi */
+    object-fit: cover; /* Mengatur gambar agar tidak terdistorsi */
+    border-radius: 50%; /* Membuat logo berbentuk lingkaran */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Menambahkan sedikit bayangan */
+}
+
+.order-code {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #999;
+}
+
+/* Order Status Section */
+.order-status {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+
+.card-body p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.card-body strong {
+    color: #333;
+}
+
+.card-footer {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Status Icon and Text */
+.status-icon {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Jarak antara ikon dan teks */
+    margin-top: 5px;
+}
+
+.status-icon-fa {
+    font-size: 24px; /* Ukuran ikon */
+    color: #805700; /* Warna ikon */
+    line-height: 1;
+}
+
+.status.sent {
+    color: #00543d;
+}
