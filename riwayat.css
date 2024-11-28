@@ -373,3 +373,184 @@ main {
 .status.sent {
     color: #00543d;
 }
+
+/* Untuk perangkat mobile (max-width 480px) */
+@media (max-width: 480px) {
+    main {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .main-content-container {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    /* Card Layout Responsiveness */
+    .order-card {
+        padding: 15px;
+        margin-bottom: 15px;
+        width: 100%;
+        box-shadow: none; /* Mengurangi shadow agar lebih ringan di perangkat kecil */
+    }
+
+    .card-header h3 {
+        font-size: 1.2rem;
+    }
+
+    .card-body p {
+        font-size: 0.85rem;
+    }
+
+    .order-status {
+        flex-direction: column;
+    }
+
+    .order-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .order-date,
+    .order-code {
+        flex: unset; /* Agar elemen tidak membagi ruang */
+        text-align: center;
+        font-size: 0.8rem;
+    }
+
+    /* Status text dan icon */
+    .status-icon {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .status-icon-fa {
+        font-size: 20px;
+    }
+
+    /* Profile sidebar */
+    .profile img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .menu-item {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .tabs {
+        flex-direction: column;
+    }
+
+    .tab {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+/* Untuk perangkat tablet (max-width 768px) */
+@media (max-width: 768px) {
+    .main-content-container {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .order-card {
+        padding: 15px;
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    /* Header */
+    .card-header {
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 15px;
+    }
+
+    /* Status icon */
+    .status-icon {
+        justify-content: center;
+    }
+
+    /* Logo dalam Card */
+    .logo {
+        width: 30px;
+        height: 30px;
+    }
+
+    .card-header h3 {
+        font-size: 1.3rem;
+    }
+
+    .order-info {
+        flex-direction: column;
+        text-align: center;
+        padding: 5px;
+    }
+
+    .order-date,
+    .order-code {
+        flex: 1; /* Agar elemen dapat menyesuaikan lebar dan menjadi responsif */
+        font-size: 0.8rem; /* Menyesuaikan ukuran font agar lebih kecil di perangkat mobile */
+        text-align: center !important; /* Memastikan teks tetap di tengah */
+        margin: 0 auto; /* Menambahkan margin otomatis agar elemen berada di tengah */
+        width: fit-content; /* Agar lebar elemen disesuaikan dengan kontennya */
+    }
+
+    .status-icon-fa {
+        font-size: 22px;
+    }
+
+    /* Profile sidebar */
+    .profile img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .menu-item {
+        font-size: 15px;
+        padding: 9px;
+    }
+
+    .tabs {
+        flex-direction: row;
+    }
+
+    .tab {
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    .order-date {
+        font-size: 0.8rem; /* Menyesuaikan ukuran font pada perangkat mobile */
+        margin: 0 auto; /* Menambahkan margin otomatis untuk menyeimbangkan posisi */
+        width: fit-content; /* Membuat lebar elemen menyesuaikan dengan konten */
+        text-align: center !important;
+    }
+
+    .divider {
+        height: 60%; /* Menyesuaikan lebar divider pada perangkat kecil */
+    }
+}
