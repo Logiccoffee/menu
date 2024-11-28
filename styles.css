@@ -750,3 +750,23 @@ option {
         align-items: center;
     }
 }
+
+.user-info {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-family: 'Signika', sans-serif;
+  }
+  
+  .user-info .user-name {
+    color: #333;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-info .user-name i {
+    margin-right: 8px;
+  }
+  
