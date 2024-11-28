@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
 function checkCookies() {
   const userName = getCookie("name");
   const userWhatsapp = getCookie("whatsapp");
-  const userNote = getCookie("note");
+  const userAddress = getCookie("address");
 
   document.getElementById("userModal").style.display =
-    userName && userWhatsapp && userNote ? "none" : "flex";
+    userName && userWhatsapp && userAddress ? "none" : "flex";
   document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
   document.getElementById("buttonbatalinfouser").style.display = "none"; // Hide "Batal" initially
 }
@@ -26,12 +26,12 @@ function checkCookies() {
 function saveUserInfo() {
   const name = document.getElementById("name").value;
   const whatsapp = document.getElementById("whatsapp").value;
-  const note = document.getElementById("note").value;
+  const address = document.getElementById("address").value;
 
-  if (name && whatsapp && note) {
+  if (name && whatsapp && address) {
     setCookie("name", name, 365);
     setCookie("whatsapp", whatsapp, 365);
-    setCookie("note", note, 365);
+    setCookie("address", address, 365);
     closeUserModal();
   } else {
     alert("Silakan masukkan semua informasi.");
