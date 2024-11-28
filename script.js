@@ -354,3 +354,4 @@ function getLastPathSegment() {
   // Ambil bagian terakhir dari URL
   return parts[parts.length - 1];
 }
+
