@@ -12,6 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => console.error("Error loading menu:", error));
 });
 
+// Menambahkan kode untuk menampilkan nama pengguna setelah login
+const userName = getCookie("name");
+if (userName) {
+  // Menampilkan nama pengguna di elemen yang sesuai
+  document.getElementById("userName").textContent = userName;
+}
+
 function checkCookies() {
   const userName = getCookie("name");
   const userWhatsapp = getCookie("whatsapp");
@@ -354,4 +361,3 @@ function getLastPathSegment() {
   // Ambil bagian terakhir dari URL
   return parts[parts.length - 1];
 }
-
