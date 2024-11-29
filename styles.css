@@ -58,6 +58,12 @@ h3,
     justify-items: center;
 }
 
+.modal .brand-container {
+    display: flex;
+    align-items: center; /* Vertikal tengah */
+    gap: 10px; /* Jarak antara logo dan nama */
+}
+
 .modal .brand-logo {
     width: 50px;
     height: 50px;
@@ -797,6 +803,12 @@ header .brand {
     align-items: center;
     gap: 15px; /* Memberikan jarak antara logo dan brand name */
 }
+
+.logo {
+    width: 50px; /* Sesuaikan dengan ukuran logo */
+    height: auto;
+    margin-right: 10px; /* Memberikan jarak antara logo dan nama brand */
+  }
 
 header h1 {
     font-weight: bold;
