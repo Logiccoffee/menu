@@ -20,7 +20,7 @@ h3,
 
 /* Styling dasar untuk modal */
 .modal {
-    display: none; /* Pastikan modal default tersembunyi */
+    display: flex;
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -32,37 +32,22 @@ h3,
     z-index: 1000;
 }
 
-/* Kontainer konten modal */
 .modal-content {
     background-color: #fff;
-    padding: 20px;
-    max-width: 400px;
+    padding: 30px;
     width: 90%;
+    max-width: 400px;
     margin: auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    animation: modalFadeIn 0.3s ease-out;
 }
 
-/* Animasi untuk modal saat muncul */
-@keyframes modalFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Styling untuk logo dan nama brand */
 .brand {
     display: flex;
     align-items: center;
-    gap: 10px;
     justify-content: center;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
@@ -77,80 +62,74 @@ h3,
     font-weight: bold;
     color: #09431f;
     font-family: "Signika", sans-serif;
-    white-space: nowrap;
 }
 
-/* Judul modal */
-#modalTitle {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-/* Styling untuk input-group */
+/* Styling untuk input grup */
 .input-group {
     position: relative;
     margin-bottom: 20px;
-    text-align: left;
 }
 
 .input-group input {
     width: 100%;
     padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
+    margin-top: 8px;
+    border: 2px solid #ddd;
     border-radius: 5px;
     outline: none;
+    font-size: 16px;
 }
 
 .input-group label {
     position: absolute;
-    top: -8px;
+    top: -10px;
     left: 10px;
-    font-size: 16px;
+    font-size: 14px;
     color: #666;
     background-color: #fff;
     padding: 0 5px;
     transition: all 0.3s ease;
 }
 
-.input-group input:focus + label,
-.input-group input:not(:placeholder-shown) + label {
-    top: -18px;
-    font-size: 14px;
-    color: #84b8c6;
+/* Style untuk tombol */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }
 
-/* Tombol Simpan dan Batal */
-.save-button,
-.cancel-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: none;
-    transition: all 0.3s ease;
-}
-
+/* Tombol Simpan */
 .save-button {
-    background-color: #84b8c6;
+    background-color: #09431f;
     color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .save-button:hover {
-    background-color: #699da5;
+    background-color: #072a18;
 }
 
+/* Tombol Batal */
 .cancel-button {
-    background-color: #ddd;
-    color: #333;
-    display: inline-block;
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .cancel-button:hover {
-    background-color: #bbb;
+    background-color: #d32f2f;
 }
+
 
 /* Responsif: Menyesuaikan lebar modal */
 @media (max-width: 500px) {
