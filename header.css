@@ -52,8 +52,12 @@ display: none;
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    position: relative;
+    padding: 0 20px;
 }
 
 /* Logo and Brand Name */
@@ -74,6 +78,7 @@ display: none;
     align-items: center;
     gap: 10px;
     white-space: nowrap; /* Mencegah teks Logic Coffee terpisah */
+    flex-shrink: 0;
 }
 
 /* Navigation Links */
@@ -123,8 +128,10 @@ display: none;
     padding: 5px;
     width: 400px;
     max-width: 100%;
-    margin-right: 30px;
+    margin-right: 10px;
     transition: box-shadow 0.3s ease;
+    flex-grow: 1;
+    margin-left: 10px;
 }
 
 .search-bar:hover {
@@ -226,6 +233,8 @@ display: none;
         align-items: center;
         gap: 10px;
         width: 100%;
+        display: flex;
+        position: relative;
         justify-content: space-between;
     }
 
@@ -243,9 +252,25 @@ display: none;
 
     /* Stack nav links */
     .nav-links {
-        justify-content: center;
+        display: none;
+        flex-direction: column;
+        background-color: #fff;
+        position: absolute;
+        top: 70px; /* Sesuaikan dengan tinggi header */
+        right: 0;
         width: 100%;
-        gap: 15px;
+        text-align: center;
+        z-index: 1000;
+        border-top: 1px solid #ccc;
+        text-align: left !important;
+    }
+
+    .hamburger {
+        display: none !important; /* Sembunyikan di desktop */
+        font-size: 24px;
+        cursor: pointer;
+        margin-left: auto;
+        padding: 0;
     }
 
     /* Resize search bar */
@@ -255,6 +280,7 @@ display: none;
         margin-left: auto !important;
         flex: 1;
         max-width: 100%;
+        flex-grow: 1 !important;
     }
 
     .search-bar input {
@@ -268,6 +294,17 @@ display: none;
         gap: 10px;
     }
 
+    /* Tampilkan nav-links saat active */
+    .nav-links.active {
+        display: flex;
+    }
+
+    /* Hamburger Menu Tampil di Mobile */
+    .hamburger {
+        display: block !important;
+        margin-left: auto;
+    }
+
 }
 
 @media (max-width: 480px) {
@@ -277,7 +314,13 @@ display: none;
     }
 
     .nav-links a {
+        display: flex;
         font-size: medium;
+        text-align: right;
+        padding-left: 20px;
+        flex-direction: row-reverse;
+        gap: 10px;
+        padding: 5px;
     }
 
     .search-button {

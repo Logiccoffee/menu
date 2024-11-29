@@ -595,6 +595,7 @@ main {
     }
 
     .divider {
+        display: none;
         left: calc(120% - 1px) !important;
         /* Posisi divider tetap di tengah */
         height: calc(100% + 50px);
