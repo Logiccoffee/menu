@@ -20,7 +20,7 @@ h3,
 
 /* Styling dasar untuk modal */
 .modal {
-    display: flex;
+    display: none; /* Pastikan modal default tersembunyi */
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -32,22 +32,37 @@ h3,
     z-index: 1000;
 }
 
+/* Kontainer konten modal */
 .modal-content {
     background-color: #fff;
-    padding: 30px;
-    width: 90%;
+    padding: 20px;
     max-width: 400px;
+    width: 90%;
     margin: auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
+    animation: modalFadeIn 0.3s ease-out;
 }
 
+/* Animasi untuk modal saat muncul */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Styling untuk logo dan nama brand */
 .brand {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 10px;
+    justify-content: center;
     margin-bottom: 20px;
 }
 
@@ -62,74 +77,80 @@ h3,
     font-weight: bold;
     color: #09431f;
     font-family: "Signika", sans-serif;
+    white-space: nowrap;
 }
 
-/* Styling untuk input grup */
+/* Judul modal */
+#modalTitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Styling untuk input-group */
 .input-group {
     position: relative;
     margin-bottom: 20px;
+    text-align: left;
 }
 
 .input-group input {
     width: 100%;
     padding: 10px;
-    margin-top: 8px;
-    border: 2px solid #ddd;
+    font-size: 16px;
+    border: 1px solid #ddd;
     border-radius: 5px;
     outline: none;
-    font-size: 16px;
 }
 
 .input-group label {
     position: absolute;
-    top: -10px;
+    top: -8px;
     left: 10px;
-    font-size: 14px;
+    font-size: 16px;
     color: #666;
     background-color: #fff;
     padding: 0 5px;
     transition: all 0.3s ease;
 }
 
-/* Style untuk tombol */
-.button-group {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -18px;
+    font-size: 14px;
+    color: #84b8c6;
 }
 
-/* Tombol Simpan */
-.save-button {
-    background-color: #09431f;
-    color: white;
+/* Tombol Simpan dan Batal */
+.save-button,
+.cancel-button {
     padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
     font-size: 16px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.save-button {
+    background-color: #84b8c6;
+    color: white;
 }
 
 .save-button:hover {
-    background-color: #072a18;
+    background-color: #699da5;
 }
 
-/* Tombol Batal */
 .cancel-button {
-    background-color: #f44336;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    background-color: #ddd;
+    color: #333;
+    display: inline-block;
 }
 
 .cancel-button:hover {
-    background-color: #d32f2f;
+    background-color: #bbb;
 }
-
 
 /* Responsif: Menyesuaikan lebar modal */
 @media (max-width: 500px) {
@@ -144,133 +165,6 @@ h3,
     #modalTitle {
         font-size: 18px;
     }
-}
-.input-group {
-    position: relative;
-    margin-bottom: 20px;
-    display: flex;
-    /* Use flexbox for better alignment */
-    align-items: center;
-    justify-content: center;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    border: 2px solid;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: transparent;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-.input-group label {
-    position: absolute;
-    top: 35%;
-    left: 10px;
-    transform: translateY(-10%);
-    background-color: #fff;
-    transition: all 0.3s ease;
-    pointer-events: none;
-    font-size: 16px;
-}
-
-input:focus+label,
-input:valid+label {
-    top: 0;
-    font-size: 16px;
-    color: #c9994c;
-}
-
-
-.modal-content img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-
-.modal-content h2 {
-    font-size: 22px;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-/* Styling untuk label */
-.modal-content label {
-    display: block;
-    text-align: left;
-    margin-bottom: 5px;
-    font-size: 14px;
-    color: #555;
-}
-
-/* Styling untuk input */
-.modal-content input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #333;
-    transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
-}
-
-/* Efek pada input kosong */
-.modal-content input[type="text"]:placeholder-shown {
-    border-color: #ccc;
-    background-color: #f2f2f2;
-    transform: scale(1);
-}
-
-/* Efek pada input yang telah diisi */
-.modal-content input[type="text"]:valid {
-    border-color: #c9994c;
-    /* Warna border saat terisi */
-    background-color: #fff;
-    /* Warna latar belakang saat terisi */
-    transform: scale(1.02);
-    /* Sedikit memperbesar saat terisi */
-}
-
-/* Styling untuk tombol simpan */
-.modal-content button {
-    width: 100%;
-    padding: 12px;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.save-button {
-    background-color: #c9994c;
-
-}
-
-.save-button:hover {
-    background-color: #a57b32;
-}
-
-/* Style for the "Batal" button */
-.cancel-button {
-    background-color: #dc3545;
-    /* Red color for danger */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-
-.cancel-button:hover {
-    background-color: #c82333;
-    /* Darker red on hover */
 }
 
 .container-wrapper {
@@ -862,30 +756,19 @@ header {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-header .brand {
-    display: flex; /* Mengelompokkan logo dan brand name dalam satu baris */
-    align-items: center;
-    gap: 15px; /* Memberikan jarak antara logo dan brand name */
-}
-
-.logo {
-    width: 50px; /* Sesuaikan dengan ukuran logo */
-    height: auto;
-    margin-right: 10px; /* Memberikan jarak antara logo dan nama brand */
-  }
-
-header h1 {
+header .logo {
+    font-size: 24px;
     font-weight: bold;
-    margin-right: auto;
-    padding-left: 40px;
+    color: #805700;
+    text-decoration: none;
 }
+
 
 /* Navbar Styles */
 .navbar {
     display: flex;
     gap: 10px;
     margin-left: auto;
-    padding-right: 40px;
 }
 
 .navbar a {
@@ -898,35 +781,18 @@ header h1 {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.search-bar {
-    flex: 1;
-    margin-left: 20px; /* Jarak antara search bar dan brand */
-}
-
-header .search-bar {
-    flex-grow: 1;
-    margin-left: 20px;
-}
-
 /* Responsive Header */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
         align-items: flex-start;
-        padding-left: 10px;
-    }
-
-    header h1, 
-    header .logo {
-        padding-left: 10px; /* Sesuaikan padding kiri di layar kecil */
     }
 
     .navbar {
         flex-direction: column;
         gap: 8px;
         width: 100%;
-        margin-left: 0;
-        padding-right: 0;
+        
     }
 
     .navbar a {
