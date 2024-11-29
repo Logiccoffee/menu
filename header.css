@@ -256,13 +256,14 @@ display: none;
         flex-direction: column;
         background-color: #fff;
         position: absolute;
-        top: 70px; /* Sesuaikan dengan tinggi header */
+        top: 60px; /* Sesuaikan dengan tinggi header */
         right: 0;
         width: 100%;
         text-align: center;
         z-index: 1000;
-        border-top: 1px solid #ccc;
+        border-top: 1px solid #805700;
         text-align: left !important;
+        height: 300%;
     }
 
     .hamburger {

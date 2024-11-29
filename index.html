@@ -69,6 +69,9 @@
         </button>
       </div>
 
+      <!-- Hamburger Menu Icon -->
+      <div class="hamburger" onclick="toggleMenu()" style="display: none;">☰</div>
+
       <nav class="nav-links">
         <a href="#"><i class="fa fa-house"></i> Beranda</a>
         <a href="#"><i class="fa-solid fa-mug-saucer"></i> Kategori</a>
@@ -239,6 +242,11 @@
         totalSummary.style.display = "block";
       }
     });
+
+    function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
   </script>
 </body>
 
