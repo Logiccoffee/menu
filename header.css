@@ -73,6 +73,7 @@ display: none;
     display: flex;
     align-items: center;
     gap: 10px;
+    white-space: nowrap; /* Mencegah teks Logic Coffee terpisah */
 }
 
 /* Navigation Links */
@@ -221,15 +222,23 @@ display: none;
 
     /* Adjust navbar layout */
     .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        justify-content: space-between;
     }
 
     /* Center align brand logo and name */
     .brand {
         justify-content: center;
         width: 100%;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        gap: 1px !important;
     }
 
     /* Stack nav links */
@@ -242,7 +251,14 @@ display: none;
     /* Resize search bar */
     .search-bar {
         width: 100%;
-        margin-right: 0;
+        margin-right: auto;
+        margin-left: auto !important;
+        flex: 1;
+        max-width: 100%;
+    }
+
+    .search-bar input {
+        width: 100%; /* Input search bar mengambil lebar penuh */
     }
 
     /* Align user and cart section to center */
@@ -267,5 +283,9 @@ display: none;
     .search-button {
         padding: 10px;
         font-size: 16px;
+    }
+
+    .navbar {
+        flex-wrap: wrap; /* Elemen melipat jika layar sangat kecil */
     }
 }
