@@ -20,6 +20,27 @@ document.addEventListener("DOMContentLoaded", function () {
 //   document.getElementById("userName").textContent = userName;
 // }
 
+// Fungsi untuk membuka modal
+function openModal() {
+  document.getElementById('userModal').style.display = 'flex';
+}
+
+// Fungsi untuk menutup modal
+function closeModal() {
+  document.getElementById('userModal').style.display = 'none';
+}
+
+// Menampilkan modal saat diperlukan
+document.getElementById("buttonsimpaninfouser").addEventListener("click", function() {
+  openModal();  // Atau logika lain untuk memunculkan modal
+});
+
+// Menutup modal saat tombol Batal diklik
+document.getElementById("buttonbatalinfouser").addEventListener("click", function() {
+  closeModal();
+});
+
+
 // Fungsi untuk mengambil dan menampilkan nama pengguna dari /data/user
 async function displayUserName() {
   try {
