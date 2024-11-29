@@ -215,7 +215,8 @@ main {
 .order-card {
     display: flex;
     flex-direction: column;
-    position: relative; /* Untuk divider absolut */
+    position: relative;
+    /* Untuk divider absolut */
     background-color: #fff;
     border: 1px solid #ddd;
     padding: 20px;
@@ -241,7 +242,8 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative; /* Agar divider tetap di tengah */
+    position: relative;
+    /* Agar divider tetap di tengah */
     padding-bottom: 20px;
 }
 
@@ -288,27 +290,33 @@ main {
 
 /* Elemen lainnya */
 .order-date {
-    transform: translateX(-50%); /* Center secara horizontal */
+    transform: translateX(-50%);
+    /* Center secara horizontal */
     font-size: 0.9rem;
     font-weight: bold;
     color: #555;
-    white-space: nowrap; /* Mencegah teks membungkus */
+    white-space: nowrap;
+    /* Mencegah teks membungkus */
     text-align: center;
 }
 
 .order-date,
 .order-code {
-    flex: 1; /* Agar elemen membagi ruang dengan proporsional */
+    flex: 1;
+    /* Agar elemen membagi ruang dengan proporsional */
 }
 
 /* Order Info */
 .order-info {
-    display: flex; /* Elemen berjajar horizontal */
+    display: flex;
+    /* Elemen berjajar horizontal */
     align-items: center !important;
-    justify-content: center !important; /* Horizontally center */
+    justify-content: center !important;
+    /* Horizontally center */
     gap: 10px;
     position: relative;
-    z-index: 1; /* Pastikan elemen tetap terlihat */
+    z-index: 1;
+    /* Pastikan elemen tetap terlihat */
 }
 
 /* Garis putus-putus */
@@ -317,17 +325,19 @@ main {
     position: absolute;
     top: -29px;
     bottom: 0;
-    left: calc(45% - 1px); /* Di tengah antara .order-date dan .order-code */
-    width: 2px; /* Lebar garis */
-    height: calc(100% + 227px); /* Tambah tinggi sedikit agar penuh */
-    background: repeating-linear-gradient(
-        to bottom,
-        #09431F 0,
-        #09431F 4px,
-        transparent 4px,
-        transparent 8px
-    );
-    z-index: 1; /* Pastikan garis berada di atas */
+    left: calc(45% - 1px);
+    /* Di tengah antara .order-date dan .order-code */
+    width: 2px;
+    /* Lebar garis */
+    height: calc(100% + 227px);
+    /* Tambah tinggi sedikit agar penuh */
+    background: repeating-linear-gradient(to bottom,
+            #09431F 0,
+            #09431F 4px,
+            transparent 4px,
+            transparent 8px);
+    z-index: 1;
+    /* Pastikan garis berada di atas */
 }
 
 .card-body p {
@@ -401,7 +411,8 @@ main {
         padding: 15px;
         margin-bottom: 15px;
         width: 100%;
-        box-shadow: none; /* Mengurangi shadow agar lebih ringan di perangkat kecil */
+        box-shadow: none;
+        /* Mengurangi shadow agar lebih ringan di perangkat kecil */
     }
 
     .card-header h3 {
@@ -423,7 +434,8 @@ main {
 
     .order-date,
     .order-code {
-        flex: unset; /* Agar elemen tidak membagi ruang */
+        flex: unset;
+        /* Agar elemen tidak membagi ruang */
         text-align: center;
         font-size: 0.8rem;
     }
@@ -466,61 +478,92 @@ main {
         margin: 0;
     }
 
-    .sidebar {
-        width: 100%;
-        padding: 15px;
+    /* Header konten */
+    .header-content {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: flex-start;
+        /* Posisi logo dan teks di kiri */
+        margin-bottom: 10px;
+        /* Jarak antara header dan order info */
+    }
+
+    .card-header h3 {
+        font-size: 1.3rem;
+        margin: 0;
+        text-align: left;
+        /* Pastikan teks berada di kiri */
     }
 
     .content {
         margin-left: 0;
         padding: 15px;
+        width: 100%;
+        height: auto;
     }
 
     .order-card {
         padding: 15px;
         margin-bottom: 15px;
         width: 100%;
+        font-size: 0.9rem;
+        max-width: 600px;
+        /* Batas maksimum ukuran card */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        /* Tambahkan shadow agar terlihat menarik */
+        border-radius: 10px;
+        /* Border untuk tampilan yang modern */
     }
 
     /* Header */
     .card-header {
-        flex-direction: column;
-        text-align: center;
+        display: flex;
+        align-items: stretch;
+        /* Agar logo dan teks sejajar secara vertikal */
+        justify-content: flex-start;
+        /* Menggeser elemen ke kiri */
         padding-bottom: 15px;
+        flex-direction: column;
     }
 
-    /* Status icon */
-    .status-icon {
-        justify-content: center;
+    .card-header h3 {
+        font-size: 1.2rem;
+        /* Ukuran heading lebih kecil */
+        margin: 0;
     }
 
     /* Logo dalam Card */
     .logo {
-        width: 30px;
-        height: 30px;
-    }
-
-    .card-header h3 {
-        font-size: 1.3rem;
+        width: 20px;
+        height: 20px;
+        margin-bottom: 10px;
     }
 
     .order-info {
+        display: flex;
+        justify-content: flex-start !important;
+        /* Sebarkan elemen di kiri dan kanan */
+        align-items: center !important;
+        /* Selaraskan elemen secara vertikal */
         flex-direction: column;
-        text-align: center;
-        padding: 5px;
+        /* Bungkus elemen jika ruang terlalu kecil */
+        gap: 10px;
+        /* Tambahkan jarak antar elemen */
     }
 
     .order-date,
     .order-code {
-        flex: 1; /* Agar elemen dapat menyesuaikan lebar dan menjadi responsif */
-        font-size: 0.8rem; /* Menyesuaikan ukuran font agar lebih kecil di perangkat mobile */
-        text-align: center !important; /* Memastikan teks tetap di tengah */
-        margin: 0 auto; /* Menambahkan margin otomatis agar elemen berada di tengah */
-        width: fit-content; /* Agar lebar elemen disesuaikan dengan kontennya */
+        flex: 1;
+        /* Setiap elemen akan mengambil ruang seimbang */
+        min-width: 120px;
+        /* Lebar minimum agar tidak terlalu kecil */
     }
 
-    .status-icon-fa {
-        font-size: 22px;
+    .order-code {
+        flex: initial;
+        /* Menghindari ukuran elemen membesar otomatis */
+        font-size: 0.8rem;
     }
 
     /* Profile sidebar */
@@ -534,23 +577,27 @@ main {
         padding: 9px;
     }
 
-    .tabs {
-        flex-direction: row;
-    }
-
-    .tab {
-        font-size: 15px;
-        padding: 10px;
-    }
-
     .order-date {
-        font-size: 0.8rem; /* Menyesuaikan ukuran font pada perangkat mobile */
-        margin: 0 auto; /* Menambahkan margin otomatis untuk menyeimbangkan posisi */
-        width: fit-content; /* Membuat lebar elemen menyesuaikan dengan konten */
-        text-align: center !important;
+        margin-left: auto;
+        /* Pindahkan ke sisi kanan */
+        text-align: right;
+        /* Atur teks rata kanan */
+        font-size: 0.8rem;
+        /* Sesuaikan ukuran font */
+        white-space: nowrap;
+        /* Hindari teks terpotong menjadi baris baru */
+    }
+
+    .card-body p {
+        font-size: 0.8rem;
+        /* Ukuran teks body lebih kecil */
+        margin: 3px 0;
     }
 
     .divider {
-        height: 60%; /* Menyesuaikan lebar divider pada perangkat kecil */
+        left: calc(120% - 1px) !important;
+        /* Posisi divider tetap di tengah */
+        height: calc(100% + 50px);
+        /* Tinggi divider lebih kecil */
     }
 }
