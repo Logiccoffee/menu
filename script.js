@@ -20,24 +20,47 @@ document.addEventListener("DOMContentLoaded", function () {
 //   document.getElementById("userName").textContent = userName;
 // }
 
-// Fungsi untuk mengambil dan menampilkan nama pengguna dari /data/user
-async function displayUserName() {
-  try {
-      // Mendapatkan data pengguna dari endpoint /data/user
-      const userData = await getJSON("/data/user");
+// Fungsi untuk membuka modal
+function openModal() {
+  document.getElementById('userModal').style.display = 'flex';
+}
 
-      // Memeriksa apakah data pengguna memiliki properti "name"
-      if (userData && userData.name) {
-          // Mengambil kata pertama dari nama pengguna
-          const firstName = userData.name.split(" ")[0];
-          
-          // Menampilkan kata pertama di elemen dengan ID "userName"
-          document.getElementById("userName").textContent = firstName;
+// Fungsi untuk menutup modal
+function closeModal() {
+  document.getElementById('userModal').style.display = 'none';
+}
+
+// Fungsi untuk menyimpan data pengguna
+async function saveUserData() {
+  const name = document.getElementById('name').value;
+  const whatsapp = document.getElementById('whatsapp').value;
+  const note = document.getElementById('note').value;
+
+  if (name === '' || whatsapp === '' || note === '') {
+      alert("Semua field harus diisi!");
+      return;
+  }
+
+  // Jika ingin mengirim data ke server menggunakan fetch
+  try {
+      const response = await fetch('/data/user', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, whatsapp, note })
+      });
+
+      // Mengecek status respons
+      if (response.ok) {
+          alert("Data berhasil disimpan!");
+          closeModal(); // Menutup modal setelah data disimpan
       } else {
-          console.error("Properti 'name' tidak ditemukan pada data pengguna.");
+          alert("Gagal menyimpan data!");
       }
   } catch (error) {
-      console.error("Gagal mengambil data pengguna:", error);
+      console.error('Terjadi kesalahan:', error);
+      alert("Terjadi kesalahan saat mengirim data!");
   }
 }
 
