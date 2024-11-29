@@ -1,5 +1,6 @@
 import { postJSON } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/api.js";
 import { onClick } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js";
+import {getJSON} from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.7/croot.js";
 
 onClick("buttonsimpaninfouser", saveUserInfo);
 onClick("buttonbatalinfouser", closeUserModal);
@@ -13,11 +14,37 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Menambahkan kode untuk menampilkan nama pengguna setelah login
-const userName = getCookie("name");
-if (userName) {
-  // Menampilkan nama pengguna di elemen yang sesuai
-  document.getElementById("userName").textContent = userName;
+// const userName = getCookie("name");
+// if (userName) {
+//   // Menampilkan nama pengguna di elemen yang sesuai
+//   document.getElementById("userName").textContent = userName;
+// }
+
+// Fungsi untuk mengambil dan menampilkan nama pengguna dari /data/user
+async function displayUserName() {
+  try {
+      // Mendapatkan data pengguna dari endpoint /data/user
+      const userData = await getJSON("/data/user");
+
+      // Memeriksa apakah data pengguna memiliki properti "name"
+      if (userData && userData.name) {
+          // Mengambil kata pertama dari nama pengguna
+          const firstName = userData.name.split(" ")[0];
+          
+          // Menampilkan kata pertama di elemen dengan ID "userName"
+          document.getElementById("userName").textContent = firstName;
+      } else {
+          console.error("Properti 'name' tidak ditemukan pada data pengguna.");
+      }
+  } catch (error) {
+      console.error("Gagal mengambil data pengguna:", error);
+  }
 }
+
+// Memanggil fungsi untuk menampilkan nama pengguna
+displayUserName();
+
+
 
 function checkCookies() {
   const userName = getCookie("name");
