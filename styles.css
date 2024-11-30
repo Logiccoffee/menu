@@ -55,21 +55,25 @@ h3,
 }
 
 /* Logo dan branding */
-.brand-container {
+.brand {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-/* Logo atau Banner */
-.brand-container img {
-    width: 100px; /* Lebar logo */
-    height: auto; /* Menyesuaikan tinggi secara proporsional */
-    margin: 0 auto 20px auto; /* Posisi tengah dengan jarak ke bawah */
-    display: block; /* Supaya terpusat */
-    border-radius: 8px; /* Jika ingin sudut logo melengkung */
-}
+    align-items: center; /* Sejajar secara vertikal */
+    gap: 10px; /* Jarak antara logo dan teks */
+    margin-bottom: 20px; /* Jarak bawah dengan elemen selanjutnya */
+  }
+  
+  .brand-logo {
+    width: 40px; /* Ukuran logo kecil */
+    height: 40px;
+    object-fit: contain; /* Menjaga proporsi logo */
+  }
+  
+  .brand-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: #09431f;
+    font-family: "Signika", sans-serif; /* Font Signika */
+  }
 
 /* Input group styling */
 .input-group {
