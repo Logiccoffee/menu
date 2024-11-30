@@ -488,7 +488,9 @@ main {
         margin-bottom: 10px;
         /* Jarak antara header dan order info */
     }
-
+    .profile-header {
+        justify-content: center;
+    }
     .card-header h3 {
         font-size: 1.3rem;
         margin: 0;

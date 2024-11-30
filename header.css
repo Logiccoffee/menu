@@ -54,7 +54,7 @@ display: none;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 5px;
     width: 100%;
     position: relative;
     padding: 0 20px;
@@ -64,12 +64,14 @@ display: none;
 .brand-logo {
     width: 50px;
     height: 50px;
+    align-items: center !important;
 }
 
 .brand-name {
     font-weight: bold;
     color: #09431f;
     font-family: "Signika", sans-serif;
+    font-size: 2em;
 }
 
 /* Logo and Brand Name Wrapper */
@@ -84,7 +86,7 @@ display: none;
 /* Navigation Links */
 .nav-links {
     display: flex;
-    gap: 20px;
+    gap: 0px;
     font-family: "Signika", sans-serif;
     flex-wrap: wrap;
 }
@@ -130,7 +132,6 @@ display: none;
     max-width: 100%;
     margin-right: 10px;
     transition: box-shadow 0.3s ease;
-    flex-grow: 1;
     margin-left: 10px;
 }
 
@@ -240,7 +241,7 @@ display: none;
 
     /* Center align brand logo and name */
     .brand {
-        justify-content: center;
+        justify-content: flex-start;
         width: 100%;
         flex: 1;
         display: flex;
@@ -254,16 +255,17 @@ display: none;
     .nav-links {
         display: none;
         flex-direction: column;
+        align-items: center !important;
         background-color: #fff;
         position: absolute;
         top: 60px; /* Sesuaikan dengan tinggi header */
         right: 0;
         width: 100%;
-        text-align: center;
+        text-align: center !important;
         z-index: 1000;
         border-top: 1px solid #805700;
-        text-align: left !important;
-        height: 300%;
+        max-height: 90vh; /* Maksimal tinggi menu agar tidak terlalu besar */
+        padding: 10px 0;
     }
 
     .hamburger {
@@ -276,12 +278,19 @@ display: none;
 
     /* Resize search bar */
     .search-bar {
+        display: none;
         width: 100%;
         margin-right: auto;
         margin-left: auto !important;
         flex: 1;
         max-width: 100%;
         flex-grow: 1 !important;
+        margin-top: 10px;
+    }
+
+    /* Search bar muncul jika hamburger menu diaktifkan */
+    .search-bar.active {
+        display: flex;
     }
 
     .search-bar input {
@@ -300,10 +309,21 @@ display: none;
         display: flex;
     }
 
+    .nav-links .search-bar {
+        display: none;
+        margin-bottom: 10px; /* Tambahkan margin jika perlu */
+    }
+
     /* Hamburger Menu Tampil di Mobile */
     .hamburger {
         display: block !important;
         margin-left: auto;
+    }
+
+    /* Search bar muncul jika hamburger menu aktif */
+    .nav-links.active .search-bar {
+        display: flex; /* Tampilkan */
+        width: 90%;
     }
 
 }
