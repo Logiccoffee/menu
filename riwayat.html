@@ -78,8 +78,8 @@
                 <a href="#"><i class="fa-solid fa-mug-saucer"></i> Kategori</a>
                 <a href="#"><i class="fa fa-mug-hot"></i> Pesan Sekarang</a>
                 <a href="riwayat.html"><i class="fa-solid fa-receipt"></i> Riwayat Pesanan</a>
-                <a href="#"><i class="fa-solid fa-user"></i> Pengguna</a>
-                <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                <a href="#" id="pengguna-link"><i class="fa-solid fa-user"></i> Pengguna</a>
+                <a href="#"><i class="fa-solid fa-right-from-bracket"></i></i> Logout</a>
             </nav>
         </div>
     </header>
@@ -199,8 +199,9 @@
         function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
             const searchBar = document.querySelector('.search-bar');
-
+            
             navLinks.classList.toggle('active');
+
             if (window.innerWidth <= 768) {
                 const searchBarInNav = navLinks.querySelector('.search-bar');
                 if (!searchBarInNav) {

@@ -56,7 +56,7 @@ display: none;
     flex-wrap: wrap;
     gap: 5px;
     width: 100%;
-    position: relative;
+    position: relative !important;
     padding: 0 20px;
 }
 
@@ -266,6 +266,7 @@ display: none;
         border-top: 1px solid #805700;
         max-height: 90vh; /* Maksimal tinggi menu agar tidak terlalu besar */
         padding: 10px 0;
+        gap: 5px;
     }
 
     .hamburger {
