@@ -7,7 +7,7 @@
 
 
 .top-bar-responsive {
-display: none;
+    display: none;
 
 }
 
@@ -31,7 +31,7 @@ display: none;
     text-decoration: none;
 }
 
-.top-bar a:hover{
+.top-bar a:hover {
     color: #c9994c;
 }
 
@@ -51,14 +51,18 @@ display: none;
 
 .header .dropdown {
     display: flex;
-    align-items: center; /* Rata tengah dengan elemen lain */
-    margin-left: auto; /* Dorong ke kanan */
+    align-items: center;
+    /* Rata tengah dengan elemen lain */
+    margin-left: auto;
+    /* Dorong ke kanan */
 }
 
 .header .hamburger {
     display: flex;
-    align-items: center; /* Untuk ikon hamburger */
-    margin-left: 10px; /* Spasi antara dropdown dan hamburger */
+    align-items: center;
+    /* Untuk ikon hamburger */
+    margin-left: 10px;
+    /* Spasi antara dropdown dan hamburger */
 }
 
 .navbar {
@@ -91,7 +95,8 @@ display: none;
     display: flex;
     align-items: center;
     gap: 10px;
-    white-space: nowrap; /* Mencegah teks Logic Coffee terpisah */
+    white-space: nowrap;
+    /* Mencegah teks Logic Coffee terpisah */
     flex-shrink: 0;
 }
 
@@ -212,7 +217,8 @@ display: none;
 /* Dropdown Style */
 .dropdown {
     position: relative;
-    margin-left: auto; /* Agar dropdown berada di sisi kanan */
+    margin-left: auto;
+    /* Agar dropdown berada di sisi kanan */
 }
 
 .dropdown a {
@@ -226,8 +232,10 @@ display: none;
     font-size: large;
     padding: 8px 12px;
     border-radius: 4px;
-    width: 150px; /* Panjang tetap untuk Pengguna */
-    text-align: center; /* Teks berada di tengah */
+    width: 150px;
+    /* Panjang tetap untuk Pengguna */
+    text-align: center;
+    /* Teks berada di tengah */
     font-family: "Signika", Arial, sans-serif;
 }
 
@@ -244,8 +252,10 @@ display: none;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 150px; /* Panjang menu sama dengan "Pengguna" */
-    padding: 0; /* Hilangkan padding untuk konsistensi */
+    width: 150px;
+    /* Panjang menu sama dengan "Pengguna" */
+    padding: 0;
+    /* Hilangkan padding untuk konsistensi */
     z-index: 1000;
 }
 
@@ -253,12 +263,16 @@ display: none;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 5px; /* Jarak antara ikon dan teks */
+    gap: 5px;
+    /* Jarak antara ikon dan teks */
     text-decoration: none;
     color: #09431f;
-    padding: 10px 12px; /* Padding vertikal */
-    text-align: center; /* Teks berada di tengah */
-    width: 100%; /* Sesuaikan lebar dengan dropdown-menu */
+    padding: 10px 12px;
+    /* Padding vertikal */
+    text-align: center;
+    /* Teks berada di tengah */
+    width: 100%;
+    /* Sesuaikan lebar dengan dropdown-menu */
     transition: background-color 0.3s ease;
 }
 
@@ -275,34 +289,35 @@ display: none;
 
 /* Responsive Styling */
 @media (max-width: 768px) {
+
     /* Stack top bar items */
     .top-bar {
         display: none;
     }
 
     /* Top Bar Styling */
-.top-bar-responsive {
-    background-color: #09431f;
-    color: #ffffff;
-    padding: 5px 10px;
-    font-size: 0.9em;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
+    .top-bar-responsive {
+        background-color: #09431f;
+        color: #ffffff;
+        padding: 5px 10px;
+        font-size: 0.9em;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
 
-.top-bar-responsive span {
-    margin: 0 10px;
-}
+    .top-bar-responsive span {
+        margin: 0 10px;
+    }
 
-.top-bar-responsive a {
-    color: #ffffff;
-    text-decoration: none;
-}
+    .top-bar-responsive a {
+        color: #ffffff;
+        text-decoration: none;
+    }
 
-.top-bar-responsive a:hover{
-    color: #c9994c;
-}
+    .top-bar-responsive a:hover {
+        color: #c9994c;
+    }
 
     /* Adjust navbar layout */
     .navbar {
@@ -329,15 +344,20 @@ display: none;
     }
 
     /* Pengguna dan Hamburger Menu */
-    .user-cart, .hamburger, .dropdown {
+    .user-cart,
+    .hamburger,
+    .dropdown {
         display: flex;
         align-items: center;
-        gap: 0px !important; /* Mengatur jarak antara hamburger dan pengguna */
+        gap: 0px !important;
+        /* Mengatur jarak antara hamburger dan pengguna */
     }
 
     .dropdown {
-        order: 2; /* Tempatkan dropdown setelah nama */
-        margin-left: 10px; /* Tambahkan spasi kecil antara nama dan dropdown */
+        order: 2;
+        /* Tempatkan dropdown setelah nama */
+        margin-left: 10px;
+        /* Tambahkan spasi kecil antara nama dan dropdown */
     }
 
     /* Stack nav links */
@@ -347,19 +367,25 @@ display: none;
         align-items: center !important;
         background-color: #fff;
         position: absolute;
-        top: 45px; /* Sesuaikan dengan tinggi header */
+        top: 45px;
+        /* Sesuaikan dengan tinggi header */
         right: 0;
         width: 100%;
         text-align: center !important;
         z-index: 1000;
         border-top: 1px solid #805700;
-        max-height: 90vh; /* Maksimal tinggi menu agar tidak terlalu besar */
+        max-height: 90vh;
+        /* Maksimal tinggi menu agar tidak terlalu besar */
         padding: 15px;
         gap: 5px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .hamburger {
-        display: none !important; /* Sembunyikan di desktop */
+        display: none !important;
+        /* Sembunyikan di desktop */
         font-size: 24px;
         cursor: pointer;
         margin-left: auto;
@@ -385,7 +411,8 @@ display: none;
     }
 
     .search-bar input {
-        width: 100%; /* Input search bar mengambil lebar penuh */
+        width: 100%;
+        /* Input search bar mengambil lebar penuh */
     }
 
     /* Align user and cart section to center */
@@ -402,7 +429,8 @@ display: none;
 
     .nav-links .search-bar {
         display: none;
-        margin-bottom: 10px; /* Tambahkan margin jika perlu */
+        margin-bottom: 10px;
+        /* Tambahkan margin jika perlu */
     }
 
     /* Hamburger Menu Tampil di Mobile */
@@ -413,7 +441,8 @@ display: none;
 
     /* Search bar muncul jika hamburger menu aktif */
     .nav-links.active .search-bar {
-        display: flex; /* Tampilkan */
+        display: flex;
+        /* Tampilkan */
         width: 90%;
     }
 
@@ -430,6 +459,7 @@ display: none;
 }
 
 @media (max-width: 480px) {
+
     /* Further adjustments for very small screens */
     .brand-name {
         font-size: 1.2em;
@@ -451,6 +481,7 @@ display: none;
     }
 
     .navbar {
-        flex-wrap: wrap; /* Elemen melipat jika layar sangat kecil */
+        flex-wrap: wrap;
+        /* Elemen melipat jika layar sangat kecil */
     }
 }
