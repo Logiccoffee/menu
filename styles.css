@@ -55,12 +55,6 @@ h3,
 }
 
 /* Logo dan branding */
-.brand {
-    display: flex;
-    align-items: center; /* Sejajar secara vertikal */
-    gap: 10px; /* Jarak antara logo dan teks */
-    margin-bottom: 20px; /* Jarak bawah dengan elemen selanjutnya */
-  }
   
   /* .brand-logo {
     width: 40px; /* Ukuran logo kecil */
@@ -130,21 +124,22 @@ h3,
 }
 
 /* Tombol Cancel */
-.cancel-btn-container {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-  
-  .cancel-btn {
-    font-size: 24px;
-    color: #84b8c6;
-    text-decoration: none;
-  }
-  
-  .cancel-btn:hover {
-    color: #FDA521;
-  }
+.cancel-button {
+    flex: 1;
+    padding: 12px;
+    background-color: #ddd;
+    color: #555;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-button:hover {
+    background-color: #bbb;
+}
 
 .input-group {
     position: relative;
@@ -881,12 +876,6 @@ header .brand {
     height: auto;
     margin-right: 10px; /* Memberikan jarak antara logo dan nama brand */
   }
-
-header h1 {
-    font-weight: bold;
-    margin-right: auto;
-    padding-left: 40px;
-}
 
 /* Navbar Styles */
 .navbar {
