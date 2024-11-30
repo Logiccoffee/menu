@@ -56,38 +56,41 @@
   <!-- Main Header -->
   <header class="header">
     <div class="navbar">
-      <div class="brand">
-        <img src="assets/logo_logic.png" alt="Brand Logo" class="brand-logo" />
-        <h1 class="brand-name">Logic Coffee</h1>
-      </div>
+        <div class="brand">
+            <img src="assets/logo_logic.png" alt="Brand Logo" class="brand-logo" />
+            <h1 class="brand-name">Logic Coffee</h1>
+        </div>
 
-      <!-- Search Bar -->
-      <div class="search-bar">
-        <input type="text" placeholder="Cari produk..." />
-        <button class="search-button">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-      </div>
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Cari di halaman ini..." />
+            <button class="search-button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
 
-      <!-- Hamburger Menu Icon -->
-      <div class="hamburger" onclick="toggleMenu()" style="display: none;">☰</div>
+        <!-- Hamburger Menu Icon -->
+        <div class="hamburger" onclick="toggleMenu()" style="display: none;">☰</div>
 
-      <nav class="nav-links">
-        <a href="#"><i class="fa fa-house"></i> Beranda</a>
-        <a href="#"><i class="fa-solid fa-mug-saucer"></i> Kategori</a>
-        <a href="#"><i class="fa fa-mug-hot"></i> Pesan Sekarang</a>
-        <a href="riwayat.html"><i class="fa-solid fa-receipt"></i> Riwayat Pesanan</a>
-      </nav>
+        <nav class="nav-links">
+            <a href="index.html"><i class="fa fa-house"></i> Beranda</a>
+            <a href="#"><i class="fa-solid fa-mug-saucer"></i> Kategori</a>
+            <a href="#"><i class="fa fa-mug-hot"></i> Pesan Sekarang</a>
+            <a href="riwayat.html"><i class="fa-solid fa-receipt"></i> Riwayat Pesanan</a>
+        </nav>
 
-      <!-- Profile Section -->
-      <div class="user-info">
-        <span class="user-name">
-          <i class="fa-solid fa-user"></i>
-          <span id="userName">Nama Pengguna</span>
-        </span>
-      </div>
+        <!-- Pengguna Dropdown -->
+        <div class="dropdown">
+            <a href="#" id="userName">
+                <i class="fa-solid fa-user"></i> Pengguna
+                <i class="fa-solid fa-chevron-down"></i> <!-- Ikon Panah -->
+            </a>
+            <div class="dropdown-menu">
+                <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+        </div>
     </div>
-  </header>
+</header>
 
   <!-- Profile and Cart -->
   <!-- <div class="user-cart">
