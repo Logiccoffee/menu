@@ -62,11 +62,11 @@ h3,
     margin-bottom: 20px; /* Jarak bawah dengan elemen selanjutnya */
   }
   
-  .brand-logo {
+  /* .brand-logo {
     width: 40px; /* Ukuran logo kecil */
-    height: 40px;
+    /* height: 40px;
     object-fit: contain; /* Menjaga proporsi logo */
-  }
+  /* } */ 
   
   .brand-name {
     font-size: 22px;
@@ -186,10 +186,18 @@ input:valid+label {
 }
 
 
-.modal-content img {
+/* .modal-content img {
     width: 100%;
     border-radius: 10px;
     margin-bottom: 15px;
+} */
+
+.modal-content img {
+    width: 40px; /* Atur ukuran gambar lebih kecil */
+    height: 40px; /* Menjaga proporsi gambar */
+    border-radius: 10px;
+    margin-bottom: 15px;
+    object-fit: contain; /* Agar gambar tetap proporsional */
 }
 
 
