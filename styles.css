@@ -28,19 +28,19 @@ h3,
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 1000;
 }
 
 .modal-content {
-    background: linear-gradient(135deg, #fff, #f4f4f4);
+    background-color: #fff;
     padding: 30px;
     max-width: 400px;
     width: 90%;
     border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
-    animation: scaleUp 0.3s ease-in-out;
+    font-family: "Signika", sans-serif;
 }
 
 @keyframes scaleUp {
@@ -54,96 +54,86 @@ h3,
     }
 }
 
-/* Branding */
-.modal .brand {
+/* Logo dan branding */
+.brand-container {
     display: flex;
-    align-items: center;
-    gap: 15px;
     justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.brand-logo {
-    width: 60px;
-    height: 60px;
-    flex-shrink: 0;
-}
-
-.brand-name {
-    font-size: 28px;
-    font-weight: bold;
-    color: #09431f;
-    font-family: "Signika", sans-serif;
+.brand-container img {
+    max-width: 100%;
+    border-radius: 8px;
+    height: auto;
 }
 
 /* Input group styling */
 .input-group {
-    position: relative;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    text-align: left;
 }
 
 .input-group input {
     width: 100%;
     padding: 12px 15px;
-    font-size: 16px;
-    border: 2px solid #ddd;
+    border: 1px solid #ddd;
     border-radius: 8px;
+    font-size: 14px;
+    font-family: "Signika", sans-serif;
     outline: none;
-    transition: all 0.3s ease;
-    background-color: #f9f9f9;
+    transition: border 0.3s ease;
 }
 
 .input-group input:focus {
-    border-color: #09431f;
+    border: 1px solid #f1a760;
     background-color: #fff;
 }
 
 .input-group label {
-    position: absolute;
-    top: 50%;
-    left: 15px;
-    transform: translateY(-50%);
-    background: #fff;
-    padding: 0 5px;
     font-size: 14px;
-    color: #aaa;
-    pointer-events: none;
-    transition: all 0.3s ease;
+    margin-bottom: 5px;
+    color: #666;
 }
 
-.input-group input:focus + label,
-.input-group input:not(:placeholder-shown) + label {
-    top: -8px;
-    font-size: 12px;
-    color: #09431f;
-}
-
-/* Tombol */
-.save-button,
-.cancel-button {
-    display: inline-block;
-    padding: 12px 20px;
+/* Grup tombol */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
     margin-top: 20px;
+}
+
+/* Tombol Simpan */
+.save-button {
+    flex: 1;
+    padding: 12px;
+    background-color: #f1a760;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.save-button {
-    background-color: #09431f;
-    color: #fff;
+    transition: background-color 0.3s ease;
 }
 
 .save-button:hover {
-    background-color: #086327;
+    background-color: #e68b3a;
 }
 
+/* Tombol Cancel */
 .cancel-button {
-    background-color: #ccc;
-    color: #333;
-    margin-left: 10px;
+    flex: 1;
+    padding: 12px;
+    background-color: #ddd;
+    color: #555;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .cancel-button:hover {
