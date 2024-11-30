@@ -5,28 +5,6 @@ import {getJSON} from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.7/croot.js";
 onClick("buttonsimpaninfouser", saveUserInfo);
 onClick("buttonbatalinfouser", closeUserModal);
 
-function saveUserInfo() {
-  const name = document.getElementById("name").value;
-  const whatsapp = document.getElementById("whatsapp").value;
-  const address = document.getElementById("note").value; // Catatan disebut "note"
-
-  if (name && whatsapp && address) {
-    setCookie("name", name, 365);
-    setCookie("whatsapp", whatsapp, 365);
-    setCookie("address", address, 365);
-    closeUserModal(); // Menutup modal setelah menyimpan data
-    alert("Data berhasil disimpan!");
-  } else {
-    alert("Silakan masukkan semua informasi.");
-  }
-}
-
-function setCookie(cname, cvalue, exdays) {
-  const d = new Date();
-  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000); // Menghitung waktu expired
-  document.cookie = `${cname}=${cvalue};expires=${d.toUTCString()};path=/`; // Format cookie
-}
-
 document.addEventListener("DOMContentLoaded", function () {
   checkCookies();
   fetch("./data/menu.json")
@@ -42,47 +20,24 @@ document.addEventListener("DOMContentLoaded", function () {
 //   document.getElementById("userName").textContent = userName;
 // }
 
-// Fungsi untuk membuka modal
-function openModal() {
-  document.getElementById('userModal').style.display = 'flex';
-}
-
-// Fungsi untuk menutup modal
-function closeModal() {
-  document.getElementById('userModal').style.display = 'none';
-}
-
-// Fungsi untuk menyimpan data pengguna
-async function saveUserData() {
-  const name = document.getElementById('name').value;
-  const whatsapp = document.getElementById('whatsapp').value;
-  const note = document.getElementById('note').value;
-
-  if (name === '' || whatsapp === '' || note === '') {
-      alert("Semua field harus diisi!");
-      return;
-  }
-
-  // Jika ingin mengirim data ke server menggunakan fetch
+// Fungsi untuk mengambil dan menampilkan nama pengguna dari /data/user
+async function displayUserName() {
   try {
-      const response = await fetch('/data/user', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name, whatsapp, note })
-      });
+      // Mendapatkan data pengguna dari endpoint /data/user
+      const userData = await getJSON("/data/user");
 
-      // Mengecek status respons
-      if (response.ok) {
-          alert("Data berhasil disimpan!");
-          closeModal(); // Menutup modal setelah data disimpan
+      // Memeriksa apakah data pengguna memiliki properti "name"
+      if (userData && userData.name) {
+          // Mengambil kata pertama dari nama pengguna
+          const firstName = userData.name.split(" ")[0];
+          
+          // Menampilkan kata pertama di elemen dengan ID "userName"
+          document.getElementById("userName").textContent = firstName;
       } else {
-          alert("Gagal menyimpan data!");
+          console.error("Properti 'name' tidak ditemukan pada data pengguna.");
       }
   } catch (error) {
-      console.error('Terjadi kesalahan:', error);
-      alert("Terjadi kesalahan saat mengirim data!");
+      console.error("Gagal mengambil data pengguna:", error);
   }
 }
 
@@ -283,7 +238,7 @@ function calculateTotal() {
   let total = 0;
   let totalItems = 0;
   const orderList = document.getElementById("orderList");
-  orderList.innerHTML = ""; // Clear the list before appending new items
+  orderList.innerHTML = "";
 
   inputs.forEach((input) => {
     const quantity = parseInt(input.value);
@@ -294,30 +249,30 @@ function calculateTotal() {
       total += quantity * price;
       totalItems += quantity;
 
-      // Add each item to the order list
       const menuItem = document.createElement("div");
       menuItem.classList.add("order-item");
 
       const menuName = document.createElement("div");
       menuName.classList.add("order-menu");
-      menuName.textContent = `${name} x${quantity}`;
+      menuName.innerText = name;
+
+      const menuQuantity = document.createElement("div");
+      menuQuantity.classList.add("order-quantity");
+      menuQuantity.innerText = `x${quantity}`;
 
       const menuPrice = document.createElement("div");
       menuPrice.classList.add("order-price");
-      menuPrice.textContent = `Rp ${(quantity * price).toLocaleString()}`;
+      menuPrice.innerText = `Rp ${(quantity * price).toLocaleString()}`;
 
-      menuItem.appendChild(menuName);
-      menuItem.appendChild(menuPrice);
+      menuItem.append(menuName, menuQuantity, menuPrice);
       orderList.appendChild(menuItem);
     }
   });
 
-  // Update total in the UI
-  const totalElement = document.getElementById("totalAmount");
-  if (totalElement) {
-    totalElement.textContent = `Rp ${total.toLocaleString()}`;
-  }
-}
+  document.getElementById("totalPrice").innerText = total.toLocaleString();
+  document.getElementById("totalItems").innerText = totalItems;
+  document.querySelector(".total-summary .total-price span").innerText =
+    total.toLocaleString();
 
   // Update WhatsApp link with queue data
   const { queueNumber, uniqueOrderNumber } = currentQueueData;
@@ -339,7 +294,7 @@ function calculateTotal() {
   document.getElementById(
     "whatsappLink"
   ).href = `https://wa.me/6285183104981?text=${encodeURIComponent(message)}`;
-
+}
 
 // WhatsApp event handler
 document
