@@ -147,34 +147,34 @@
   <!-- Modal untuk input nama, nomor WhatsApp, dan catatan -->
   <div id="userModal" class="modal">
     <div class="modal-content">
-        <!-- Logo atau Banner -->
-        <div class="brand-container">
-            <img src="assets/logo_logic.png" alt="Brand Logo" />
-        </div>
-        <h2 id="modalTitle">Masukkan Informasi Anda</h2>
-          <!-- Input Nama -->
-        <div class="input-group">
-          <label for="name">Nama</label>
-          <input type="text" id="name" placeholder="Nama" />
+      <!-- Logo atau Banner -->
+      <div class="brand-container">
+        <img src="assets/logo_logic.png" alt="Brand Logo" />
+      </div>
+      <h2 id="modalTitle">Masukkan Informasi Anda</h2>
+      <!-- Input Nama -->
+      <div class="input-group">
+        <input type="text" id="name" required />
+        <label for="name" style="font-size: 16px">Nama</label>
       </div>
 
       <!-- Input Nomor WhatsApp -->
       <div class="input-group">
-          <label for="whatsapp">Nomor WhatsApp</label>
-          <input type="text" id="whatsapp" placeholder="Nomor WhatsApp" />
+        <input type="text" id="whatsapp" required />
+        <label for="whatsapp" style="font-size: 16px">Nomor WhatsApp</label>
       </div>
-          <!-- Input Catatan -->
-          <div class="input-group">
-            <input type="text" id="note" required />
-            <label for="note" style="font-size: 16px">Catatan</label>
-          </div>
-           <!-- Tombol Simpan dan Cancel -->
-        <div class="button-group">
-          <button id="buttonsimpaninfouser" class="save-button">Simpan</button>
-          <button id="buttonbatalinfouser" class="cancel-button">Batal</button>
+      <!-- Input Catatan -->
+      <div class="input-group">
+        <input type="text" id="note" required />
+        <label for="note" style="font-size: 16px">Catatan</label>
       </div>
+      <!-- Tombol Simpan dan Cancel -->
+      <div class="button-group">
+        <button id="buttonsimpaninfouser" class="save-button">Simpan</button>
+        <button id="buttonbatalinfouser" class="cancel-button">Batal</button>
+    </div>
+    </div>
   </div>
-</div>
 
 
   <footer class="site-footer">
@@ -230,9 +230,9 @@
     });
 
     function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
-        }
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    }
   </script>
 </body>
 

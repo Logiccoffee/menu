@@ -62,10 +62,13 @@ h3,
     margin-bottom: 20px;
 }
 
+/* Logo atau Banner */
 .brand-container img {
-    max-width: 100%;
-    border-radius: 8px;
-    height: auto;
+    width: 100px; /* Lebar logo */
+    height: auto; /* Menyesuaikan tinggi secara proporsional */
+    margin: 0 auto 20px auto; /* Posisi tengah dengan jarak ke bawah */
+    display: block; /* Supaya terpusat */
+    border-radius: 8px; /* Jika ingin sudut logo melengkung */
 }
 
 /* Input group styling */
@@ -139,7 +142,6 @@ h3,
 .cancel-button:hover {
     background-color: #bbb;
 }
-
 
 .input-group {
     position: relative;
