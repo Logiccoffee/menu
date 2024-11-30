@@ -5,6 +5,28 @@ import {getJSON} from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.7/croot.js";
 onClick("buttonsimpaninfouser", saveUserInfo);
 onClick("buttonbatalinfouser", closeUserModal);
 
+function saveUserInfo() {
+  const name = document.getElementById("name").value;
+  const whatsapp = document.getElementById("whatsapp").value;
+  const address = document.getElementById("note").value; // Catatan disebut "note"
+
+  if (name && whatsapp && address) {
+    setCookie("name", name, 365);
+    setCookie("whatsapp", whatsapp, 365);
+    setCookie("address", address, 365);
+    closeUserModal(); // Menutup modal setelah menyimpan data
+    alert("Data berhasil disimpan!");
+  } else {
+    alert("Silakan masukkan semua informasi.");
+  }
+}
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000); // Menghitung waktu expired
+  document.cookie = `${cname}=${cvalue};expires=${d.toUTCString()};path=/`; // Format cookie
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   checkCookies();
   fetch("./data/menu.json")
@@ -261,7 +283,7 @@ function calculateTotal() {
   let total = 0;
   let totalItems = 0;
   const orderList = document.getElementById("orderList");
-  orderList.innerHTML = "";
+  orderList.innerHTML = ""; // Clear the list before appending new items
 
   inputs.forEach((input) => {
     const quantity = parseInt(input.value);
@@ -272,30 +294,30 @@ function calculateTotal() {
       total += quantity * price;
       totalItems += quantity;
 
+      // Add each item to the order list
       const menuItem = document.createElement("div");
       menuItem.classList.add("order-item");
 
       const menuName = document.createElement("div");
       menuName.classList.add("order-menu");
-      menuName.innerText = name;
-
-      const menuQuantity = document.createElement("div");
-      menuQuantity.classList.add("order-quantity");
-      menuQuantity.innerText = `x${quantity}`;
+      menuName.textContent = `${name} x${quantity}`;
 
       const menuPrice = document.createElement("div");
       menuPrice.classList.add("order-price");
-      menuPrice.innerText = `Rp ${(quantity * price).toLocaleString()}`;
+      menuPrice.textContent = `Rp ${(quantity * price).toLocaleString()}`;
 
-      menuItem.append(menuName, menuQuantity, menuPrice);
+      menuItem.appendChild(menuName);
+      menuItem.appendChild(menuPrice);
       orderList.appendChild(menuItem);
     }
   });
 
-  document.getElementById("totalPrice").innerText = total.toLocaleString();
-  document.getElementById("totalItems").innerText = totalItems;
-  document.querySelector(".total-summary .total-price span").innerText =
-    total.toLocaleString();
+  // Update total in the UI
+  const totalElement = document.getElementById("totalAmount");
+  if (totalElement) {
+    totalElement.textContent = `Rp ${total.toLocaleString()}`;
+  }
+}
 
   // Update WhatsApp link with queue data
   const { queueNumber, uniqueOrderNumber } = currentQueueData;
@@ -317,7 +339,7 @@ function calculateTotal() {
   document.getElementById(
     "whatsappLink"
   ).href = `https://wa.me/6285183104981?text=${encodeURIComponent(message)}`;
-}
+
 
 // WhatsApp event handler
 document
