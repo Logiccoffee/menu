@@ -20,94 +20,99 @@ document.addEventListener("DOMContentLoaded", function () {
 //   document.getElementById("userName").textContent = userName;
 // }
 
-// Fungsi untuk mengambil dan menampilkan nama pengguna dari /data/user
+// Fungsi untuk mengambil dan menampilkan nama pengguna dari endpoint /data/user
 async function displayUserName() {
   try {
-      // Mendapatkan data pengguna dari endpoint /data/user
-      const userData = await getJSON(" https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user ");
+    const userData = await getJSON(
+      "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user"
+    );
 
-      // Memeriksa apakah data pengguna memiliki properti "name"
-      if (userData && userData.name) {
-          // Mengambil kata pertama dari nama pengguna
-          const firstName = userData.name.split(" ")[0];
-          
-          // Menampilkan kata pertama di elemen dengan ID "userName"
-          document.getElementById("userName").textContent = firstName;
-      } else {
-          console.error("Properti 'name' tidak ditemukan pada data pengguna.");
-      }
+    if (userData && userData.name) {
+      const firstName = userData.name.split(" ")[0];
+      document.getElementById("userName").textContent = firstName;
+    } else {
+      console.error("Properti 'name' tidak ditemukan pada data pengguna.");
+    }
   } catch (error) {
-      console.error("Gagal mengambil data pengguna:", error);
+    console.error("Gagal mengambil data pengguna:", error);
   }
 }
 
 // Memanggil fungsi untuk menampilkan nama pengguna
-displayUserName();
-
-function checkCookies() {
-  const userName = Cookies.get('name'); // Menggunakan jscroot untuk mendapatkan cookie
-  const userWhatsapp = Cookies.get('whatsapp');
-  const userNote = Cookies.get('note'); // Menggunakan key 'note' untuk catatan
-
-  // Tampilkan modal jika data tidak lengkap
-  document.getElementById("userModal").style.display =
-    userName && userWhatsapp && userNote ? "none" : "flex";
-
-  document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
-  document.getElementById("buttonbatalinfouser").style.display = "none"; // Sembunyikan tombol "Batal" secara default
-}
-
-function saveUserInfo() {
-  const name = document.getElementById("name").value;
-  const whatsapp = document.getElementById("whatsapp").value;
-  const note = document.getElementById("note").value; // Mengambil nilai dari input "note"
-
-  if (name && whatsapp && note) {
-    // Simpan data menggunakan jscroot
-    Cookies.set('name', name, { expires: 365 });
-    Cookies.set('whatsapp', whatsapp, { expires: 365 });
-    Cookies.set('note', note, { expires: 365 });
-    closeUserModal();
-  } else {
-    alert("Silakan masukkan semua informasi.");
-  }
-}
-
-function closeUserModal() {
-  document.getElementById("userModal").style.display = "none";
-}
-
-// Panggil `checkCookies` saat halaman dimuat
-document.addEventListener("DOMContentLoaded", checkCookies);
-
-
+// displayUserName();
 
 // function checkCookies() {
-//   const userName = getCookie("name");
-//   const userWhatsapp = getCookie("whatsapp");
-//   const userAddress = getCookie("address");
+//   const userName = Cookies.get('name'); // Menggunakan jscroot untuk mendapatkan cookie
+//   const userWhatsapp = Cookies.get('whatsapp');
+//   const userNote = Cookies.get('note'); // Menggunakan key 'note' untuk catatan
 
+//   // Tampilkan modal jika data tidak lengkap
 //   document.getElementById("userModal").style.display =
-//     userName && userWhatsapp && userAddress ? "none" : "flex";
+//     userName && userWhatsapp && userNote ? "none" : "flex";
+
 //   document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
-//   document.getElementById("buttonbatalinfouser").style.display = "none"; 
+//   document.getElementById("buttonbatalinfouser").style.display = "none"; // Sembunyikan tombol "Batal" secara default
 // }
 
 // function saveUserInfo() {
 //   const name = document.getElementById("name").value;
 //   const whatsapp = document.getElementById("whatsapp").value;
-//   const address = document.getElementById("address").value;
+//   const note = document.getElementById("note").value; // Mengambil nilai dari input "note"
 
-//   if (name && whatsapp && address) {
-//     setCookie("name", name, 365);
-//     setCookie("whatsapp", whatsapp, 365);
-//     setCookie("address", address, 365);
+//   if (name && whatsapp && note) {
+//     // Simpan data menggunakan jscroot
+//     Cookies.set('name', name, { expires: 365 });
+//     Cookies.set('whatsapp', whatsapp, { expires: 365 });
+//     Cookies.set('note', note, { expires: 365 });
 //     closeUserModal();
 //   } else {
 //     alert("Silakan masukkan semua informasi.");
 //   }
 // }
 
+// function closeUserModal() {
+//   document.getElementById("userModal").style.display = "none";
+// }
+
+// // Panggil `checkCookies` saat halaman dimuat
+// document.addEventListener("DOMContentLoaded", checkCookies);
+
+
+
+// Fungsi untuk mengecek cookies dan menampilkan modal jika data tidak lengkap
+function checkCookies() {
+  const userName = getCookie("name");
+  const userWhatsapp = getCookie("whatsapp");
+  const userAddress = getCookie("address");
+
+  // Jika data tidak lengkap, tampilkan modal
+  if (!userName || !userWhatsapp || !userAddress) {
+    document.getElementById("userModal").style.display = "flex";
+    document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
+    document.getElementById("buttonbatalinfouser").style.display = "none"; 
+  } else {
+    // Jika data lengkap, tampilkan nama pengguna
+    displayUserName();
+  }
+}
+
+// Fungsi untuk menyimpan data pengguna ke dalam cookies
+function saveUserInfo() {
+  const name = document.getElementById("name").value;
+  const whatsapp = document.getElementById("whatsapp").value;
+  const address = document.getElementById("address").value;
+
+  if (name && whatsapp && address) {
+    setCookie("name", name, 365);
+    setCookie("whatsapp", whatsapp, 365);
+    setCookie("address", address, 365);
+    closeUserModal();
+  } else {
+    alert("Silakan masukkan semua informasi.");
+  }
+}
+
+// Fungsi untuk mengatur cookie
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
@@ -123,6 +128,13 @@ function getCookie(cname) {
     if (c.indexOf(name) == 0) return c.substring(name.length);
   }
   return "";
+}
+
+// Fungsi untuk menutup modal
+function closeUserModal() {
+  document.getElementById("userModal").style.display = "none";
+  document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
+  document.getElementById("buttonbatalinfouser").style.display = "none";
 }
 
 // Open modal with edit title when editing information
