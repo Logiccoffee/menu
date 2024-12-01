@@ -13,6 +13,42 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => console.error("Error loading menu:", error));
 });
 
+// Periksa apakah cookie login tersedia
+const loginToken = getCookie("login");
+if (!loginToken) {
+    // Jika tidak ada cookie, arahkan ke halaman login
+    alert("Anda belum login. Silakan login terlebih dahulu.");
+    window.location.href = "/login";
+} else {
+    // Ambil data pengguna melalui API
+    getJSON(
+        "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user", // Endpoint API
+        { 
+            "login": loginToken // Hanya header login
+        },
+        handleUserResponse // Fungsi callback untuk menangani respons
+    );
+}
+
+// Fungsi untuk menangani respons dari API
+function handleUserResponse(result) {
+  if (result.status === 200 && result.data) {
+      // Jika respons berhasil, tampilkan data pengguna
+      const userData = result.data;
+
+      // Tampilkan data pengguna pada elemen HTML
+      setInner("user-photo", <img src="${userData.profpic}" alt="Foto Profil" class="user-photo" />);
+      setInner("user-name", userData.name);
+      setInner("user-phone", userData.phonenumber);
+
+      console.log("Data pengguna berhasil dimuat:", userData);
+  } else {
+      // Jika gagal, tampilkan pesan kesalahan
+      console.error("Gagal memuat data pengguna:", result.message || "Unknown error");
+      alert("Gagal memuat informasi pengguna. Silakan coba lagi.");
+    }
+}
+
 // Menambahkan kode untuk menampilkan nama pengguna setelah login
 // const userName = getCookie("name");
 // if (userName) {
@@ -20,26 +56,29 @@ document.addEventListener("DOMContentLoaded", function () {
 //   document.getElementById("userName").textContent = userName;
 // }
 
-// Fungsi untuk mengambil dan menampilkan nama pengguna dari endpoint /data/user
-async function displayUserName() {
-  try {
-    const userData = await getJSON(
-      "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user"
-    );
+// Fungsi untuk mengambil dan menampilkan nama pengguna dari /data/user
+// async function displayUserName() {
+//   try {
+//       // Mendapatkan data pengguna dari endpoint /data/user
+//       const userData = await getJSON(" https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user ");
 
-    if (userData && userData.name) {
-      const firstName = userData.name.split(" ")[0];
-      document.getElementById("userName").textContent = firstName;
-    } else {
-      console.error("Properti 'name' tidak ditemukan pada data pengguna.");
-    }
-  } catch (error) {
-    console.error("Gagal mengambil data pengguna:", error);
-  }
-}
+//       // Memeriksa apakah data pengguna memiliki properti "name"
+//       if (userData && userData.name) {
+//           // Mengambil kata pertama dari nama pengguna
+//           const firstName = userData.name.split(" ")[0];
+          
+//           // Menampilkan kata pertama di elemen dengan ID "userName"
+//           document.getElementById("userName").textContent = firstName;
+//       } else {
+//           console.error("Properti 'name' tidak ditemukan pada data pengguna.");
+//       }
+//   } catch (error) {
+//       console.error("Gagal mengambil data pengguna:", error);
+//   }
+// }
 
 // Memanggil fungsi untuk menampilkan nama pengguna
-// displayUserName();
+displayUserName();
 
 // function checkCookies() {
 //   const userName = Cookies.get('name'); // Menggunakan jscroot untuk mendapatkan cookie
@@ -79,24 +118,17 @@ async function displayUserName() {
 
 
 
-// Fungsi untuk mengecek cookies dan menampilkan modal jika data tidak lengkap
 function checkCookies() {
   const userName = getCookie("name");
   const userWhatsapp = getCookie("whatsapp");
   const userAddress = getCookie("address");
 
-  // Jika data tidak lengkap, tampilkan modal
-  if (!userName || !userWhatsapp || !userAddress) {
-    document.getElementById("userModal").style.display = "flex";
-    document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
-    document.getElementById("buttonbatalinfouser").style.display = "none"; 
-  } else {
-    // Jika data lengkap, tampilkan nama pengguna
-    displayUserName();
-  }
+  document.getElementById("userModal").style.display =
+    userName && userWhatsapp && userAddress ? "none" : "flex";
+  document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
+  document.getElementById("buttonbatalinfouser").style.display = "none"; 
 }
 
-// Fungsi untuk menyimpan data pengguna ke dalam cookies
 function saveUserInfo() {
   const name = document.getElementById("name").value;
   const whatsapp = document.getElementById("whatsapp").value;
@@ -112,7 +144,6 @@ function saveUserInfo() {
   }
 }
 
-// Fungsi untuk mengatur cookie
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
@@ -130,13 +161,6 @@ function getCookie(cname) {
   return "";
 }
 
-// Fungsi untuk menutup modal
-// function closeUserModal() {
-//   document.getElementById("userModal").style.display = "none";
-//   document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
-//   document.getElementById("buttonbatalinfouser").style.display = "none";
-// }
-
 // Open modal with edit title when editing information
 document
   .getElementById("editUserInfoButton")
@@ -151,11 +175,11 @@ document
   });
 
 // Close modal function
-// function closeUserModal() {
-//   document.getElementById("userModal").style.display = "none";
-//   document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
-//   document.getElementById("buttonbatalinfouser").style.display = "none"; // Hide "Batal" button after closing
-// }
+function closeUserModal() {
+  document.getElementById("userModal").style.display = "none";
+  document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
+  document.getElementById("buttonbatalinfouser").style.display = "none"; // Hide "Batal" button after closing
+}
 
 // Fungsi renderMenu, showQuantityControls, changeQuantity, calculateTotal, dll.
 
