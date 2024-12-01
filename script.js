@@ -131,11 +131,11 @@ function getCookie(cname) {
 }
 
 // Fungsi untuk menutup modal
-function closeUserModal() {
-  document.getElementById("userModal").style.display = "none";
-  document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
-  document.getElementById("buttonbatalinfouser").style.display = "none";
-}
+// function closeUserModal() {
+//   document.getElementById("userModal").style.display = "none";
+//   document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
+//   document.getElementById("buttonbatalinfouser").style.display = "none";
+// }
 
 // Open modal with edit title when editing information
 document
