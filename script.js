@@ -151,11 +151,11 @@ document
   });
 
 // Close modal function
-function closeUserModal() {
-  document.getElementById("userModal").style.display = "none";
-  document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
-  document.getElementById("buttonbatalinfouser").style.display = "none"; // Hide "Batal" button after closing
-}
+// function closeUserModal() {
+//   document.getElementById("userModal").style.display = "none";
+//   document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
+//   document.getElementById("buttonbatalinfouser").style.display = "none"; // Hide "Batal" button after closing
+// }
 
 // Fungsi renderMenu, showQuantityControls, changeQuantity, calculateTotal, dll.
 
