@@ -34,14 +34,37 @@ h3,
 
 .modal-content {
     background-color: #fff;
-    padding: 30px;
-    max-width: 400px;
-    width: 90%;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    width: 350px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    font-family: "Signika", sans-serif;
-}
+  }
+
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .logo-image {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .logo-title {
+    font-size: 24px;
+    color: #006837; /* Warna hijau */
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  #modalTitle {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
 
 @keyframes scaleUp {
     from {
@@ -77,34 +100,44 @@ h3,
 
 .input-group input {
     width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    padding: 10px;
     font-size: 14px;
-    font-family: "Signika", sans-serif;
-    outline: none;
-    transition: border 0.3s ease;
-}
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
 
 .input-group input:focus {
-    border: 1px solid #f1a760;
+    border-color: 1px solid #f1a760;
     background-color: #fff;
+    outline: none;
 }
 
 .input-group label {
     font-size: 14px;
+    color: #555;
     margin-bottom: 5px;
-    color: #666;
-}
+    display: block;
+  }
 
 /* Grup tombol */
 .button-group {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 20px;
+    text-align: center;
 }
 
+.button-group button {
+    background-color: #d4a94b; /* Warna emas */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .button-group button:hover {
+    background-color: #b8913f;
+  }
+  
 /* Tombol Simpan */
 .save-button {
     flex: 1;
