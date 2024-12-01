@@ -103,7 +103,7 @@ h3,
     width: 100%;
     padding: 10px;
     font-size: 14px;
-    border: 1px solid #f1a760;
+    border: 1px solid #f1a760 !important;
     border-radius: 5px;
   }
 
@@ -679,8 +679,8 @@ option {
 }
 
 .modal-content img {
-    width: 100%;
-    height: 100%;
+    width: 50px;
+    height: 50px;
     border-radius: 10px;
 }
 
@@ -956,3 +956,20 @@ header .search-bar {
         text-align: center;
     }
 }
+
+
+/* Untuk tampilan perangkat kecil */
+@media (max-width: 768px) {
+    .modal-content {
+      width: 80%; /* Lebar modal lebih kecil */
+      padding: 15px; /* Padding lebih kecil */
+    }
+  }
+  
+  /* Untuk tampilan perangkat sangat kecil (ponsel) */
+  @media (max-width: 480px) {
+    .modal-content {
+      width: 90%;
+      padding: 10px;
+    }
+  }
