@@ -39,39 +39,40 @@ h3,
     width: 350px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-  }
+}
 
-  .logo-container {
+.logo-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
     gap: 10px;
-  }
-  
-  .logo-image {
+}
+
+.logo-image {
     width: 50px;
     height: 50px;
-  }
-  
-  .logo-title {
+}
+
+.logo-title {
     font-weight: bold;
     color: #09431f;
     font-family: "Signika", sans-serif;
     font-size: 2em;
-  }
-  
-  #modalTitle {
+}
+
+#modalTitle {
     font-size: 18px;
     margin-bottom: 20px;
-  }
-  
+}
+
 
 @keyframes scaleUp {
     from {
         transform: scale(0.8);
         opacity: 0.5;
     }
+
     to {
         transform: scale(1);
         opacity: 1;
@@ -79,19 +80,20 @@ h3,
 }
 
 /* Logo dan branding */
-  
-  /* .brand-logo {
+
+/* .brand-logo {
     width: 40px; /* Ukuran logo kecil */
-    /* height: 40px;
+/* height: 40px;
     object-fit: contain; /* Menjaga proporsi logo */
-  /* } */ 
-  
-  .brand-name {
+/* } */
+
+.brand-name {
     font-size: 22px;
     font-weight: bold;
     color: #09431f;
-    font-family: "Signika", sans-serif; /* Font Signika */
-  }
+    font-family: "Signika", sans-serif;
+    /* Font Signika */
+}
 
 /* Input group styling */
 .input-group {
@@ -105,7 +107,7 @@ h3,
     font-size: 14px;
     border: 1px solid #f1a760 !important;
     border-radius: 5px;
-  }
+}
 
 .input-group input:focus {
     border-color: 1px solid #f1a760;
@@ -117,7 +119,7 @@ h3,
     color: #555;
     margin-bottom: 5px;
     display: block;
-  }
+}
 
 /* Grup tombol */
 .button-group {
@@ -125,18 +127,19 @@ h3,
 }
 
 .button-group button {
-    background-color: #d4a94b; /* Warna emas */
+    background-color: #d4a94b;
+    /* Warna emas */
     color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-  }
-  
-  .button-group button:hover {
+}
+
+.button-group button:hover {
     background-color: #b8913f;
-  }
+}
 
 /* Tombol Simpan */
 .save-button {
@@ -220,11 +223,14 @@ input:valid+label {
 } */
 
 .modal-content img {
-    width: 40px; /* Atur ukuran gambar lebih kecil */
-    height: 40px; /* Menjaga proporsi gambar */
+    width: 40px;
+    /* Atur ukuran gambar lebih kecil */
+    height: 40px;
+    /* Menjaga proporsi gambar */
     border-radius: 10px;
     margin-bottom: 15px;
-    object-fit: contain; /* Agar gambar tetap proporsional */
+    object-fit: contain;
+    /* Agar gambar tetap proporsional */
 }
 
 
@@ -669,6 +675,11 @@ option {
     align-items: center;
 }
 
+.modal.show {
+    display: block;
+    /* Tampilkan modal */
+}
+
 .modal-content {
     background-color: #fff;
     padding: 20px;
@@ -874,22 +885,22 @@ option {
     align-items: center;
     font-size: 16px;
     font-family: "Signika", Arial, sans-serif;
-  }
-  
-  .user-info .user-name {
+}
+
+.user-info .user-name {
     text-decoration: none;
     color: #805700;
     font-weight: 500;
     font-size: large;
     font-family: "Signika", Arial, sans-serif;
     position: relative;
-  }
-  
-  .user-info .user-name i {
+}
+
+.user-info .user-name i {
     margin-right: 8px;
-  }
-  
-  /* Header Styles */
+}
+
+/* Header Styles */
 header {
     display: flex;
     justify-content: space-between;
@@ -900,15 +911,18 @@ header {
 }
 
 header .brand {
-    display: flex; /* Mengelompokkan logo dan brand name dalam satu baris */
+    display: flex;
+    /* Mengelompokkan logo dan brand name dalam satu baris */
     align-items: center;
 }
 
 .logo {
-    width: 50px; /* Sesuaikan dengan ukuran logo */
+    width: 50px;
+    /* Sesuaikan dengan ukuran logo */
     height: auto;
-    margin-right: 10px; /* Memberikan jarak antara logo dan nama brand */
-  }
+    margin-right: 10px;
+    /* Memberikan jarak antara logo dan nama brand */
+}
 
 /* Navbar Styles */
 .navbar {
@@ -930,7 +944,8 @@ header .brand {
 
 .search-bar {
     flex: 1;
-    margin-left: 20px; /* Jarak antara search bar dan brand */
+    margin-left: 20px;
+    /* Jarak antara search bar dan brand */
 }
 
 header .search-bar {
@@ -946,9 +961,10 @@ header .search-bar {
         padding-left: 10px;
     }
 
-    header h1, 
+    header h1,
     header .logo {
-        padding-left: 10px; /* Sesuaikan padding kiri di layar kecil */
+        padding-left: 10px;
+        /* Sesuaikan padding kiri di layar kecil */
     }
 
     .navbar a {
@@ -961,15 +977,17 @@ header .search-bar {
 /* Untuk tampilan perangkat kecil */
 @media (max-width: 768px) {
     .modal-content {
-      width: 80%; /* Lebar modal lebih kecil */
-      padding: 15px; /* Padding lebih kecil */
+        width: 80%;
+        /* Lebar modal lebih kecil */
+        padding: 15px;
+        /* Padding lebih kecil */
     }
-  }
-  
-  /* Untuk tampilan perangkat sangat kecil (ponsel) */
-  @media (max-width: 480px) {
+}
+
+/* Untuk tampilan perangkat sangat kecil (ponsel) */
+@media (max-width: 480px) {
     .modal-content {
-      width: 90%;
-      padding: 10px;
+        width: 90%;
+        padding: 10px;
     }
-  }
+}
