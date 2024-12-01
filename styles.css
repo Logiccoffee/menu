@@ -46,6 +46,7 @@ h3,
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
+    gap: 10px;
   }
   
   .logo-image {
@@ -54,10 +55,10 @@ h3,
   }
   
   .logo-title {
-    font-size: 24px;
-    color: #006837; /* Warna hijau */
     font-weight: bold;
-    margin-top: 10px;
+    color: #09431f;
+    font-family: "Signika", sans-serif;
+    font-size: 2em;
   }
   
   #modalTitle {
@@ -102,13 +103,12 @@ h3,
     width: 100%;
     padding: 10px;
     font-size: 14px;
-    border: 1px solid #ccc;
+    border: 1px solid #f1a760;
     border-radius: 5px;
   }
 
 .input-group input:focus {
     border-color: 1px solid #f1a760;
-    background-color: #fff;
     outline: none;
 }
 
@@ -137,7 +137,7 @@ h3,
   .button-group button:hover {
     background-color: #b8913f;
   }
-  
+
 /* Tombol Simpan */
 .save-button {
     flex: 1;
