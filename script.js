@@ -1,6 +1,8 @@
 import { postJSON } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/api.js";
 import { onClick } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js";
 import {getJSON} from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.7/croot.js";
+import { setInner } from "https://cdn.jsdelivr.net/gh/jscroot/element@0.1.5/croot.js";
+import { redirect } from "https://cdn.jsdelivr.net/gh/jscroot/url@0.0.9/croot.js";
 
 onClick("buttonsimpaninfouser", saveUserInfo);
 onClick("buttonbatalinfouser", closeUserModal);
@@ -13,42 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => console.error("Error loading menu:", error));
 });
 
-// Periksa apakah cookie login tersedia
-const loginToken = getCookie("login");
-if (!loginToken) {
-    // Jika tidak ada cookie, arahkan ke halaman login
-    alert("Anda belum login. Silakan login terlebih dahulu.");
-    window.location.href = "/login";
-} else {
-    // Ambil data pengguna melalui API
-    getJSON(
-        "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user", // Endpoint API
-        { 
-            "login": loginToken // Hanya header login
-        },
-        handleUserResponse // Fungsi callback untuk menangani respons
-    );
-}
-
-// Fungsi untuk menangani respons dari API
-function handleUserResponse(result) {
-  if (result.status === 200 && result.data) {
-      // Jika respons berhasil, tampilkan data pengguna
-      const userData = result.data;
-
-      // Tampilkan data pengguna pada elemen HTML
-      setInner("user-photo", <img src="${userData.profpic}" alt="Foto Profil" class="user-photo" />);
-      setInner("user-name", userData.name);
-      setInner("user-phone", userData.phonenumber);
-
-      console.log("Data pengguna berhasil dimuat:", userData);
-  } else {
-      // Jika gagal, tampilkan pesan kesalahan
-      console.error("Gagal memuat data pengguna:", result.message || "Unknown error");
-      alert("Gagal memuat informasi pengguna. Silakan coba lagi.");
-    }
-}
-
 // Menambahkan kode untuk menampilkan nama pengguna setelah login
 // const userName = getCookie("name");
 // if (userName) {
@@ -57,64 +23,71 @@ function handleUserResponse(result) {
 // }
 
 // Fungsi untuk mengambil dan menampilkan nama pengguna dari /data/user
-// async function displayUserName() {
-//   try {
-//       // Mendapatkan data pengguna dari endpoint /data/user
-//       const userData = await getJSON(" https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user ");
+async function displayUserName() {
+  try {
+    // Mendapatkan data pengguna dari endpoint /data/user
+    const apiUrl = "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user";
+    const response = await fetch(apiUrl);
+    const userData = await response.json();
 
-//       // Memeriksa apakah data pengguna memiliki properti "name"
-//       if (userData && userData.name) {
-//           // Mengambil kata pertama dari nama pengguna
-//           const firstName = userData.name.split(" ")[0];
-          
-//           // Menampilkan kata pertama di elemen dengan ID "userName"
-//           document.getElementById("userName").textContent = firstName;
-//       } else {
-//           console.error("Properti 'name' tidak ditemukan pada data pengguna.");
-//       }
-//   } catch (error) {
-//       console.error("Gagal mengambil data pengguna:", error);
-//   }
-// }
+    // Memeriksa apakah data pengguna memiliki properti "name"
+    if (userData && userData.name) {
+      // Mengambil kata pertama dari nama pengguna
+      const firstName = userData.name.split(" ")[0];
+
+      // Menampilkan kata pertama di elemen dengan ID "userName"
+      document.getElementById("userName").textContent = firstName;
+    } else {
+      console.error("Properti 'name' tidak ditemukan pada data pengguna.");
+    }
+  } catch (error) {
+    console.error("Gagal mengambil data pengguna:", error);
+  }
+}
 
 // Memanggil fungsi untuk menampilkan nama pengguna
 displayUserName();
 
-// function checkCookies() {
-//   const userName = Cookies.get('name'); // Menggunakan jscroot untuk mendapatkan cookie
-//   const userWhatsapp = Cookies.get('whatsapp');
-//   const userNote = Cookies.get('note'); // Menggunakan key 'note' untuk catatan
+// Fungsi untuk menangani respons API
+function responseFunction(result) {
+  try {
+      if (result.status === 404) {
+          console.log("Pengguna tidak ditemukan. Mengarahkan ke halaman pendaftaran.");
+          setInner("content", "Silahkan lakukan pendaftaran terlebih dahulu.");
+          redirect("/register");
+          return; // Menghentikan eksekusi setelah redirect
+      }
 
-//   // Tampilkan modal jika data tidak lengkap
-//   document.getElementById("userModal").style.display =
-//     userName && userWhatsapp && userNote ? "none" : "flex";
+      // Pastikan data yang diterima memiliki properti yang diinginkan
+      if (!result.data || !result.data.name) {
+          console.error("Properti 'name' tidak ditemukan pada data pengguna.");
+          setInner("content", "Data pengguna tidak valid.");
+          return;
+      }
 
-//   document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
-//   document.getElementById("buttonbatalinfouser").style.display = "none"; // Sembunyikan tombol "Batal" secara default
-// }
+      // Menampilkan nama pengguna, foto, dan nomor telepon di elemen yang telah disediakan
+      const userNameElement = document.getElementById("user-name");
+      const userPhoneElement = document.getElementById("user-phone");
+      const userPhotoElement = document.getElementById("user-photo");
 
-// function saveUserInfo() {
-//   const name = document.getElementById("name").value;
-//   const whatsapp = document.getElementById("whatsapp").value;
-//   const note = document.getElementById("note").value; // Mengambil nilai dari input "note"
+      if (userNameElement) {
+          userNameElement.textContent = result.data.name || "Guest"; // Menggunakan result.data
+      }
+      if (userPhoneElement) {
+          userPhoneElement.textContent = result.data.phone || "-"; // Menggunakan result.data
+      }
+      if (userPhotoElement && result.data.photoUrl) {
+          userPhotoElement.style.backgroundImage = `url(${result.data.photoUrl})`;
+          userPhotoElement.style.backgroundSize = "cover";
+          userPhotoElement.style.backgroundPosition = "center";
+      }
 
-//   if (name && whatsapp && note) {
-//     // Simpan data menggunakan jscroot
-//     Cookies.set('name', name, { expires: 365 });
-//     Cookies.set('whatsapp', whatsapp, { expires: 365 });
-//     Cookies.set('note', note, { expires: 365 });
-//     closeUserModal();
-//   } else {
-//     alert("Silakan masukkan semua informasi.");
-//   }
-// }
-
-// function closeUserModal() {
-//   document.getElementById("userModal").style.display = "none";
-// }
-
-// // Panggil `checkCookies` saat halaman dimuat
-// document.addEventListener("DOMContentLoaded", checkCookies);
+  } catch (error) {
+      console.error("Terjadi kesalahan saat memproses respons:", error.message);
+      setInner("content", "Terjadi kesalahan saat memproses data.");
+  }
+  console.log(result);
+}
 
 
 
@@ -126,7 +99,7 @@ function checkCookies() {
   document.getElementById("userModal").style.display =
     userName && userWhatsapp && userAddress ? "none" : "flex";
   document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
-  document.getElementById("buttonbatalinfouser").style.display = "none"; 
+  document.getElementById("buttonbatalinfouser").style.display = "none"; // Hide "Batal" initially
 }
 
 function saveUserInfo() {
