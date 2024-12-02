@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //   document.getElementById("userName").textContent = userName;
 // }
 
-
+//button simpan
 document.getElementById("buttonsimpaninfouser").addEventListener("click", function () {
   let name = document.getElementById("name").value;
   let whatsapp = document.getElementById("whatsapp").value;
@@ -45,82 +45,8 @@ document.getElementById("buttonsimpaninfouser").addEventListener("click", functi
     closeUserModal();  // Menutup modal jika semua valid
   }
 });
-document.addEventListener("DOMContentLoaded", () => {
-  // URL API atau sumber data pengguna
-  const apiUrl = "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user"; 
 
-  // Fungsi untuk mengambil data pengguna dan menampilkannya
-  async function displayUserName() {
-    try {
-      const response = await fetch(apiUrl, { method: "GET" });
-
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
-      }
-
-      const userData = await response.json();
-
-      // Memastikan data memiliki properti `name`
-      if (userData && userData.name) {
-        const firstName = userData.name.split(" ")[0]; // Ambil nama depan
-        const userNameElement = document.getElementById("userName");
-        userNameElement.innerHTML = `
-          <i class="fa-solid fa-user"></i> ${firstName}
-          <i class="fa-solid fa-chevron-down"></i>
-        `;
-      } else {
-        console.error("Properti 'name' tidak ditemukan pada data pengguna.");
-      }
-    } catch (error) {
-      console.error("Gagal mengambil data pengguna:", error);
-    }
-  }
-
-  // Panggil fungsi untuk menampilkan nama pengguna
-  displayUserName();
-});
-
-
-// Fungsi untuk menangani respons API
-function responseFunction(result) {
-  try {
-      if (result.status === 404) {
-          console.log("Pengguna tidak ditemukan. Mengarahkan ke halaman pendaftaran.");
-          setInner("content", "Silahkan lakukan pendaftaran terlebih dahulu.");
-          redirect("/register");
-          return; // Menghentikan eksekusi setelah redirect
-      }
-
-      // Pastikan data yang diterima memiliki properti yang diinginkan
-      if (!result.data || !result.data.name) {
-          console.error("Properti 'name' tidak ditemukan pada data pengguna.");
-          setInner("content", "Data pengguna tidak valid.");
-          return;
-      }
-
-      // Menampilkan nama pengguna, foto, dan nomor telepon di elemen yang telah disediakan
-      const userNameElement = document.getElementById("user-name");
-      const userPhoneElement = document.getElementById("user-phone");
-      const userPhotoElement = document.getElementById("user-photo");
-
-      if (userNameElement) {
-          userNameElement.textContent = result.data.name || "Guest"; // Menggunakan result.data
-      }
-      if (userPhoneElement) {
-          userPhoneElement.textContent = result.data.phone || "-"; // Menggunakan result.data
-      }
-      if (userPhotoElement && result.data.photoUrl) {
-          userPhotoElement.style.backgroundImage = `url(${result.data.photoUrl})`;
-          userPhotoElement.style.backgroundSize = "cover";
-          userPhotoElement.style.backgroundPosition = "center";
-      }
-
-  } catch (error) {
-      console.error("Terjadi kesalahan saat memproses respons:", error.message);
-      setInner("content", "Terjadi kesalahan saat memproses data.");
-  }
-  console.log(result);
-}
+//button simpan
 const nameInput = document.getElementById("name");
 const whatsappInput = document.getElementById("whatsapp");
 const noteInput = document.getElementById("note");
