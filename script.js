@@ -4,7 +4,7 @@ import {getJSON} from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.7/croot.js";
 import { setInner } from "https://cdn.jsdelivr.net/gh/jscroot/element@0.1.5/croot.js";
 import { redirect } from "https://cdn.jsdelivr.net/gh/jscroot/url@0.0.9/croot.js";
 
-onClick("buttonsimpaninfouser", saveUserInfo);
+onClick('buttonsimpaninfouser', saveUserInfo);
 onClick("buttonbatalinfouser", closeUserModal);
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -22,6 +22,18 @@ document.addEventListener("DOMContentLoaded", function () {
 //   document.getElementById("userName").textContent = userName;
 // }
 
+
+document.getElementById("buttonsimpaninfouser").addEventListener("click", function () {
+  let name = document.getElementById("name").value;
+  let whatsapp = document.getElementById("whatsapp").value;
+  let address = document.getElementById("address").value;
+
+  if (!name || !whatsapp || !address) {
+      alert("Silakan lengkapi semua informasi.");
+  } else if (isNaN(whatsapp)) {
+      alert("Nomor WhatsApp harus berupa angka.");
+  }
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   // URL API atau sumber data pengguna
