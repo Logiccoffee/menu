@@ -22,31 +22,42 @@ document.addEventListener("DOMContentLoaded", function () {
 //   document.getElementById("userName").textContent = userName;
 // }
 
-// Fungsi untuk mengambil dan menampilkan nama pengguna dari /data/user
-async function displayUserName() {
-  try {
-    // Mendapatkan data pengguna dari endpoint /data/user
-    const apiUrl = "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user";
-    const response = await fetch(apiUrl);
-    const userData = await response.json();
 
-    // Memeriksa apakah data pengguna memiliki properti "name"
-    if (userData && userData.name) {
-      // Mengambil kata pertama dari nama pengguna
-      const firstName = userData.name.split(" ")[0];
+document.addEventListener("DOMContentLoaded", () => {
+  // URL API atau sumber data pengguna
+  const apiUrl = "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user"; 
 
-      // Menampilkan kata pertama di elemen dengan ID "userName"
-      document.getElementById("userName").textContent = firstName;
-    } else {
-      console.error("Properti 'name' tidak ditemukan pada data pengguna.");
+  // Fungsi untuk mengambil data pengguna dan menampilkannya
+  async function displayUserName() {
+    try {
+      const response = await fetch(apiUrl, { method: "GET" });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+
+      const userData = await response.json();
+
+      // Memastikan data memiliki properti `name`
+      if (userData && userData.name) {
+        const firstName = userData.name.split(" ")[0]; // Ambil nama depan
+        const userNameElement = document.getElementById("userName");
+        userNameElement.innerHTML = `
+          <i class="fa-solid fa-user"></i> ${firstName}
+          <i class="fa-solid fa-chevron-down"></i>
+        `;
+      } else {
+        console.error("Properti 'name' tidak ditemukan pada data pengguna.");
+      }
+    } catch (error) {
+      console.error("Gagal mengambil data pengguna:", error);
     }
-  } catch (error) {
-    console.error("Gagal mengambil data pengguna:", error);
   }
-}
 
-// Memanggil fungsi untuk menampilkan nama pengguna
-displayUserName();
+  // Panggil fungsi untuk menampilkan nama pengguna
+  displayUserName();
+});
+
 
 // Fungsi untuk menangani respons API
 function responseFunction(result) {
