@@ -95,24 +95,21 @@
         <a href="index.html"><i class="fa fa-house"></i> Beranda</a>
         <a href="#"><i class="fa-solid fa-mug-saucer"></i> Kategori</a>
         <a href="#"><i class="fa fa-mug-hot"></i> Pesan Sekarang</a>
-        <a href="riwayat.html"><i class="fa-solid fa-receipt"></i> Riwayat</a>
+        <a href="riwayat.html"><i class="fa-solid fa-receipt"></i> Riwayat Pesanan</a>
       </nav>
 
       <!-- Pengguna Dropdown -->
-<!-- Pengguna Tanpa Dropdown -->
-<div class="d-flex align-items-center mx-2">
-  <!-- Ikon User -->
-  <i class="fa-solid fa-user ms-2"></i>
-  
-  <!-- Nama Pengguna -->
-  <span id="user-name" class="ms-2">Nama Depan</span> <!-- Nama depan akan diubah oleh JS -->
-  
-  <!-- Tautan Logout -->
-  <a href="http://logiccoffee.id.biz.id/" class="btn btn-link ms-2" onclick="logout()">
-      <i class="fa-solid fa-right-from-bracket"></i> Logout
+<div class="dropdown">
+  <a href="#" id="userName">
+    <i class="fa-solid fa-user"></i> <span id="user-name">Pengguna</span>
+    <i class="fa-solid fa-chevron-down"></i> <!-- Ikon Panah -->
   </a>
+  <div class="dropdown-menu">
+    <a href="http://logiccoffee.id.biz.id/" class="dropdown-item logout" onclick="logout()">
+      <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </a>
+  </div>
 </div>
-
 
   </header>
 
