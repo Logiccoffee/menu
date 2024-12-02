@@ -99,18 +99,18 @@
       </nav>
 
       <!-- Pengguna Dropdown -->
-      <div class="dropdown">
-        <a href="#" id="userName">
-          <i class="fa-solid fa-user"></i> Pengguna
-          <i class="fa-solid fa-chevron-down"></i> <!-- Ikon Panah -->
-        </a>
-        <div class="dropdown-menu">
-          <a href="http://logiccoffee.id.biz.id/" class="dropdown-item logout" onclick="logout()">
-            <i class="fa-solid fa-right-from-bracket"></i> Logout
-          </a>
-        </div>
-      </div>
-    </div>
+<div class="dropdown">
+  <a href="#" id="userName">
+    <i class="fa-solid fa-user"></i> <span id="user-name">Pengguna</span>
+    <i class="fa-solid fa-chevron-down"></i> <!-- Ikon Panah -->
+  </a>
+  <div class="dropdown-menu">
+    <a href="http://logiccoffee.id.biz.id/" class="dropdown-item logout" onclick="logout()">
+      <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </a>
+  </div>
+</div>
+
   </header>
 
   <!-- Profile and Cart -->
@@ -224,7 +224,9 @@
     </div>
   </footer>
 
-  <script src="script.js" type="module"></script>
+  <!-- Memanggil file JS -->
+  <script type="module" src="script.js"></script>
+
   <script>
     document
       .getElementById("totalSummary")

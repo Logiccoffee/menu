@@ -16,11 +16,43 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Menambahkan kode untuk menampilkan nama pengguna setelah login
-// const userName = getCookie("name");
-// if (userName) {
-//   // Menampilkan nama pengguna di elemen yang sesuai
-//   document.getElementById("userName").textContent = userName;
-// }
+// URL API
+const apiUrl = "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user";
+
+// Cek apakah cookie login ada
+const loginCookie = getCookie("login");
+if (!loginCookie) {
+    console.log("Cookie login tidak ditemukan. Mengarahkan ke halaman utama.");
+    redirect("/");
+}
+
+// Ambil data pengguna menggunakan API
+getJSON(apiUrl, "login", loginCookie, responseFunction);
+
+// Fungsi untuk menangani respons API
+function responseFunction(result) {
+    try {
+        if (result.status === 404) {
+            console.log("Pengguna tidak ditemukan. Mengarahkan ke halaman pendaftaran.");
+            setInner("content", "Silahkan lakukan pendaftaran terlebih dahulu.");
+            redirect("/register");
+            return; // Menghentikan eksekusi setelah redirect
+        }
+
+        // Menampilkan nama pengguna di elemen yang telah disediakan
+        const userNameElement = document.getElementById("user-name");
+
+        if (userNameElement) {
+            userNameElement.textContent = result.data.name || "Nama Tidak Diketahui";
+        }
+
+        // Menampilkan data lain (opsional, jika diperlukan)
+        console.log("Data pengguna:", result.data);
+    } catch (error) {
+        console.error("Terjadi kesalahan saat memproses respons:", error.message);
+        setInner("content", "Terjadi kesalahan saat memproses data.");
+    }
+}
 
 //button simpan
 document.getElementById("buttonsimpaninfouser").addEventListener("click", function () {
