@@ -26,15 +26,25 @@ document.addEventListener("DOMContentLoaded", function () {
 document.getElementById("buttonsimpaninfouser").addEventListener("click", function () {
   let name = document.getElementById("name").value;
   let whatsapp = document.getElementById("whatsapp").value;
-  let address = document.getElementById("address").value;
+  let note = document.getElementById("note").value;
 
-  if (!name || !whatsapp || !address) {
+  // Cek jika semua field diisi
+  if (!name || !whatsapp || !note) {
       alert("Silakan lengkapi semua informasi.");
-  } else if (isNaN(whatsapp)) {
+  } 
+  // Cek jika WhatsApp hanya berisi angka
+  else if (!/^\d+$/.test(whatsapp)) { // Menggunakan regex untuk memastikan hanya angka
       alert("Nomor WhatsApp harus berupa angka.");
   }
+  // Jika semua valid, lanjutkan proses simpan informasi
+  else {
+    // Lakukan sesuatu, misalnya simpan ke cookies atau lanjutkan ke proses selanjutnya
+    setCookie("name", name, 365);
+    setCookie("whatsapp", whatsapp, 365);
+    setCookie("note", note, 365);
+    closeUserModal();  // Menutup modal jika semua valid
+  }
 });
-
 document.addEventListener("DOMContentLoaded", () => {
   // URL API atau sumber data pengguna
   const apiUrl = "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user"; 
@@ -117,10 +127,10 @@ function responseFunction(result) {
 function checkCookies() {
   const userName = getCookie("name");
   const userWhatsapp = getCookie("whatsapp");
-  const userAddress = getCookie("address");
+  const userNote = getCookie("note");
 
   document.getElementById("userModal").style.display =
-    userName && userWhatsapp && userAddress ? "none" : "flex";
+    userName && userWhatsapp && userNote ? "none" : "flex";
   document.getElementById("modalTitle").textContent = "Masukkan Informasi Anda";
   document.getElementById("buttonbatalinfouser").style.display = "none"; // Hide "Batal" initially
 }
@@ -128,12 +138,12 @@ function checkCookies() {
 function saveUserInfo() {
   const name = document.getElementById("name").value;
   const whatsapp = document.getElementById("whatsapp").value;
-  const address = document.getElementById("address").value;
+  const note = document.getElementById("note").value;
 
-  if (name && whatsapp && address) {
+  if (name && whatsapp && note) {
     setCookie("name", name, 365);
     setCookie("whatsapp", whatsapp, 365);
-    setCookie("address", address, 365);
+    setCookie("note", note, 365);
     closeUserModal();
   } else {
     alert("Silakan masukkan semua informasi.");
