@@ -99,19 +99,14 @@
       </nav>
 
       <!-- Pengguna Dropdown -->
-      <div class="dropdown d-inline-block">
-        <a href="#" id="userName" class="d-flex align-items-center text-decoration-none">
-          <i class="fa-solid fa-user"></i>
-          <span id="user-name" class="mx-1">Pengguna</span>
-          <i class="fa-solid fa-chevron-down"></i>
-        </a>
-        <div class="dropdown-menu">
-          <a href="http://logiccoffee.id.biz.id/" class="dropdown-item logout" onclick="logout()">
-            <i class="fa-solid fa-right-from-bracket"></i> Logout
-          </a>
-        </div>
-      </div>
-      
+      <div class="dropdown">
+        <i class="fa-solid fa-user"></i> <a href="#" id="user-name">Pengguna</a><i class="fa-solid fa-chevron-down"></i> <!-- Ikon Panah -->
+  <div class="dropdown-menu">
+    <a href="http://logiccoffee.id.biz.id/" class="dropdown-item logout" onclick="logout()">
+      <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </a>
+  </div>
+</div>
   </header>
 
   <!-- Profile and Cart -->

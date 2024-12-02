@@ -991,25 +991,3 @@ header .search-bar {
         padding: 10px;
     }
 }
-
-#userName {
-    display: flex;
-    align-items: center;
-    gap: 0; /* Hilangkan jarak antara elemen */
-  }
-  
-  #userName i,
-  #userName span {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .mx-1 {
-    margin-left: 4px; /* Atur jarak kecil antara ikon dan teks */
-    margin-right: 4px;
-  }
-  
-  .dropdown-menu {
-    margin-top: 0.5rem; /* Atur posisi dropdown agar tidak terlalu dekat */
-  }
-  
