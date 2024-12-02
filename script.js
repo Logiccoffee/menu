@@ -121,8 +121,19 @@ function responseFunction(result) {
   }
   console.log(result);
 }
+const nameInput = document.getElementById("name");
+const whatsappInput = document.getElementById("whatsapp");
+const noteInput = document.getElementById("note");
 
+if (nameInput && whatsappInput && noteInput) {
+  let name = nameInput.value;
+  let whatsapp = whatsappInput.value;
+  let note = noteInput.value;
 
+  // Cek validasi dan simpan informasi
+} else {
+  console.error("Elemen input tidak ditemukan!");
+}
 
 function checkCookies() {
   const userName = getCookie("name");
