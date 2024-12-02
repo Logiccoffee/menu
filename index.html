@@ -100,10 +100,14 @@
 
       <!-- Pengguna Dropdown -->
 <div class="dropdown">
-  <a href="#" id="userName">
-    <i class="fa-solid fa-user"></i> <span id="user-name">Pengguna</span>
-    <i class="fa-solid fa-chevron-down"></i> <!-- Ikon Panah -->
-  </a>
+ <!-- Pengguna Tanpa Dropdown -->
+<a href="#" id="userName" class="d-flex align-items-center mx-2">
+  <span id="user-name">
+    <i class="fa-solid fa-user"></i> <!-- Ikon User -->
+    Pengguna <!-- Nama Pengguna, akan diubah oleh JS -->
+    <i class="fa-solid fa-chevron-down"></i> <!-- Ikon Dropdown -->
+  </span>
+</a>
   <div class="dropdown-menu">
     <a href="http://logiccoffee.id.biz.id/" class="dropdown-item logout" onclick="logout()">
       <i class="fa-solid fa-right-from-bracket"></i> Logout
