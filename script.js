@@ -39,23 +39,27 @@ function responseFunction(result) {
             return; // Menghentikan eksekusi setelah redirect
         }
 
+        // Memeriksa apakah 'name' tersedia di response
+        console.log("Data pengguna:", result.data);
+
         // Mendapatkan nama lengkap dari API
         const fullName = result.data.name || "Nama Tidak Diketahui";
         
-        // Pisahkan nama depan
+        // Pisahkan nama depan (kata pertama)
         const firstName = fullName.split(' ')[0]; // Mengambil kata pertama sebagai nama depan
 
-        // Menampilkan nama pengguna di elemen yang telah disediakan
+        // Menampilkan nama depan pengguna di elemen yang telah disediakan
         const userNameElement = document.getElementById("user-name");
         if (userNameElement) {
             userNameElement.textContent = firstName;
         }
 
-        // Menampilkan data lain (opsional, jika diperlukan)
-        console.log("Data pengguna:", result.data);
+        // Menampilkan data lainnya (untuk debugging)
+        console.log("Nama depan yang ditampilkan:", firstName);
+
     } catch (error) {
         console.error("Terjadi kesalahan saat memproses respons:", error.message);
-        setInner("content", "Terjadi kesalahan saat memproses data.");
+        setInner("content", "Terjadi kesalahan saat memprokses data.");
     }
 }
 
