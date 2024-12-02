@@ -95,30 +95,24 @@
         <a href="index.html"><i class="fa fa-house"></i> Beranda</a>
         <a href="#"><i class="fa-solid fa-mug-saucer"></i> Kategori</a>
         <a href="#"><i class="fa fa-mug-hot"></i> Pesan Sekarang</a>
-        <a href="riwayat.html"><i class="fa-solid fa-receipt"></i> Riwayat Pesanan</a>
+        <a href="riwayat.html"><i class="fa-solid fa-receipt"></i> Riwayat</a>
       </nav>
 
       <!-- Pengguna Dropdown -->
-<div class="dropdown">
-  <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2" id="profileDropdown"
-      role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <div class="d-flex align-items-center">
-          <div class="ms-2">
-              <span id="user-name">Nama Depan</span> <!-- Nama depan akan diubah oleh JS -->
-          </div>
-          <i class="fa-solid fa-user ms-2"></i> <!-- Ikon user berada setelah nama -->
-      </div>
-      <!-- Ikon panah dropdown tetap ada -->
-      <i class="fa-solid fa-chevron-down ms-2"></i>
+<!-- Pengguna Tanpa Dropdown -->
+<div class="d-flex align-items-center mx-2">
+  <!-- Ikon User -->
+  <i class="fa-solid fa-user ms-2"></i>
+  
+  <!-- Nama Pengguna -->
+  <span id="user-name" class="ms-2">Nama Depan</span> <!-- Nama depan akan diubah oleh JS -->
+  
+  <!-- Tautan Logout -->
+  <a href="http://logiccoffee.id.biz.id/" class="btn btn-link ms-2" onclick="logout()">
+      <i class="fa-solid fa-right-from-bracket"></i> Logout
   </a>
-  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-      <li>
-          <a href="http://logiccoffee.id.biz.id/" class="dropdown-item logout" onclick="logout()">
-              <i class="fa-solid fa-right-from-bracket"></i> Logout
-          </a>
-      </li>
-  </ul>
 </div>
+
 
   </header>
 
