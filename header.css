@@ -224,7 +224,7 @@
 .dropdown a {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: end;
     text-decoration: none;
     color: #805700;
     text-decoration: none;
@@ -262,7 +262,7 @@
 .dropdown-menu a {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: end;
     gap: 5px;
     /* Jarak antara ikon dan teks */
     text-decoration: none;
@@ -359,12 +359,6 @@
          margin-left: 10px; 
         /* Tambahkan spasi kecil antara nama dan dropdown */
     }
-    .dropdown a {
-        justify-content : end;
-    }
-    .dropdown-menu a {
-         justify-content : end;
-     }
 
     /* Stack nav links */
     .nav-links {
