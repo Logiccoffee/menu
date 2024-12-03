@@ -19,11 +19,13 @@ document.addEventListener("DOMContentLoaded", function () {
 // URL API
 const apiUrl = "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user";
 
-// Cek apakah cookie login ada
+// Ambil cookie login
 const loginCookie = getCookie("login");
+
+// Cek apakah cookie login tersedia
 if (!loginCookie) {
-    console.log("Cookie login tidak ditemukan. Mengarahkan ke halaman utama.");
-    redirect("/");
+  console.log("Cookie login tidak ditemukan. Mengarahkan ke halaman utama.");
+  redirect("/");
 }
 
 // Ambil data pengguna menggunakan API
@@ -31,36 +33,24 @@ getJSON(apiUrl, "login", loginCookie, responseFunction);
 
 // Fungsi untuk menangani respons API
 function responseFunction(result) {
-    try {
-        if (result.status === 404) {
-            console.log("Pengguna tidak ditemukan. Mengarahkan ke halaman pendaftaran.");
-            setInner("content", "Silahkan lakukan pendaftaran terlebih dahulu.");
-            redirect("/register");
-            return; // Menghentikan eksekusi setelah redirect
-        }
-
-        // Memeriksa apakah 'name' tersedia di response
-        console.log("Data pengguna:", result.data);
-
-        // Mendapatkan nama lengkap dari API
-        const fullName = result.data.name || "Nama Tidak Diketahui";
-        
-        // Pisahkan nama depan (kata pertama)
-        const firstName = fullName.split(' ')[0]; // Mengambil kata pertama sebagai nama depan
-
-        // Menampilkan nama depan pengguna di elemen yang telah disediakan
-        const userNameElement = document.getElementById("user-name");
-        if (userNameElement) {
-            userNameElement.textContent = firstName;
-        }
-
-        // Menampilkan data lainnya (untuk debugging)
-        console.log("Nama depan yang ditampilkan:", firstName);
-
-    } catch (error) {
-        console.error("Terjadi kesalahan saat memproses respons:", error.message);
-        setInner("content", "Terjadi kesalahan saat memprokses data.");
+  try {
+    if (result.status === 404) {
+      console.log("Pengguna tidak ditemukan. Mengarahkan ke halaman pendaftaran.");
+      redirect("/register");
+      return;
     }
+
+    // Menampilkan nama pengguna di elemen yang telah disediakan
+    const userNameElement = document.getElementById("userName");
+    if (userNameElement) {
+      const firstName = result.data.name.split(" ")[0]; // Ambil nama depan saja
+      userNameElement.childNodes[0].textContent = firstName; // Ubah teks default menjadi nama depan
+    }
+
+    console.log("Data pengguna:", result.data);
+  } catch (error) {
+    console.error("Terjadi kesalahan saat memproses respons:", error.message);
+  }
 }
 
 
