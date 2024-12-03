@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => console.error("Error loading menu:", error));
 });
 
-// Menambahkan kode untuk menampilkan nama pengguna setelah login
 // Cek apakah cookie login ada, jika tidak arahkan ke halaman utama
 if (getCookie("login") === "") {
   console.log("Cookie login tidak ditemukan. Mengarahkan ke halaman utama.");
@@ -23,7 +22,12 @@ if (getCookie("login") === "") {
 }
 
 // Ambil data pengguna menggunakan API
-getJSON("https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user","login", getCookie("login"), responseFunction);
+getJSON(
+  "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user",
+  "login",
+  getCookie("login"),
+  responseFunction
+);
 
 // Fungsi untuk menangani respons API
 function responseFunction(result) {
@@ -35,10 +39,10 @@ function responseFunction(result) {
     }
 
     // Menampilkan nama pengguna di elemen yang telah disediakan
-    const userNameElement = document.getElementById("userName");
+    const userNameElement = document.getElementById("user-name");
     if (userNameElement) {
-      const firstName = result.data.name.split(" ")[0]; // Ambil nama depan saja
-      userNameElement.childNodes[0].textContent = firstName; // Ubah teks default menjadi nama depan
+      const fullName = result.data.name || "Pengguna"; // Gunakan data nama atau default "Pengguna"
+      userNameElement.textContent = fullName; // Set teks elemen ke nama pengguna
     }
 
     console.log("Data pengguna:", result.data);
@@ -46,7 +50,6 @@ function responseFunction(result) {
     console.error("Terjadi kesalahan saat memproses respons:", error.message);
   }
 }
-
 
 //button simpan
 document.getElementById("buttonsimpaninfouser").addEventListener("click", function () {
