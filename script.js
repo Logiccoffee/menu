@@ -16,20 +16,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Menambahkan kode untuk menampilkan nama pengguna setelah login
-// URL API
-const apiUrl = "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user";
-
-// Ambil cookie login
-const loginCookie = getCookie("login");
-
-// Cek apakah cookie login tersedia
-if (!loginCookie) {
+// Cek apakah cookie login ada, jika tidak arahkan ke halaman utama
+if (getCookie("login") === "") {
   console.log("Cookie login tidak ditemukan. Mengarahkan ke halaman utama.");
   redirect("/");
 }
 
 // Ambil data pengguna menggunakan API
-getJSON(apiUrl, "login", loginCookie, responseFunction);
+getJSON("https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user","login", getCookie("login"), responseFunction);
 
 // Fungsi untuk menangani respons API
 function responseFunction(result) {
