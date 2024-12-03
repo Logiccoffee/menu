@@ -34,19 +34,21 @@ function responseFunction(result) {
   try {
       if (result.status === 404) {
           console.log("Pengguna tidak ditemukan. Mengarahkan ke halaman pendaftaran.");
-          setInner("content", "Silahkan lakukan pendaftaran terlebih dahulu.");
           redirect("/register");
-          return; // Menghentikan eksekusi setelah redirect
+          return;
       }
 
-      // Menampilkan nama pengguna di elemen yang telah disediakan
+      // Ambil elemen nama pengguna
       const userNameElement = document.getElementById("user-name");
 
+      // Ubah teks di elemen nama pengguna menjadi nama depan saja
       if (userNameElement) {
-          userNameElement.textContent = result.data.name || "Pengguna"; // Setel nama pengguna
+          const fullName = result.data.name || "Pengguna"; // Ambil nama lengkap, fallback ke "Pengguna"
+          const firstName = fullName.split(" ")[0]; // Ambil nama depan (kata pertama)
+          userNameElement.textContent = firstName; // Set nama depan ke elemen
       }
 
-      console.log("Data pengguna:", result.data); // Debug respons
+      console.log("Data pengguna berhasil dimuat:", result.data); // Debug
   } catch (error) {
       console.error("Terjadi kesalahan saat memproses respons:", error.message);
   }
