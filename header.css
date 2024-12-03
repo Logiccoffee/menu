@@ -232,7 +232,6 @@
     font-size: large;
     padding: 8px 12px;
     border-radius: 4px;
-    width: 150px;
     /* Panjang tetap untuk Pengguna */
     text-align: center;
     /* Teks berada di tengah */
@@ -252,7 +251,6 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 150px;
     /* Panjang menu sama dengan "Pengguna" */
     padding: 0;
     /* Hilangkan padding untuk konsistensi */
