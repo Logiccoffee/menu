@@ -991,21 +991,3 @@ header .search-bar {
         padding: 10px;
     }
 }
-#userName {
-    display: inline-flex;
-    align-items: center;
-    gap: 0; /* Tidak ada jarak antar elemen */
-  }
-  
-  #userName i {
-    margin-left: 2px; /* Memberikan jarak kecil jika diperlukan */
-  }
-  
-  #userName span {
-    margin-right: 2px; /* Jarak kecil antara nama pengguna dan ikon */
-  }
-  
-  .dropdown-menu {
-    margin-top: 5px; /* Jarak antara tombol dropdown dan menu */
-  }
-  
