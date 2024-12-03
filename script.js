@@ -15,44 +15,53 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => console.error("Error loading menu:", error));
 });
 
-// Cek apakah cookie login ada, jika tidak arahkan ke halaman utama
-if (getCookie("login") === "") {
-  console.log("Cookie login tidak ditemukan. Mengarahkan ke halaman utama.");
-  redirect("/");
+// URL API
+const apiUrl = "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user";
+
+// Cek apakah cookie login ada
+const loginCookie = getCookie("login");
+if (!loginCookie) {
+    console.log("Cookie login tidak ditemukan. Mengarahkan ke halaman utama.");
+    redirect("/");
 }
 
 // Ambil data pengguna menggunakan API
-getJSON(
-  "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user", // URL API
-  "login", // Parameter kunci
-  getCookie("login"), // Nilai cookie login
-  responseFunction // Callback untuk respons
-);
+getJSON(apiUrl, "login", loginCookie, responseFunction);
 
 // Fungsi untuk menangani respons API
 function responseFunction(result) {
-  try {
-      if (result.status === 404) {
-          console.log("Pengguna tidak ditemukan. Mengarahkan ke halaman pendaftaran.");
-          redirect("/register");
-          return;
-      }
+    try {
+        if (result.status === 404) {
+            console.log("Pengguna tidak ditemukan. Mengarahkan ke halaman pendaftaran.");
+            setInner("content", "Silahkan lakukan pendaftaran terlebih dahulu.");
+            redirect("/register");
+            return; // Menghentikan eksekusi setelah redirect
+        }
 
-      // Ambil elemen nama pengguna
-      const userNameElement = document.getElementById("user-name");
+        // Memeriksa apakah 'name' tersedia di response
+        console.log("Data pengguna:", result.data);
 
-      // Ubah teks di elemen nama pengguna menjadi nama depan saja
-      if (userNameElement) {
-          const fullName = result.data.name || "Pengguna"; // Ambil nama lengkap, fallback ke "Pengguna"
-          const firstName = fullName.split(" ")[0]; // Ambil nama depan (kata pertama)
-          userNameElement.textContent = firstName; // Set nama depan ke elemen
-      }
+        // Mendapatkan nama lengkap dari API
+        const fullName = result.data.name || "Nama Tidak Diketahui";
+        
+        // Pisahkan nama depan (kata pertama)
+        const firstName = fullName.split(' ')[0]; // Mengambil kata pertama sebagai nama depan
 
-      console.log("Data pengguna berhasil dimuat:", result.data); // Debug
-  } catch (error) {
-      console.error("Terjadi kesalahan saat memproses respons:", error.message);
-  }
+        // Menampilkan nama depan pengguna di elemen yang telah disediakan
+        const userNameElement = document.getElementById("user-name");
+        if (userNameElement) {
+            userNameElement.textContent = firstName;
+        }
+
+        // Menampilkan data lainnya (untuk debugging)
+        console.log("Nama depan yang ditampilkan:", firstName);
+
+    } catch (error) {
+        console.error("Terjadi kesalahan saat memproses respons:", error.message);
+        setInner("content", "Terjadi kesalahan saat memprokses data.");
+    }
 }
+
 
 //button simpan
 document.getElementById("buttonsimpaninfouser").addEventListener("click", function () {
