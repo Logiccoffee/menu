@@ -991,3 +991,9 @@ header .search-bar {
         padding: 10px;
     }
 }
+.dropdown {
+    justify-content : end;
+}
+.dropdown-menu {
+     justify-content : end;
+ }
