@@ -356,9 +356,15 @@
     .dropdown {
         order: 2;
         /* Tempatkan dropdown setelah nama */
-        margin-left: 10px;
+         margin-left: 10px; 
         /* Tambahkan spasi kecil antara nama dan dropdown */
     }
+    .dropdown a {
+        justify-content : end;
+    }
+    .dropdown-menu a {
+         justify-content : end;
+     }
 
     /* Stack nav links */
     .nav-links {
