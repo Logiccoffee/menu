@@ -23,33 +23,39 @@ if (getCookie("login") === "") {
 
 // Ambil data pengguna menggunakan API
 getJSON(
-  "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user",
-  "login",
-  getCookie("login"),
-  responseFunction
+  "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user", // URL API
+  "login", // Parameter kunci
+  getCookie("login"), // Nilai cookie login
+  responseFunction // Callback untuk respons
 );
 
 // Fungsi untuk menangani respons API
 function responseFunction(result) {
   try {
-    if (result.status === 404) {
-      console.log("Pengguna tidak ditemukan. Mengarahkan ke halaman pendaftaran.");
-      redirect("/register");
-      return;
-    }
+      if (result.status === 404) {
+          console.log("Pengguna tidak ditemukan. Mengarahkan ke halaman pendaftaran.");
+          setInner("content", "Silahkan lakukan pendaftaran terlebih dahulu.");
+          redirect("/register");
+          return; // Menghentikan eksekusi setelah redirect
+      }
 
-    // Menampilkan nama pengguna di elemen yang telah disediakan
-    const userNameElement = document.getElementById("user-name");
-    if (userNameElement) {
-      const fullName = result.data.name || "Pengguna"; // Gunakan data nama atau default "Pengguna"
-      userNameElement.textContent = fullName; // Set teks elemen ke nama pengguna
-    }
+      // Menampilkan nama pengguna dan peran pengguna di elemen yang telah disediakan
+      const userNameElement = document.getElementById("user-name");
+      const userRoleElement = document.getElementById("user-role");
 
-    console.log("Data pengguna:", result.data);
+      if (userNameElement && userRoleElement) {
+          userNameElement.textContent = result.data.name || "Nama Tidak Diketahui";
+          userRoleElement.textContent = result.data.role || "Peran Tidak Diketahui";
+      }
+
+      // Menampilkan data lain (opsional, jika diperlukan)
+      console.log("Data pengguna:", result.data);
   } catch (error) {
-    console.error("Terjadi kesalahan saat memproses respons:", error.message);
+      console.error("Terjadi kesalahan saat memproses respons:", error.message);
+      setInner("content", "Terjadi kesalahan saat memproses data.");
   }
 }
+
 
 //button simpan
 document.getElementById("buttonsimpaninfouser").addEventListener("click", function () {
