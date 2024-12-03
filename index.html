@@ -99,17 +99,22 @@
       </nav>
 
       <div class="dropdown">
-        <a href="#" id="userName" class="d-flex align-items-center">
-          <i class="fa-solid fa-user me-2"></i> <!-- Ikon User -->
-          Pengguna <!-- Teks default yang akan diganti dengan nama pengguna -->
+        <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2" id="profileDropdown"
+          role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-user me-2"></i> <!-- Ikon User berada di depan nama -->
+            <div>
+              <span id="user-name">Pengguna</span> <!-- Nama pengguna akan diubah oleh JS -->
+            </div>
+          </div>
         </a>
-      </div>      
         <div class="dropdown-menu">
           <a href="http://logiccoffee.id.biz.id/" class="dropdown-item logout" onclick="logout()">
             <i class="fa-solid fa-right-from-bracket"></i> Logout
           </a>
         </div>
       </div>
+      
   </header>
 
   <!-- Profile and Cart -->
