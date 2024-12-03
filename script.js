@@ -39,23 +39,18 @@ function responseFunction(result) {
           return; // Menghentikan eksekusi setelah redirect
       }
 
-      // Menampilkan nama pengguna dan peran pengguna di elemen yang telah disediakan
+      // Menampilkan nama pengguna di elemen yang telah disediakan
       const userNameElement = document.getElementById("user-name");
-      const userRoleElement = document.getElementById("user-role");
 
-      if (userNameElement && userRoleElement) {
-          userNameElement.textContent = result.data.name || "Nama Tidak Diketahui";
-          userRoleElement.textContent = result.data.role || "Peran Tidak Diketahui";
+      if (userNameElement) {
+          userNameElement.textContent = result.data.name || "Pengguna"; // Setel nama pengguna
       }
 
-      // Menampilkan data lain (opsional, jika diperlukan)
-      console.log("Data pengguna:", result.data);
+      console.log("Data pengguna:", result.data); // Debug respons
   } catch (error) {
       console.error("Terjadi kesalahan saat memproses respons:", error.message);
-      setInner("content", "Terjadi kesalahan saat memproses data.");
   }
 }
-
 
 //button simpan
 document.getElementById("buttonsimpaninfouser").addEventListener("click", function () {
