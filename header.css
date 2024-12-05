@@ -224,7 +224,7 @@
 .dropdown a {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: end;
     text-decoration: none;
     color: #805700;
     text-decoration: none;
@@ -232,7 +232,6 @@
     font-size: large;
     padding: 8px 12px;
     border-radius: 4px;
-    width: 150px;
     /* Panjang tetap untuk Pengguna */
     text-align: center;
     /* Teks berada di tengah */
@@ -252,7 +251,6 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 150px;
     /* Panjang menu sama dengan "Pengguna" */
     padding: 0;
     /* Hilangkan padding untuk konsistensi */
@@ -262,7 +260,7 @@
 .dropdown-menu a {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: end;
     gap: 5px;
     /* Jarak antara ikon dan teks */
     text-decoration: none;
@@ -356,7 +354,7 @@
     .dropdown {
         order: 2;
         /* Tempatkan dropdown setelah nama */
-        margin-left: 10px;
+         margin-left: 10px; 
         /* Tambahkan spasi kecil antara nama dan dropdown */
     }
 
