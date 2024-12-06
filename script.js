@@ -274,11 +274,11 @@ function getDailyQueueNumber() {
   localStorage.setItem("dailyQueueCounter", newQueueNumber.toString());
 
   // Generate the unique order number
-  const OrderNumber = `${companyCode}${formattedDate}${newQueueNumber
+  const uniqueOrderNumber = `${companyCode}${formattedDate}${newQueueNumber
     .toString()
     .padStart(3, "0")}`;
 
-  return { queueNumber: newQueueNumber, OrderNumber };
+  return { queueNumber: newQueueNumber, uniqueOrderNumber };
 }
 
 function initializeQueueData() {
@@ -331,7 +331,7 @@ function calculateTotal() {
     total.toLocaleString();
 
   // Update WhatsApp link with queue data
-  const { queueNumber, OrderNumber } = currentQueueData;
+  const { queueNumber, uniqueOrderNumber } = currentQueueData;
   const userName = getCookie("name");
   const userWhatsapp = getCookie("whatsapp");
   const userNote = getCookie("note");
@@ -344,7 +344,7 @@ function calculateTotal() {
         ).toLocaleString()}`
     );
 
-  const message = `Nomor Antrian Anda: ${queueNumber}\nNomor Unik Antrian: ${OrderNumber}\n\nSaya ingin memesan:\n${orders.join(
+  const message = `Nomor Antrian Anda: ${queueNumber}\nNomor Unik Antrian: ${uniqueOrderNumber}\n\nSaya ingin memesan:\n${orders.join(
     "\n"
   )}\n\nTotal: Rp ${total.toLocaleString()}\n\nNama: ${userName}\nNomor WhatsApp: ${userWhatsapp}\nCatatan: ${userNote}`;
   document.getElementById(
@@ -359,7 +359,7 @@ document
     event.preventDefault();
 
     initializeQueueData(); // Ensure queue data is only retrieved once
-    const { queueNumber, OrderNumber } = currentQueueData;
+    const { queueNumber, uniqueOrderNumber } = currentQueueData;
     const paymentMethod = document.getElementById("paymentMethod").value;
     const rek =
       "Pembayaran akan dilakukan dengan transfer ke rekening\nBCA 2820321726\nKiki Santi Noviana";
@@ -385,9 +385,9 @@ document
     let paymentInfo =
       paymentMethod === "Transfer"
         ? rek
-        : "Pembayaran akan dilakukan dengan metode Cash.";
+        : "Pembayaran akan dilakukan dengan metode COD.";
 
-    const message = `${OrderNumber}\nNo. Antrian: ${queueNumber}\nSaya ingin memesan:\n${orders
+    const message = `${uniqueOrderNumber}\nNo. Antrian: ${queueNumber}\nSaya ingin memesan:\n${orders
       .map(
         (order) =>
           `${order.name} x${
@@ -406,8 +406,8 @@ document
 
     // POST request to API
     const postData = {
-      QueueNumber: QueueNumber,
-      OrderNumber: OrderNumber,
+      queueNumber: queueNumber,
+      uniqueOrderNumber: uniqueOrderNumber,
       orders: orders,
       total: total,
       user: {
