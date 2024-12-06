@@ -1,3 +1,4 @@
+import {deleteCookie} from "https://cdn.jsdelivr.net/gh/jscroot/cookie@0.0.1/croot.js";
 import { postJSON } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/api.js";
 import { onClick } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js";
 import {getJSON} from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.7/croot.js";
@@ -445,8 +446,39 @@ function getLastPathSegment() {
   return parts[parts.length - 1];
 }
 
-function logout() {
-  document.cookie = "login=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-  localStorage.removeItem("token");
-  window.location.href = "http://logiccoffee.id.biz.id/";
+// function logout() {
+//   document.cookie = "login=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+//   localStorage.removeItem("token");
+//   window.location.href = "http://logiccoffee.id.biz.id/";
+// }
+
+// hapus cookie login maka akan diarahkan ke halaman utama
+// if (deleteCookie("login") === "") {
+//   redirect("/");
+// }
+
+// Fungsi logout
+function logout(event) {
+  event.preventDefault(); // Mencegah perilaku default link
+
+  // Hapus cookie dengan nama "login"
+  deleteCookie("login");
+
+  // Cek apakah cookie berhasil dihapus
+  if (document.cookie.indexOf("login=") === -1) {
+      console.log("Cookie 'login' berhasil dihapus. Mengarahkan ke halaman utama.");
+      redirect("/");
+  } else {
+      console.error("Cookie 'login' gagal dihapus.");
+  }
 }
+
+// Menjalankan logout saat tombol diklik
+document.addEventListener("DOMContentLoaded", function () {
+  const logoutButton = document.querySelector(".logout-btn");
+  if (logoutButton) {
+      logoutButton.addEventListener("click", logout);
+  } else {
+      console.error("Tombol logout tidak ditemukan.");
+  }
+});
