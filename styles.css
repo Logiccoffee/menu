@@ -647,6 +647,21 @@ option {
     animation: modalFadeIn 0.3s ease;
 }
 
+.checkout-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #09431f;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+.checkout-btn:hover {
+    background-color: #0e6b37;
+}
+
 .whatsapp-button {
     display: inline-block;
     padding: 10px 20px;
