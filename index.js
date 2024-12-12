@@ -8,12 +8,23 @@ import { redirect } from "https://cdn.jsdelivr.net/gh/jscroot/url@0.0.9/croot.js
 onClick('buttonsimpaninfouser', saveUserInfo);
 onClick("buttonbatalinfouser", closeUserModal);
 
+
+let currentQueueData = null;
+
+function initializeQueueData() {
+    if (!currentQueueData) {
+      const lastOrder = null; // Ambil dari backend jika ada
+      currentQueueData = getDailyQueueNumber(lastOrder);
+    }
+  }
+  
 document.addEventListener("DOMContentLoaded", function () {
   checkCookies();
   fetch("./data/menu.json")
     .then((response) => response.json())
     .then((data) => renderMenu(data))
     .catch((error) => console.error("Error loading menu:", error));
+    initializeQueueData();
 });
 
 // menampilkan nama user
@@ -208,7 +219,7 @@ window.changeQuantity = function (id, price, delta, itemId) {
   
     calculateTotal(); // Update total setiap kali kuantitas berubah
   };
-
+  
   function getDailyQueueNumber(lastOrder = null) {
     const currentDate = new Date();
     const companyCode = "LGC";
@@ -242,30 +253,23 @@ window.changeQuantity = function (id, price, delta, itemId) {
     return { queueNumber: newQueueNumber, orderNumber };
   }
   
-  function initializeQueueData() {
-    if (!currentQueueData) {
-      const lastOrder = null; // Ambil dari backend jika ada
-      currentQueueData = getDailyQueueNumber(lastOrder);
-    }
-  }
-  
 
 //   mau checkout nih
 function calculateTotal() {
     initializeQueueData();
-  
-    if (!currentQueueData) {
-      console.error("currentQueueData gagal diinisialisasi.");
-      alert("Terjadi kesalahan saat memproses pesanan.");
-      return;
-    }
-  
-    const { queueNumber, orderNumber } = currentQueueData;
-    if (!queueNumber || !orderNumber) {
-      console.error("Queue data tidak valid:", currentQueueData);
-      alert("Queue data tidak valid. Silakan coba lagi.");
-      return;
-    }
+
+  if (!currentQueueData) {
+    console.error("currentQueueData gagal diinisialisasi.");
+    alert("Terjadi kesalahan saat memproses pesanan.");
+    return;
+  }
+
+  const { queueNumber, orderNumber } = currentQueueData;
+  if (!queueNumber || !orderNumber) {
+    console.error("Queue data tidak valid:", currentQueueData);
+    alert("Queue data tidak valid. Silakan coba lagi.");
+    return;
+  }
   
     const paymentMethod = document.getElementById("paymentMethod").value;
     const userName = getCookie("name") || "Guest";
