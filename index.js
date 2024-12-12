@@ -209,11 +209,10 @@ window.changeQuantity = function (id, price, delta, itemId) {
     calculateTotal(); // Update total setiap kali kuantitas berubah
   };
 
-  function getDailyQueueNumber(lastOrder) {
+  function getDailyQueueNumber(lastOrder = null) {
     const currentDate = new Date();
     const companyCode = "LGC";
   
-    // Format the date as YYYYMMDDHHMM
     const formattedDate =
       currentDate.getFullYear().toString() +
       (currentDate.getMonth() + 1).toString().padStart(2, "0") +
@@ -221,128 +220,120 @@ window.changeQuantity = function (id, price, delta, itemId) {
       currentDate.getHours().toString().padStart(2, "0") +
       currentDate.getMinutes().toString().padStart(2, "0");
   
-    // Default values if no previous order exists
     let lastQueueDate = null;
     let currentQueueNumber = 0;
   
-    // Check the last order data (if exists)
     if (lastOrder) {
       lastQueueDate = new Date(lastOrder.orderDate);
       currentQueueNumber = lastOrder.queueNumber;
     }
   
-    // If the last queue date is different from today, reset the queue number
     if (!isSameDay(lastQueueDate, currentDate)) {
-      currentQueueNumber = 0; // Reset queue number for a new day
+      currentQueueNumber = 0; // Reset queue number
     }
   
-    // Increment queue number
     const newQueueNumber = currentQueueNumber + 1;
   
-    // Generate the unique order number
-    const uniqueOrderNumber = `${companyCode}${formattedDate}${newQueueNumber
+    // Ganti nama field menjadi orderNumber
+    const orderNumber = `${companyCode}${formattedDate}${newQueueNumber
       .toString()
       .padStart(3, "0")}`;
   
-    return { queueNumber: newQueueNumber, uniqueOrderNumber };
-  }
-  
-  // Helper function to check if two dates are on the same day
-  function isSameDay(date1, date2) {
-    if (!date1 || !date2) return false;
-    return (
-      date1.getFullYear() === date2.getFullYear() &&
-      date1.getMonth() === date2.getMonth() &&
-      date1.getDate() === date2.getDate()
-    );
+    return { queueNumber: newQueueNumber, orderNumber };
   }
   
   function initializeQueueData() {
     if (!currentQueueData) {
-      currentQueueData = getDailyQueueNumber(); // Fetch and store queue data once
+      const lastOrder = null; // Ambil dari backend jika ada
+      currentQueueData = getDailyQueueNumber(lastOrder);
     }
   }
+  
 
 //   mau checkout nih
-// Event handler untuk tombol submit
-function submitOrder() {
-    initializeQueueData(); // Pastikan queue data sudah diinisialisasi
+function calculateTotal() {
+    initializeQueueData();
   
-    const { queueNumber, uniqueOrderNumber } = currentQueueData;
+    if (!currentQueueData) {
+      console.error("currentQueueData gagal diinisialisasi.");
+      alert("Terjadi kesalahan saat memproses pesanan.");
+      return;
+    }
+  
+    const { queueNumber, orderNumber } = currentQueueData;
+    if (!queueNumber || !orderNumber) {
+      console.error("Queue data tidak valid:", currentQueueData);
+      alert("Queue data tidak valid. Silakan coba lagi.");
+      return;
+    }
+  
     const paymentMethod = document.getElementById("paymentMethod").value;
-    const userName = getCookie("name");
-    const userWhatsapp = getCookie("whatsapp");
-    const userNote = getCookie("note");
+    const userName = getCookie("name") || "Guest";
+    const userWhatsapp = getCookie("whatsapp") || "Tidak ada nomor";
+    const userNote = getCookie("note") || "Catatan kosong";
   
-    const inputs = document.querySelectorAll('input[type="number"]');
-    let orders = [];
-    let total = 0;
+    console.log("Queue Number:", queueNumber);
+    console.log("Order Number:", orderNumber);
+    console.log("User Info:", { userName, userWhatsapp, userNote });
   
-    inputs.forEach((input) => {
-      const quantity = parseInt(input.value);
-      const price = parseInt(input.getAttribute("data-price"));
-      const name = input.getAttribute("data-name");
+    const postData = {
+      orderNumber, // Nama field sesuai DB
+      queueNumber,
+      orderDate: new Date().toISOString(),
+      userInfo: {
+        name: userName,
+        whatsapp: userWhatsapp,
+        note: userNote,
+      },
+      orders: Array.from(document.querySelectorAll('input[type="number"]'))
+        .filter((input) => parseInt(input.value) > 0)
+        .map((input) => ({
+          name: input.getAttribute("data-name"),
+          quantity: parseInt(input.value),
+          price: parseInt(input.getAttribute("data-price")),
+        })),
+      total: Array.from(document.querySelectorAll('input[type="number"]')).reduce(
+        (acc, input) =>
+          acc +
+          parseInt(input.value) * parseInt(input.getAttribute("data-price") || 0),
+        0
+      ),
+      paymentMethod,
+    };
   
-      if (quantity > 0) {
-        total += quantity * price;
-        orders.push({
-          name: name,
-          quantity: quantity,
-          price: price,
-          totalPrice: quantity * price,
-        });
+    // Kirim data ke server
+    postJSON(
+      "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order",
+      "login",
+      getCookie("login"),
+      postData,
+      (response) => {
+        if (response && response.status === "success") {
+          alert("Pesanan berhasil disimpan!");
+        } else {
+          console.error("Gagal menyimpan pesanan:", response);
+          alert("Terjadi kesalahan saat menyimpan pesanan.");
+        }
       }
-    });
+    );
+  }
   
-    // Ambil data pesanan dari input dan siapkan struktur data
-const postData = {
-    orderNumber: currentQueueData.uniqueOrderNumber,
-    queueNumber: currentQueueData.queueNumber,
-    orderDate: new Date().toISOString(),
-    userInfo: {
-      name: getCookie("name"),
-      whatsapp: getCookie("whatsapp"),
-      note: getCookie("note"),
-    },
-    orders: Array.from(document.querySelectorAll('input[type="number"]'))
-      .filter((input) => parseInt(input.value) > 0)
-      .map((input) => ({
-        name: input.getAttribute("data-name"),
-        quantity: parseInt(input.value),
-        price: parseInt(input.value) * parseInt(input.getAttribute("data-price")),
-      })),
-    total: Array.from(document.querySelectorAll('input[type="number"]')).reduce(
-      (acc, input) =>
-        acc +
-        parseInt(input.value) * parseInt(input.getAttribute("data-price") || 0),
-      0
-    ),
-    paymentMethod: document.getElementById("paymentMethod").value,
-    createdBy: getCookie("name"),
-    createdByRole: "customer", // Sesuaikan role jika diperlukan
-    status: "terkirim",
-  };
-  
-  // Kirim data menggunakan postJSON
-  postJSON("https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order", "login", getCookie("login"), postData, (response) => {
-    if (response && response.status === "success") {
-      alert("Pesanan berhasil disimpan!");
+  // Tambahkan event listener ke tombol submit
+document.addEventListener("DOMContentLoaded", () => {
+    const submitButton = document.getElementById("submitOrderButton");
+    
+    // Validasi jika tombol ditemukan
+    if (submitButton) {
+      submitButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Mencegah reload halaman
+        submitOrder(); // Panggil fungsi untuk mengirim data
+      });
     } else {
-      console.error("Gagal menyimpan pesanan:", response);
-      alert("Terjadi kesalahan saat menyimpan pesanan.");
+      console.error("Tombol submitOrderButton tidak ditemukan di halaman.");
     }
   });
   
-  
-  // Tambahkan event listener ke tombol submit
-  const submitButton = document.getElementById("submitOrderButton");
-  submitButton.addEventListener("click", (event) => {
-    event.preventDefault(); // Mencegah reload halaman
-    submitOrder();
-  });
-}
-
-// Fungsi logout
+  // Fungsi logout
 function logout(event) {
     event.preventDefault(); // Mencegah perilaku default link
   
@@ -357,13 +348,3 @@ function logout(event) {
         console.error("Cookie 'login' gagal dihapus.");
     }
   }
-  
-  // Menjalankan logout saat tombol diklik
-  document.addEventListener("DOMContentLoaded", function () {
-    const logoutButton = document.querySelector(".logout-btn");
-    if (logoutButton) {
-        logoutButton.addEventListener("click", logout);
-    } else {
-        console.error("Tombol logout tidak ditemukan.");
-    }
-  });
