@@ -266,11 +266,12 @@ submitOrderButton.addEventListener("click", function (event) {
   const userName = getCookie("name") || "";
   const userWhatsapp = getCookie("whatsapp") || "";
   const userNote = getCookie("note") || "";
-
-  if (!userName || !userWhatsapp) {
-    alert("Silakan lengkapi Name dan Whatsapp terlebih dahulu.");
-    return;
+  
+  if (!userName || !userWhatsapp || !userNote) {
+    console.error("Data user_info tidak lengkap atau tidak valid!");
   }
+  
+  
   const paymentMethod = document.getElementById("paymentMethod").value;
 
   // Get order details
@@ -289,18 +290,21 @@ submitOrderButton.addEventListener("click", function (event) {
     }
   });
 
+  const user_info = {
+    name: userName,
+    whatsapp: userWhatsapp,
+    note: userNote,
+  };
+  
   const postData = {
-    UserInfo: {
-      name: userName,
-      whatsapp: userWhatsapp,
-      note: userNote,
-    },
     orders: orders,
     total: total,
-    paymentMethod: paymentMethod,
+    user_info: user_info,
+    payment_method: paymentMethod,
   };
-//ga pentingsih tapi jejakdigital aja
-  console.log("Post Data Debug:", JSON.stringify(postData, null, 2));
+
+  // Debugging sebelum kirim
+  console.log("Post Data Debug:", JSON.stringify)
 
   postJSON(
     "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order",
