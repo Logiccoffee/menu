@@ -226,7 +226,7 @@ function calculateTotal() {
     const quantity = parseInt(input.value);
     const price = parseInt(input.getAttribute("data-price"));
     const menu_name = input.getAttribute("data-name");
-
+// udah diubah jadi menu_name itu
     if (quantity > 0) {
       total += quantity * price;
       totalItems += quantity;
