@@ -33,7 +33,7 @@ if (getCookie("login") === "") {
 }
 
 // Ambil data pengguna menggunakan API
-getJSON("https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user", "login", getCookie("login"), responseFunction);
+getJSON("https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user", "login", loginToken, responseFunction);
 
 // Fungsi untuk memisahkan nama depan
 function getFirstName(fullName) {
