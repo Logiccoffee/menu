@@ -9,6 +9,10 @@ import { postJSON } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/api.js";
 // Fungsi untuk mengecek status login
 function checkLoginStatus() {
     const loginToken = getCookie("login");
+    console.log("Isi cookie login:", loginToken);
+    if (!loginToken) {
+        console.error("Cookie login tidak ditemukan.");
+    }
 
     // Jika tidak ada cookie login, arahkan ke halaman login
     if (!loginToken) {
@@ -105,6 +109,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Fungsi untuk mengambil data pesanan pengguna
 function fetchUserOrders(userId) {
+    if (!userId) {
+        console.error("User ID tidak valid. Tidak dapat mengambil pesanan.");
+        return;
+    }
     console.log(`Mengambil pesanan untuk userId: ${userId}`); // Debug
     getJSON(`https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order?user_id=${userId}`, "login", getCookie("login"), (result) => {
         console.log("Respons API pesanan:", result); // Debug
