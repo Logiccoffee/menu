@@ -236,7 +236,7 @@ function calculateTotal() {
 
       const menuName = document.createElement("div");
       menuName.classList.add("order-menu");
-      menuName.innerText = name;
+      menuName.innerText = menu_name;
 
       const menuQuantity = document.createElement("div");
       menuQuantity.classList.add("order-quantity");
@@ -267,7 +267,7 @@ submitOrderButton.addEventListener("click", function (event) {
   const userWhatsapp = getCookie("whatsapp") || "";
   const userNote = getCookie("note") || "";
   
-  if (!userName || !userWhatsapp || !userNote) {
+  if (!userName || !userWhatsapp) {
     console.error("Data user_info tidak lengkap atau tidak valid!");
   }
   
@@ -281,11 +281,11 @@ submitOrderButton.addEventListener("click", function (event) {
   inputs.forEach((input) => {
     const quantity = parseInt(input.value);
     const price = parseInt(input.getAttribute("data-price"));
-    const name = input.getAttribute("data-name");
+    const menu_name = input.getAttribute("data-name");
 
     if (quantity > 0) {
       total += quantity * price;
-      orders.push({ name, quantity, price });
+      orders.push({ menu_name, quantity, price });
     }
   });
 
@@ -301,9 +301,6 @@ submitOrderButton.addEventListener("click", function (event) {
     user_info: user_info,
     payment_method: paymentMethod,
   };
-
-  // Debugging sebelum kirim
-  console.log("Post Data Debug:", JSON.stringify)
 
   postJSON(
     "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order",
