@@ -271,7 +271,6 @@ submitOrderButton.addEventListener("click", function (event) {
     console.error("Data user_info tidak lengkap atau tidak valid!");
   }
   
-  
   const paymentMethod = document.getElementById("paymentMethod").value;
 
   // Get order details
