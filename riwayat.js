@@ -98,3 +98,51 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+// Setelah mendapatkan ID pengguna dari result.data
+const userId = result.data.id; // Asumsikan ID pengguna ada di result.data.id
+fetchUserOrders(userId);
+
+// Fungsi untuk mengambil data pesanan pengguna
+function fetchUserOrders(userId) {
+    const apiUrl = `https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order?user_id=${userId}`;
+    getJSON(apiUrl, "login", getCookie("login"), (result) => {
+        if (result.status === 200) {
+            displayOrders(result.data || []);
+        } else {
+            console.error("Gagal memuat data pesanan:", result.status);
+            setInner("content", "Tidak ada data pesanan untuk ditampilkan.");
+        }
+    });
+}
+
+// Fungsi untuk menampilkan data pesanan
+function displayOrders(orders) {
+    const contentElement = document.querySelector(".content");
+    contentElement.innerHTML = ""; // Kosongkan konten sebelumnya
+
+    if (orders.length === 0) {
+        contentElement.innerHTML = "<p>Belum ada pesanan.</p>";
+        return;
+    }
+
+    orders.forEach((order) => {
+        const menuItems = order.orders.map(item => `${item.quantity}x ${item.menu_name}`).join(", ");
+        const orderCard = `
+            <div class="order-card">
+                <div class="card-header">
+                    <h3>Pesanan Logic Coffee</h3>
+                    <p>Tanggal Pesanan: ${order.orderDate}</p>
+                    <p>Kode Pesanan: ${order.orderNumber}</p>
+                </div>
+                <div class="card-body">
+                    <p><strong>Nama Pemesan:</strong> ${order.user_info.name}</p>
+                    <p><strong>No. Telepon:</strong> ${order.user_info.whatsapp}</p>
+                    <p><strong>Pesanan:</strong> ${menuItems}</p>
+                    <p><strong>Total:</strong> ${order.total}</p>
+                </div>
+            </div>
+        `;
+        contentElement.innerHTML += orderCard;
+    });
+}
+
