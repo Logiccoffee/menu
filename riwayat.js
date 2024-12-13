@@ -102,10 +102,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// Setelah mendapatkan ID pengguna dari result.data
-const userId = result.data.id; // Asumsikan ID pengguna ada di result.data.id
-fetchUserOrders(userId);
-
 // Fungsi untuk mengambil data pesanan pengguna
 function fetchUserOrders(userId) {
     const apiUrl = `https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order?user_id=${userId}`;
