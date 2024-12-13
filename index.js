@@ -284,7 +284,7 @@ submitOrderButton.addEventListener("click", function (event) {
   const postData = {
     orders: orders,
     total: total,
-    UserInfo: {
+    user_info: {
       name: userName,
       whatsapp: userWhatsapp,
       note: userNote,
