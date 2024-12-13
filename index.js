@@ -1,13 +1,13 @@
-import {deleteCookie} from "https://cdn.jsdelivr.net/gh/jscroot/cookie@0.0.1/croot.js";
+import { deleteCookie } from "https://cdn.jsdelivr.net/gh/jscroot/cookie@0.0.1/croot.js";
 import { postJSON } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/api.js";
 import { onClick } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js";
-import {getJSON} from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.7/croot.js";
+import { getJSON } from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.7/croot.js";
 import { redirect } from "https://cdn.jsdelivr.net/gh/jscroot/url@0.0.9/croot.js";
 
 // onclick
-onClick('buttonsimpaninfouser', saveUserInfo);
+onClick("buttonsimpaninfouser", saveUserInfo);
 onClick("buttonbatalinfouser", closeUserModal);
-  
+
 document.addEventListener("DOMContentLoaded", function () {
   checkCookies();
   fetch("./data/menu.json")
@@ -19,39 +19,44 @@ document.addEventListener("DOMContentLoaded", function () {
 // menampilkan nama user
 // cek cookie dengan header login ada ga?
 if (getCookie("login") === "") {
-    redirect("/");
+  redirect("/");
 }
 
 // Ambil data pengguna menggunakan API
-getJSON("https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user", "login", getCookie("login"), responseFunction);
+getJSON(
+  "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user",
+  "login",
+  getCookie("login"),
+  responseFunction
+);
 
 function responseFunction(result) {
-    try {
-        if(result.status === 404) {
-            redirect("/register");
-            return;
-        }
+  try {
+    if (result.status === 404) {
+      redirect("/register");
+      return;
+    }
 
-        // cek apakah name tersedia di response
-        console.log("Data pengguna:", result.data);
+    // cek apakah name tersedia di response
+    console.log("Data pengguna:", result.data);
 
-        // get nama lengkap dari API
-        const fullName = result.data.name || "Nama Tidak Diketahui";
+    // get nama lengkap dari API
+    const fullName = result.data.name || "Nama Tidak Diketahui";
 
-        // pisahin nama depan(kata pertama)
-        const firstName = fullName.split(' ')[0]; //ambil data pertama sebagai nama depan
+    // pisahin nama depan(kata pertama)
+    const firstName = fullName.split(" ")[0]; //ambil data pertama sebagai nama depan
 
-        // munculin nama depan user di elemen yg sudah disediakan
-        const userNameElement = document.getElementById("user-name");
-        if (userNameElement) {
-            userNameElement.textContent = firstName;
-        }
+    // munculin nama depan user di elemen yg sudah disediakan
+    const userNameElement = document.getElementById("user-name");
+    if (userNameElement) {
+      userNameElement.textContent = firstName;
+    }
 
-        // menampilkan data lainnya(untuk debugging)
-        console.log("Nama depan yang ditampilkan:", firstName);
-    }catch (error) {
-        console.error("Terjadi kesalahan saat memproses respons:", error.message);
-      }
+    // menampilkan data lainnya(untuk debugging)
+    console.log("Nama depan yang ditampilkan:", firstName);
+  } catch (error) {
+    console.error("Terjadi kesalahan saat memproses respons:", error.message);
+  }
 }
 
 //button simpan
@@ -192,76 +197,80 @@ window.showQuantityControls = showQuantityControls;
 
 // Fungsi untuk mengubah jumlah kuantitas dan menampilkan atau menyembunyikan kontrol kuantitas
 window.changeQuantity = function (id, _price, delta, itemId) {
-    const qtyInput = document.getElementById(id);
-    let currentValue = parseInt(qtyInput.value) || 0;
-    const newQuantity = currentValue + delta;
-  
-    // Update jumlah jika lebih dari 0, atau sembunyikan kontrol jika 0
-    if (newQuantity > 0) {
-      qtyInput.value = newQuantity;
-    } else {
-      qtyInput.value = 0;
-      document.getElementById(`quantity-controls-${itemId}`).style.display =
-        "none";
-      document.getElementById(`add-to-cart-${itemId}`).classList.remove("hidden"); // Tampilkan kembali tombol "Tambah Ke Pesanan"
-    }
-  
-    calculateTotal(); // Update total setiap kali kuantitas berubah
-  };
-  
-  // calculate
-  function calculateTotal() {
-  
-    const inputs = document.querySelectorAll('input[type="number"]');
-    let total = 0;
-    let totalItems = 0;
-    const orderList = document.getElementById("orderList");
-    orderList.innerHTML = "";
-  
-    inputs.forEach((input) => {
-      const quantity = parseInt(input.value);
-      const price = parseInt(input.getAttribute("data-price"));
-      const name = input.getAttribute("data-name");
-  
-      if (quantity > 0) {
-        total += quantity * price;
-        totalItems += quantity;
-  
-        const menuItem = document.createElement("div");
-        menuItem.classList.add("order-item");
-  
-        const menuName = document.createElement("div");
-        menuName.classList.add("order-menu");
-        menuName.innerText = name;
-  
-        const menuQuantity = document.createElement("div");
-        menuQuantity.classList.add("order-quantity");
-        menuQuantity.innerText = `x${quantity}`;
-  
-        const menuPrice = document.createElement("div");
-        menuPrice.classList.add("order-price");
-        menuPrice.innerText = `Rp ${(quantity * price).toLocaleString()}`;
-  
-        menuItem.append(menuName, menuQuantity, menuPrice);
-        orderList.appendChild(menuItem);
-      }
-    });
-  
-    document.getElementById("totalPrice").innerText = total.toLocaleString();
-    document.getElementById("totalItems").innerText = totalItems;
-    document.querySelector(".total-summary .total-price span").innerText =
-      total.toLocaleString();
+  const qtyInput = document.getElementById(id);
+  let currentValue = parseInt(qtyInput.value) || 0;
+  const newQuantity = currentValue + delta;
+
+  // Update jumlah jika lebih dari 0, atau sembunyikan kontrol jika 0
+  if (newQuantity > 0) {
+    qtyInput.value = newQuantity;
+  } else {
+    qtyInput.value = 0;
+    document.getElementById(`quantity-controls-${itemId}`).style.display =
+      "none";
+    document.getElementById(`add-to-cart-${itemId}`).classList.remove("hidden"); // Tampilkan kembali tombol "Tambah Ke Pesanan"
   }
 
-  // Event handler for the submitOrderButton
+  calculateTotal(); // Update total setiap kali kuantitas berubah
+};
+
+// calculate
+function calculateTotal() {
+  const inputs = document.querySelectorAll('input[type="number"]');
+  let total = 0;
+  let totalItems = 0;
+  const orderList = document.getElementById("orderList");
+  orderList.innerHTML = "";
+
+  inputs.forEach((input) => {
+    const quantity = parseInt(input.value);
+    const price = parseInt(input.getAttribute("data-price"));
+    const name = input.getAttribute("data-name");
+
+    if (quantity > 0) {
+      total += quantity * price;
+      totalItems += quantity;
+
+      const menuItem = document.createElement("div");
+      menuItem.classList.add("order-item");
+
+      const menuName = document.createElement("div");
+      menuName.classList.add("order-menu");
+      menuName.innerText = name;
+
+      const menuQuantity = document.createElement("div");
+      menuQuantity.classList.add("order-quantity");
+      menuQuantity.innerText = `x${quantity}`;
+
+      const menuPrice = document.createElement("div");
+      menuPrice.classList.add("order-price");
+      menuPrice.innerText = `Rp ${(quantity * price).toLocaleString()}`;
+
+      menuItem.append(menuName, menuQuantity, menuPrice);
+      orderList.appendChild(menuItem);
+    }
+  });
+
+  document.getElementById("totalPrice").innerText = total.toLocaleString();
+  document.getElementById("totalItems").innerText = totalItems;
+  document.querySelector(".total-summary .total-price span").innerText =
+    total.toLocaleString();
+}
+
+// Event handler for the submitOrderButton
 const submitOrderButton = document.getElementById("submitOrderButton");
 submitOrderButton.addEventListener("click", function (event) {
   event.preventDefault();
 
   // Retrieve user data
-  const userName = getCookie("name");
-  const userWhatsapp = getCookie("whatsapp");
-  const userNote = getCookie("note");
+  const userName = getCookie("name") || "";
+  const userWhatsapp = getCookie("whatsapp") || "";
+  const userNote = getCookie("note") || "";
+
+  if (!userName || !userWhatsapp) {
+    alert("Silakan lengkapi Name dan Whatsapp terlebih dahulu.");
+    return;
+  }
   const paymentMethod = document.getElementById("paymentMethod").value;
 
   // Get order details
@@ -280,11 +289,10 @@ submitOrderButton.addEventListener("click", function (event) {
     }
   });
 
-  // Prepare data to be sent to the backend
   const postData = {
     orders: orders,
     total: total,
-    user_info: {
+    UserInfo: {
       name: userName,
       whatsapp: userWhatsapp,
       note: userNote,
@@ -292,7 +300,8 @@ submitOrderButton.addEventListener("click", function (event) {
     paymentMethod: paymentMethod,
   };
 
-  // Send data to the backend
+  console.log("Post Data Debug:", JSON.stringify(postData, null, 2));
+
   postJSON(
     "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order",
     "login",
@@ -309,7 +318,6 @@ submitOrderButton.addEventListener("click", function (event) {
   );
 });
 
-  
 // Fungsi logout
 function logout(event) {
   event.preventDefault(); // Mencegah perilaku default link
@@ -319,10 +327,12 @@ function logout(event) {
 
   // Cek apakah cookie berhasil dihapus
   if (document.cookie.indexOf("login=") === -1) {
-      console.log("Cookie 'login' berhasil dihapus. Mengarahkan ke halaman utama.");
-      redirect("/");
+    console.log(
+      "Cookie 'login' berhasil dihapus. Mengarahkan ke halaman utama."
+    );
+    redirect("/");
   } else {
-      console.error("Cookie 'login' gagal dihapus.");
+    console.error("Cookie 'login' gagal dihapus.");
   }
 }
 
@@ -330,8 +340,8 @@ function logout(event) {
 document.addEventListener("DOMContentLoaded", function () {
   const logoutButton = document.querySelector(".logout-btn");
   if (logoutButton) {
-      logoutButton.addEventListener("click", logout);
+    logoutButton.addEventListener("click", logout);
   } else {
-      console.error("Tombol logout tidak ditemukan.");
+    console.error("Tombol logout tidak ditemukan.");
   }
 });
