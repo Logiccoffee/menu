@@ -9,7 +9,6 @@ import { postJSON } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/api.js";
 // Fungsi untuk mengecek status login
 function checkLoginStatus() {
     const loginToken = getCookie("login");
-    console.log("Isi cookie login:", loginToken);
     if (!loginToken) {
         console.error("Cookie login tidak ditemukan.");
     }
@@ -33,7 +32,7 @@ if (getCookie("login") === "") {
 }
 
 // Ambil data pengguna menggunakan API
-getJSON("https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user", "login", loginToken, responseFunction);
+getJSON("https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user", "login", getCookie("login"), responseFunction);
 
 // Fungsi untuk memisahkan nama depan
 function getFirstName(fullName) {
