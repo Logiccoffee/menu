@@ -236,7 +236,7 @@ function calculateTotal() {
 
       const menuName = document.createElement("div");
       menuName.classList.add("order-menu");
-      menuName.innerText = menu_name;
+      menuName.innerText = name;
 
       const menuQuantity = document.createElement("div");
       menuQuantity.classList.add("order-quantity");
