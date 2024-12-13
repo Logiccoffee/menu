@@ -225,7 +225,7 @@ function calculateTotal() {
   inputs.forEach((input) => {
     const quantity = parseInt(input.value);
     const price = parseInt(input.getAttribute("data-price"));
-    const name = input.getAttribute("data-name");
+    const menu_name = input.getAttribute("data-name");
 
     if (quantity > 0) {
       total += quantity * price;
@@ -236,7 +236,7 @@ function calculateTotal() {
 
       const menuName = document.createElement("div");
       menuName.classList.add("order-menu");
-      menuName.innerText = name;
+      menuName.innerText = menu_name;
 
       const menuQuantity = document.createElement("div");
       menuQuantity.classList.add("order-quantity");
