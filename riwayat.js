@@ -111,7 +111,8 @@ function fetchUserOrders(userId) {
     const apiUrl = `https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order?user_id=${userId}`;
     getJSON(apiUrl, "login", getCookie("login"), (result) => {
         if (result.status === 200) {
-            displayOrders(result.data || []);
+            const orders = result.data || [];
+            displayOrders(orders);
         } else {
             console.error("Gagal memuat data pesanan:", result.status);
             setInner("content", "Tidak ada data pesanan untuk ditampilkan.");
@@ -122,15 +123,17 @@ function fetchUserOrders(userId) {
 // Fungsi untuk menampilkan data pesanan
 function displayOrders(orders) {
     const contentElement = document.querySelector(".content");
-    contentElement.innerHTML = ""; // Kosongkan konten sebelumnya
+    contentElement.innerHTML = "";
 
-    if (orders.length === 0) {
+    if (!Array.isArray(orders) || orders.length === 0) {
         contentElement.innerHTML = "<p>Belum ada pesanan.</p>";
         return;
     }
 
     orders.forEach((order) => {
-        const menuItems = order.orders.map(item => `${item.quantity}x ${item.menu_name}`).join(", ");
+        const menuItems = order.orders
+            .map((item) => `${item.quantity}x ${item.menu_name}`)
+            .join(", ");
         const orderCard = `
             <div class="order-card">
                 <div class="card-header">
