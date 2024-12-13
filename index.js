@@ -210,73 +210,106 @@ window.changeQuantity = function (id, _price, delta, itemId) {
     calculateTotal(); // Update total setiap kali kuantitas berubah
   };
   
-//   mau checkout nih
-function calculateTotal() {  
-    const paymentMethod = document.getElementById("paymentMethod").value;
-    const userName = getCookie("name") || "Guest";
-    const userWhatsapp = getCookie("whatsapp") || "Tidak ada nomor";
-    const userNote = getCookie("note") || "Catatan kosong";
+  // calculate
+  function calculateTotal() {
   
-    // console.log("Queue Number:", queueNumber);
-    // console.log("Order Number:", orderNumber);
-    console.log("User Info:", { userName, userWhatsapp, userNote });
+    const inputs = document.querySelectorAll('input[type="number"]');
+    let total = 0;
+    let totalItems = 0;
+    const orderList = document.getElementById("orderList");
+    orderList.innerHTML = "";
   
-    const postData = {
-      // orderNumber, // Nama field sesuai DB
-      // queueNumber,
-      // orderDate: new Date().toISOString(),
-      userInfo: {
-        name: userName,
-        whatsapp: userWhatsapp,
-        note: userNote,
-      },
-      orders: Array.from(document.querySelectorAll('input[type="number"]'))
-        .filter((input) => parseInt(input.value) > 0)
-        .map((input) => ({
-          name: input.getAttribute("data-name"),
-          quantity: parseInt(input.value),
-          price: parseInt(input.getAttribute("data-price")),
-        })),
-      total: Array.from(document.querySelectorAll('input[type="number"]')).reduce(
-        (acc, input) =>
-          acc +
-          parseInt(input.value) * parseInt(input.getAttribute("data-price") || 0),
-        0
-      ),
-      paymentMethod,
-    };
+    inputs.forEach((input) => {
+      const quantity = parseInt(input.value);
+      const price = parseInt(input.getAttribute("data-price"));
+      const name = input.getAttribute("data-name");
   
-    // Kirim data ke server
-    postJSON(
-      "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order",
-      "login",
-      getCookie("login"),
-      postData,
-      (response) => {
-        if (response && response.status === "success") {
-          alert("Pesanan berhasil disimpan!");
-        } else {
-          console.error("Gagal menyimpan pesanan:", response);
-          alert("Terjadi kesalahan saat menyimpan pesanan.");
-        }
+      if (quantity > 0) {
+        total += quantity * price;
+        totalItems += quantity;
+  
+        const menuItem = document.createElement("div");
+        menuItem.classList.add("order-item");
+  
+        const menuName = document.createElement("div");
+        menuName.classList.add("order-menu");
+        menuName.innerText = name;
+  
+        const menuQuantity = document.createElement("div");
+        menuQuantity.classList.add("order-quantity");
+        menuQuantity.innerText = `x${quantity}`;
+  
+        const menuPrice = document.createElement("div");
+        menuPrice.classList.add("order-price");
+        menuPrice.innerText = `Rp ${(quantity * price).toLocaleString()}`;
+  
+        menuItem.append(menuName, menuQuantity, menuPrice);
+        orderList.appendChild(menuItem);
       }
-    );
-  }
+    });
   
-  // Tambahkan event listener ke tombol submit
-document.addEventListener("DOMContentLoaded", () => {
-    const submitButton = document.getElementById("submitOrderButton");
-    
-    // Validasi jika tombol ditemukan
-    if (submitButton) {
-      submitButton.addEventListener("click", (event) => {
-        event.preventDefault(); // Mencegah reload halaman
-        submitOrder(); // Panggil fungsi untuk mengirim data
-      });
-    } else {
-      console.error("Tombol submitOrderButton tidak ditemukan di halaman.");
+    document.getElementById("totalPrice").innerText = total.toLocaleString();
+    document.getElementById("totalItems").innerText = totalItems;
+    document.querySelector(".total-summary .total-price span").innerText =
+      total.toLocaleString();
+  }
+
+  // Event handler for the submitOrderButton
+const submitOrderButton = document.getElementById("submitOrderButton");
+submitOrderButton.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  // Retrieve user data
+  const userName = getCookie("name");
+  const userWhatsapp = getCookie("whatsapp");
+  const userNote = getCookie("note");
+  const paymentMethod = document.getElementById("paymentMethod").value;
+
+  // Get order details
+  const inputs = document.querySelectorAll('input[type="number"]');
+  let orders = [];
+  let total = 0;
+
+  inputs.forEach((input) => {
+    const quantity = parseInt(input.value);
+    const price = parseInt(input.getAttribute("data-price"));
+    const name = input.getAttribute("data-name");
+
+    if (quantity > 0) {
+      total += quantity * price;
+      orders.push({ name, quantity, price });
     }
   });
+
+  // Prepare data to be sent to the backend
+  const postData = {
+    orders: orders,
+    total: total,
+    user: {
+      name: userName,
+      whatsapp: userWhatsapp,
+      note: userNote,
+    },
+    paymentMethod: paymentMethod,
+  };
+
+  // Send data to the backend
+  postJSON(
+    "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order",
+    "login",
+    getCookie("login"),
+    postData,
+    (response) => {
+      if (response && response.status === "success") {
+        alert("Pesanan berhasil disimpan!");
+      } else {
+        console.error("Gagal menyimpan pesanan:", response);
+        alert("Terjadi kesalahan saat menyimpan pesanan.");
+      }
+    }
+  );
+});
+
   
 // Fungsi logout
 function logout(event) {
