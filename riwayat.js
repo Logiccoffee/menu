@@ -6,6 +6,8 @@ import { redirect } from "https://cdn.jsdelivr.net/gh/jscroot/url@0.0.9/croot.js
 import { deleteCookie } from "https://cdn.jsdelivr.net/gh/jscroot/cookie@0.0.1/croot.js";
 import { postJSON } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/api.js";
 
+
+
 // Fungsi untuk mengecek status login
 function checkLoginStatus() {
     const loginToken = getCookie("login");
@@ -75,16 +77,9 @@ function responseFunction(result) {
             profileNameElement.textContent = firstName; // Menampilkan nama depan di sidebar
         }
 
-        // Validasi data pengguna
         const userId = result.data.id;
-        if (!userId) {
-            console.error("User ID tidak ditemukan atau tidak valid:", result.data);
-            setInner("content", "Data pengguna tidak valid. Silakan login ulang.");
-            return;
-        }
-
         console.log(`User ID login: ${userId}`);
-        fetchUserOrders(userId); // Lanjutkan mengambil data pesanan
+        fetchUserOrders(userId);
     } catch (error) {
         console.error("Terjadi kesalahan saat memproses respons:", error.message);
         setInner("content", "Terjadi kesalahan saat memproses data.");
@@ -140,6 +135,10 @@ function fetchUserOrders(userId) {
 // Fungsi untuk menampilkan data pesanan
 function displayOrders(orders) {
     const contentElement = document.querySelector(".content");
+    if (!contentElement) {
+        console.error("Elemen '.content' tidak ditemukan di halaman.");
+        return;
+    }
     contentElement.innerHTML = "";
 
     if (!Array.isArray(orders) || orders.length === 0) {
