@@ -9,7 +9,7 @@ import { postJSON } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/api.js";
 // Fungsi untuk mengecek status login
 function checkLoginStatus() {
     const loginToken = getCookie("login");
-    
+
     // Jika tidak ada cookie login, arahkan ke halaman login
     if (!loginToken) {
         window.location.href = "https://logiccoffee.id.biz.id/login"; // Ganti dengan URL halaman login
@@ -31,6 +31,13 @@ if (getCookie("login") === "") {
 // Ambil data pengguna menggunakan API
 getJSON("https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user", "login", getCookie("login"), responseFunction);
 
+// Fungsi untuk memisahkan nama depan
+function getFirstName(fullName) {
+    // Memisahkan nama lengkap menjadi array berdasarkan spasi dan mengambil nama pertama
+    const nameParts = fullName.split(" ");
+    return nameParts[0]; // Mengambil nama pertama
+}
+
 // Fungsi untuk menangani respons API
 function responseFunction(result) {
     try {
@@ -41,11 +48,15 @@ function responseFunction(result) {
             return; // Menghentikan eksekusi setelah redirect
         }
 
+        // Ambil nama lengkap dari API dan pisahkan untuk mendapatkan nama depan
+        const fullName = result.data.name || "Nama Tidak Diketahui";
+        const firstName = getFirstName(fullName);
+
         // Menampilkan nama pengguna dan peran pengguna di elemen yang telah disediakan
         const userNameElement = document.getElementById("user-name");
 
         if (userNameElement) {
-            userNameElement.textContent = result.data.name || "Nama Tidak Diketahui";
+            userNameElement.textContent = firstName; // Menampilkan hanya nama depan
         }
 
         console.log("Data pengguna:", result.data);
