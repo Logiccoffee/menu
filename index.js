@@ -308,13 +308,13 @@ submitOrderButton.addEventListener("click", function (event) {
     getCookie("login"),
     postData,
     (response) => {
-      if (response && response.data && response.data.status === "success") {
-        alert("Pesanan berhasil disimpan!");
+      if (response && response.status === 200 && response.data && response.data.status === "success") {
+        alert("Pesanan berhasil terkirim!");
       } else {
         console.error("Gagal menyimpan pesanan:", response);
         alert("Terjadi kesalahan saat menyimpan pesanan.");
       }
-    }
+    }    
   );
 });
 
