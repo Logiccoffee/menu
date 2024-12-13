@@ -6,14 +6,9 @@ import { redirect } from "https://cdn.jsdelivr.net/gh/jscroot/url@0.0.9/croot.js
 import { deleteCookie } from "https://cdn.jsdelivr.net/gh/jscroot/cookie@0.0.1/croot.js";
 import { postJSON } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/api.js";
 
-
-
 // Fungsi untuk mengecek status login
 function checkLoginStatus() {
     const loginToken = getCookie("login");
-    if (!loginToken) {
-        console.error("Cookie login tidak ditemukan.");
-    }
 
     // Jika tidak ada cookie login, arahkan ke halaman login
     if (!loginToken) {
@@ -46,18 +41,11 @@ function getFirstName(fullName) {
 // Fungsi untuk menangani respons API
 function responseFunction(result) {
     try {
-        if (result.status === 404 || !result.data) {
+        if (result.status === 404) {
             console.log("Pengguna tidak ditemukan. Mengarahkan ke halaman pendaftaran.");
             setInner("content", "Silahkan lakukan pendaftaran terlebih dahulu.");
             redirect("/register");
             return; // Menghentikan eksekusi setelah redirect
-        }
-
-        // Validasi data API
-        if (!result.data || !result.data.id) {
-            console.error("Data pengguna tidak valid:", result.data);
-            setInner("content", "Data pengguna tidak ditemukan. Silakan login ulang.");
-            return;
         }
 
         // Ambil nama lengkap dari API dan pisahkan untuk mendapatkan nama depan
@@ -77,9 +65,11 @@ function responseFunction(result) {
             profileNameElement.textContent = firstName; // Menampilkan nama depan di sidebar
         }
 
+        // Ambil userId dan panggil fetchUserOrders
         const userId = result.data.id;
-        console.log(`User ID login: ${userId}`);
         fetchUserOrders(userId);
+
+        console.log("Data pengguna:", result.data);
     } catch (error) {
         console.error("Terjadi kesalahan saat memproses respons:", error.message);
         setInner("content", "Terjadi kesalahan saat memproses data.");
@@ -114,17 +104,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Fungsi untuk mengambil data pesanan pengguna
 function fetchUserOrders(userId) {
-    if (!userId) {
-        console.error("User ID tidak valid. Tidak dapat mengambil pesanan.");
-        setInner("content", "Tidak dapat memuat pesanan. Silakan coba lagi.");
-        return;
-    }
-    console.log(`Mengambil pesanan untuk userId: ${userId}`); // Debug
-
     getJSON(`https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order?user_id=${userId}`, "login", getCookie("login"), (result) => {
-        console.log("Respons API pesanan:", result); // Debug
-        if (result.status === 200 && result.data) {
-            displayOrders(result.data);
+        if (result.status === 200) {
+            const orders = result.data || [];
+            displayOrders(orders);
         } else {
             console.error("Gagal memuat data pesanan:", result.status);
             setInner("content", "Tidak ada data pesanan untuk ditampilkan.");
@@ -135,10 +118,6 @@ function fetchUserOrders(userId) {
 // Fungsi untuk menampilkan data pesanan
 function displayOrders(orders) {
     const contentElement = document.querySelector(".content");
-    if (!contentElement) {
-        console.error("Elemen '.content' tidak ditemukan di halaman.");
-        return;
-    }
     contentElement.innerHTML = "";
 
     if (!Array.isArray(orders) || orders.length === 0) {
