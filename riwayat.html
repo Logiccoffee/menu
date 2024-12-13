@@ -178,32 +178,6 @@
     <script src="script.js" type="module"></script>
     <!-- <script src="index.js" type="module"></script> -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const loginCookie = getCookie("login");
-
-            if (loginCookie) {
-                // Panggil API untuk mendapatkan data pengguna
-                const apiUrl = "https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/user";
-                getJSON(apiUrl, "login", loginCookie, function (result) {
-                    if (result.status === 200 && result.data) {
-                        // Ambil nama depan pengguna
-                        const fullName = result.data.name || "Pengguna";
-                        const firstName = fullName.split(" ")[0];
-
-                        // Tampilkan di elemen navbar
-                        const userNameElement = document.getElementById("user-name");
-                        if (userNameElement) {
-                            userNameElement.textContent = firstName;
-                        }
-                    } else {
-                        console.error("Pengguna tidak ditemukan atau tidak valid.");
-                    }
-                });
-            } else {
-                console.error("Cookie login tidak ditemukan.");
-            }
-        });
-
         function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
             const searchBar = document.querySelector('.search-bar');
