@@ -59,6 +59,12 @@ function responseFunction(result) {
             userNameElement.textContent = firstName; // Menampilkan hanya nama depan
         }
 
+        // Menampilkan nama pengguna di sidebar
+        const profileNameElement = document.querySelector(".profile-name");
+        if (profileNameElement) {
+            profileNameElement.textContent = firstName; // Menampilkan nama depan di sidebar
+        }
+
         console.log("Data pengguna:", result.data);
     } catch (error) {
         console.error("Terjadi kesalahan saat memproses respons:", error.message);
