@@ -65,3 +65,30 @@ function responseFunction(result) {
         setInner("content", "Terjadi kesalahan saat memproses data.");
     }
 }
+
+// Fungsi logout
+function logout(event) {
+    event.preventDefault(); // Mencegah perilaku default link
+
+    // Hapus cookie dengan nama "login"
+    deleteCookie("login");
+
+    // Cek apakah cookie berhasil dihapus
+    if (document.cookie.indexOf("login=") === -1) {
+        console.log("Cookie 'login' berhasil dihapus. Mengarahkan ke halaman utama.");
+        redirect("/"); // Ganti "/" dengan URL halaman utama Anda
+    } else {
+        console.error("Cookie 'login' gagal dihapus.");
+    }
+}
+
+// Menjalankan logout saat tombol diklik
+document.addEventListener("DOMContentLoaded", function () {
+    const logoutButton = document.querySelector("#logout-btn"); // Menggunakan ID tombol logout
+    if (logoutButton) {
+        logoutButton.addEventListener("click", logout);
+    } else {
+        console.error("Tombol logout tidak ditemukan.");
+    }
+});
+
