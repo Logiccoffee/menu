@@ -104,8 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Fungsi untuk mengambil data pesanan pengguna
 function fetchUserOrders(userId) {
-    const apiUrl = `https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order?user_id=${userId}`;
-    getJSON(apiUrl, "login", getCookie("login"), (result) => {
+    getJSON(`https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order?user_id=${userId}`, "login", getCookie("login"), (result) => {
         if (result.status === 200) {
             const orders = result.data || [];
             displayOrders(orders);
