@@ -308,7 +308,7 @@ submitOrderButton.addEventListener("click", function (event) {
     getCookie("login"),
     postData,
     (response) => {
-      if (response && response.status === "success") {
+      if (response && response.data && response.data.status === "success") {
         alert("Pesanan berhasil disimpan!");
       } else {
         console.error("Gagal menyimpan pesanan:", response);
