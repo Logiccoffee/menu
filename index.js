@@ -7,16 +7,6 @@ import { redirect } from "https://cdn.jsdelivr.net/gh/jscroot/url@0.0.9/croot.js
 // onclick
 onClick('buttonsimpaninfouser', saveUserInfo);
 onClick("buttonbatalinfouser", closeUserModal);
-
-
-let currentQueueData = null;
-
-function initializeQueueData() {
-    if (!currentQueueData) {
-      const lastOrder = null; // Ambil dari backend jika ada
-      currentQueueData = getDailyQueueNumber(lastOrder);
-    }
-  }
   
 document.addEventListener("DOMContentLoaded", function () {
   checkCookies();
@@ -202,7 +192,7 @@ function showQuantityControls(itemId) {
 window.showQuantityControls = showQuantityControls;
 
 // Fungsi untuk mengubah jumlah kuantitas dan menampilkan atau menyembunyikan kontrol kuantitas
-window.changeQuantity = function (id, price, delta, itemId) {
+window.changeQuantity = function (id, _price, delta, itemId) {
     const qtyInput = document.getElementById(id);
     let currentValue = parseInt(qtyInput.value) || 0;
     const newQuantity = currentValue + delta;
@@ -220,70 +210,21 @@ window.changeQuantity = function (id, price, delta, itemId) {
     calculateTotal(); // Update total setiap kali kuantitas berubah
   };
   
-  function getDailyQueueNumber(lastOrder = null) {
-    const currentDate = new Date();
-    const companyCode = "LGC";
-  
-    const formattedDate =
-      currentDate.getFullYear().toString() +
-      (currentDate.getMonth() + 1).toString().padStart(2, "0") +
-      currentDate.getDate().toString().padStart(2, "0") +
-      currentDate.getHours().toString().padStart(2, "0") +
-      currentDate.getMinutes().toString().padStart(2, "0");
-  
-    let lastQueueDate = null;
-    let currentQueueNumber = 0;
-  
-    if (lastOrder) {
-      lastQueueDate = new Date(lastOrder.orderDate);
-      currentQueueNumber = lastOrder.queueNumber;
-    }
-  
-    if (!isSameDay(lastQueueDate, currentDate)) {
-      currentQueueNumber = 0; // Reset queue number
-    }
-  
-    const newQueueNumber = currentQueueNumber + 1;
-  
-    // Ganti nama field menjadi orderNumber
-    const orderNumber = `${companyCode}${formattedDate}${newQueueNumber
-      .toString()
-      .padStart(3, "0")}`;
-  
-    return { queueNumber: newQueueNumber, orderNumber };
-  }
-  
-
 //   mau checkout nih
-function calculateTotal() {
-    initializeQueueData();
-
-  if (!currentQueueData) {
-    console.error("currentQueueData gagal diinisialisasi.");
-    alert("Terjadi kesalahan saat memproses pesanan.");
-    return;
-  }
-
-  const { queueNumber, orderNumber } = currentQueueData;
-  if (!queueNumber || !orderNumber) {
-    console.error("Queue data tidak valid:", currentQueueData);
-    alert("Queue data tidak valid. Silakan coba lagi.");
-    return;
-  }
-  
+function calculateTotal() {  
     const paymentMethod = document.getElementById("paymentMethod").value;
     const userName = getCookie("name") || "Guest";
     const userWhatsapp = getCookie("whatsapp") || "Tidak ada nomor";
     const userNote = getCookie("note") || "Catatan kosong";
   
-    console.log("Queue Number:", queueNumber);
-    console.log("Order Number:", orderNumber);
+    // console.log("Queue Number:", queueNumber);
+    // console.log("Order Number:", orderNumber);
     console.log("User Info:", { userName, userWhatsapp, userNote });
   
     const postData = {
-      orderNumber, // Nama field sesuai DB
-      queueNumber,
-      orderDate: new Date().toISOString(),
+      // orderNumber, // Nama field sesuai DB
+      // queueNumber,
+      // orderDate: new Date().toISOString(),
       userInfo: {
         name: userName,
         whatsapp: userWhatsapp,
@@ -337,18 +278,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   
-  // Fungsi logout
+// Fungsi logout
 function logout(event) {
-    event.preventDefault(); // Mencegah perilaku default link
-  
-    // Hapus cookie dengan nama "login"
-    deleteCookie("login");
-  
-    // Cek apakah cookie berhasil dihapus
-    if (document.cookie.indexOf("login=") === -1) {
-        console.log("Cookie 'login' berhasil dihapus. Mengarahkan ke halaman utama.");
-        redirect("/");
-    } else {
-        console.error("Cookie 'login' gagal dihapus.");
-    }
+  event.preventDefault(); // Mencegah perilaku default link
+
+  // Hapus cookie dengan nama "login"
+  deleteCookie("login");
+
+  // Cek apakah cookie berhasil dihapus
+  if (document.cookie.indexOf("login=") === -1) {
+      console.log("Cookie 'login' berhasil dihapus. Mengarahkan ke halaman utama.");
+      redirect("/");
+  } else {
+      console.error("Cookie 'login' gagal dihapus.");
   }
+}
+
+// Menjalankan logout saat tombol diklik
+document.addEventListener("DOMContentLoaded", function () {
+  const logoutButton = document.querySelector(".logout-btn");
+  if (logoutButton) {
+      logoutButton.addEventListener("click", logout);
+  } else {
+      console.error("Tombol logout tidak ditemukan.");
+  }
+});
