@@ -65,6 +65,10 @@ function responseFunction(result) {
             profileNameElement.textContent = firstName; // Menampilkan nama depan di sidebar
         }
 
+        // Ambil userId dan panggil fetchUserOrders
+        const userId = result.data.id;
+        fetchUserOrders(userId);
+
         console.log("Data pengguna:", result.data);
     } catch (error) {
         console.error("Terjadi kesalahan saat memproses respons:", error.message);
