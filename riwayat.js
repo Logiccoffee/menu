@@ -67,6 +67,7 @@ function responseFunction(result) {
 
         // Ambil userId dan panggil fetchUserOrders
         const userId = result.data.id;
+        console.log(`User ID login: ${userId}`); // Debug
         fetchUserOrders(userId);
 
         console.log("Data pengguna:", result.data);
@@ -104,7 +105,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Fungsi untuk mengambil data pesanan pengguna
 function fetchUserOrders(userId) {
+    console.log(`Mengambil pesanan untuk userId: ${userId}`); // Debug
     getJSON(`https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order?user_id=${userId}`, "login", getCookie("login"), (result) => {
+        console.log("Respons API pesanan:", result); // Debug
         if (result.status === 200) {
             const orders = result.data || [];
             displayOrders(orders);
