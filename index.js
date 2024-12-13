@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
     .then((response) => response.json())
     .then((data) => renderMenu(data))
     .catch((error) => console.error("Error loading menu:", error));
-    initializeQueueData();
 });
 
 // menampilkan nama user
@@ -285,7 +284,7 @@ submitOrderButton.addEventListener("click", function (event) {
   const postData = {
     orders: orders,
     total: total,
-    user: {
+    UserInfo: {
       name: userName,
       whatsapp: userWhatsapp,
       note: userNote,
