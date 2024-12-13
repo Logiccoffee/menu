@@ -299,7 +299,7 @@ submitOrderButton.addEventListener("click", function (event) {
     total: total,
     paymentMethod: paymentMethod,
   };
-
+//ga pentingsih tapi jejakdigital aja
   console.log("Post Data Debug:", JSON.stringify(postData, null, 2));
 
   postJSON(
