@@ -56,6 +56,12 @@ if (getCookie("login") === "") {
 getJSON("https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order", "login", getCookie("login"), displayOrders);
 
 function displayOrders(orders) {
+    // Pastikan orders adalah array
+    if (!Array.isArray(orders)) {
+      console.error("Data orders bukan array:", orders);
+      return;
+    }
+  
     const orderHistoryElement = document.getElementById("orderHistory");
   
     // Validasi elemen
@@ -75,7 +81,6 @@ function displayOrders(orders) {
         year: "numeric",
       });
   
-      // Membuat elemen utama order card
       const orderCard = document.createElement("div");
       orderCard.className = "order-card";
   
@@ -98,8 +103,6 @@ function displayOrders(orders) {
       // Body Card
       const cardBody = document.createElement("div");
       cardBody.className = "card-body";
-  
-      // Daftar menu dengan harga total
       const menuItems = order.orders
         .map(
           (item) =>
@@ -133,8 +136,8 @@ function displayOrders(orders) {
       // Menambahkan order card ke dalam orderHistoryElement
       orderHistoryElement.appendChild(orderCard);
     });
-  }  
-
+  }
+  
 //   function displayOrders(orders) {
 //     const orderHistory = document.getElementById("orderHistory")
 //     orderHistory.forEach((order) => {
