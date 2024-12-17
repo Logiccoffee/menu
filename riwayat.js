@@ -102,18 +102,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// Fungsi untuk mengambil data pesanan pengguna
-function fetchUserOrders(userId) {
-    getJSON(`https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order?user_id=${userId}`, "login", getCookie("login"), (result) => {
-        if (result.status === 200) {
-            const orders = result.data || [];
-            displayOrders(orders);
-        } else {
-            console.error("Gagal memuat data pesanan:", result.status);
-            setInner("content", "Tidak ada data pesanan untuk ditampilkan.");
-        }
-    });
-}
+// // Fungsi untuk mengambil data pesanan pengguna
+// function fetchUserOrders(userId) {
+//     getJSON(`https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order?user_id=${userId}`, "login", getCookie("login"), (result) => {
+//         if (result.status === 200) {
+//             const orders = result.data || [];
+//             displayOrders(orders);
+//         } else {
+//             console.error("Gagal memuat data pesanan:", result.status);
+//             setInner("content", "Tidak ada data pesanan untuk ditampilkan.");
+//         }
+//     });
+// }
+
+// get data order by user id
+getJSON("https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order", "login", getCookie("login"), displayOrders);
 
 // Fungsi untuk menampilkan data pesanan
 function displayOrders(orders) {
