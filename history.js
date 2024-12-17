@@ -37,9 +37,16 @@ if (getCookie("login") === "") {
       if (userNameElement) {
         userNameElement.textContent = firstName;
       }
-  
+
+       // munculin nama lengkap user di elemen sidebar
+    const fullNameElement = document.getElementById("user-fullname");
+    if (fullNameElement) {
+      fullNameElement.textContent = fullName;
+    }
+
       // menampilkan data lainnya(untuk debugging)
       console.log("Nama depan yang ditampilkan:", firstName);
+      console.log("Nama lengkap yang ditampilkan:", fullName);
     } catch (error) {
       console.error("Terjadi kesalahan saat memproses respons:", error.message);
     }
@@ -53,30 +60,43 @@ function displayOrders(orders) {
     const contentElement = document.querySelector(".content");
     contentElement.innerHTML = "";
 
-    if (!Array.isArray(orders) || orders.length === 0) {
-        contentElement.innerHTML = "<p>Belum ada pesanan.</p>";
-        return;
-    }
-
     orders.forEach((order) => {
+        const formattedDate = new Date(order.orderDate).toLocaleDateString("id-ID", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+        });
+
         const menuItems = order.orders
             .map((item) => `${item.quantity}x ${item.menu_name}`)
             .join(", ");
+
         const orderCard = `
             <div class="order-card">
                 <div class="card-header">
-                    <h3>Pesanan Logic Coffee</h3>
-                    <p>Tanggal Pesanan: ${order.orderDate}</p>
-                    <p>Kode Pesanan: ${order.orderNumber}</p>
+                    <div class="header-content">
+                        <img src="assets/logo_logic.png" alt="Logo Logic Coffee" class="logo">
+                        <h3>Pesanan Logic Coffee</h3>
+                    </div>
+                    <div class="order-info">
+                        <div class="order-date">Tanggal Pesanan: ${formattedDate}</div>
+                        <div class="divider"></div>
+                        <div class="order-code">Kode Pesanan: ${order.orderNumber}</div>
+                        <div class="order-queue">No. Antrian: ${order.queueNumber}</div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <p><strong>Nama Pemesan:</strong> ${order.user_info.name}</p>
-                    <p><strong>No. Telepon:</strong> ${order.user_info.whatsapp}</p>
+                    <p><strong>Whatsapp:</strong> ${order.user_info.whatsapp}</p>
                     <p><strong>Pesanan:</strong> ${menuItems}</p>
-                    <p><strong>Total:</strong> ${order.total}</p>
+                    <p><strong>Total:</strong> Rp${order.total.toLocaleString("id-ID")}</p>
+                </div>
+                <div class="card-footer">
+                    <span class="status ${order.status.toLowerCase()}">${order.status}</span>
                 </div>
             </div>
         `;
+
         contentElement.innerHTML += orderCard;
     });
 }
