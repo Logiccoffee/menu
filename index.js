@@ -107,17 +107,6 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = `${cname}=${cvalue};expires=${d.toUTCString()};path=/`;
 }
 
-// function getCookie(cname) {
-//   const name = cname + "=";
-//   const decodedCookie = decodeURIComponent(document.cookie);
-//   const ca = decodedCookie.split(";");
-//   for (let c of ca) {
-//     while (c.charAt(0) == " ") c = c.substring(1);
-//     if (c.indexOf(name) == 0) return c.substring(name.length);
-//   }
-//   return "";
-// }
-
 // Open modal with edit title when editing information
 document
   .getElementById("editUserInfoButton")
