@@ -211,45 +211,88 @@ main {
     transition: all 0.3s ease;
 }
 
-/* Container utama */
-.order-card {
+.content {
     display: flex;
     flex-direction: column;
-    position: relative;
-    /* Untuk divider absolut */
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    gap: 1rem;
 }
 
-.order-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 8px;
-    /* Lebar garis */
-    height: 100%;
-    background-color: #09431F;
-    /* Warna garis */
-}
-
-/* Header */
-.card-header {
+.order-card {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    font-family: Arial, sans-serif;
     position: relative;
-    /* Agar divider tetap di tengah */
-    padding-bottom: 20px;
 }
 
-.card-header h3 {
-    font-size: 1.5rem;
-    color: #805700;
+.card-left {
+    width: 70%;
+}
+
+.card-right {
+    width: 25%;
+    text-align: center;
+    border-left: 2px solid #ddd;
+    padding-left: 1rem;
+}
+
+.order-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.order-header img {
+    width: 30px;
+    height: 30px;
+}
+
+.order-number {
+    color: #3e8e41; /* Warna hijau */
+    font-weight: bold;
+}
+
+.order-items {
+    margin-top: 10px;
+}
+
+.total {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #3e8e41;
+}
+
+.queue-number {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.status {
+    margin-top: 1rem;
+    color: #3e8e41;
+    font-weight: bold;
+}
+
+.cancel-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.cancel-btn:hover {
+    background-color: darkred;
 }
 
 /* Header konten */
