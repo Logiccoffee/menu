@@ -56,16 +56,16 @@ if (getCookie("login") === "") {
 getJSON("https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order", "login", getCookie("login"), displayOrders);
 
 function displayOrders(orders) {
-    const contentElement = document.querySelector(".content");
+    const orderHistoryElement = document.getElementById("orderHistory");
   
     // Validasi elemen
-    if (!contentElement) {
-      console.error("Elemen dengan class 'content' tidak ditemukan di DOM.");
+    if (!orderHistoryElement) {
+      console.error("Elemen dengan ID 'orderHistory' tidak ditemukan di DOM.");
       return;
     }
   
     // Membersihkan konten sebelumnya
-    contentElement.innerHTML = "";
+    orderHistoryElement.innerHTML = "";
   
     // Iterasi setiap pesanan
     orders.forEach((order) => {
@@ -75,41 +75,50 @@ function displayOrders(orders) {
         year: "numeric",
       });
   
-      const menuItems = order.orders
-        .map((item) => `${item.quantity}x ${item.menu_name}`)
-        .join(", ");
-  
       // Membuat elemen utama order card
       const orderCard = document.createElement("div");
       orderCard.className = "order-card";
   
-      // Menambahkan header
+      // Header Card
       const cardHeader = document.createElement("div");
       cardHeader.className = "card-header";
       cardHeader.innerHTML = `
         <div class="header-content">
-            <img src="assets/logo_logic.png" alt="Logo Logic Coffee" class="logo">
-            <h3>Pesanan Logic Coffee</h3>
+          <img src="assets/logo_logic.png" alt="Logo Logic Coffee" class="logo">
+          <h3>Pesanan Logic Coffee</h3>
         </div>
         <div class="order-info">
-            <div class="order-date">Tanggal Pesanan: ${formattedDate}</div>
-            <div class="divider"></div>
-            <div class="order-code">Kode Pesanan: ${order.orderNumber}</div>
-            <div class="order-queue">No. Antrian: ${order.queueNumber}</div>
+          <div class="order-date">Tanggal Pesanan: ${formattedDate}</div>
+          <div class="divider"></div>
+          <div class="order-code">Kode Pesanan: ${order.orderNumber}</div>
+          <div class="order-queue">No. Antrian: ${order.queueNumber}</div>
         </div>
       `;
   
-      // Menambahkan body
+      // Body Card
       const cardBody = document.createElement("div");
       cardBody.className = "card-body";
+  
+      // Daftar menu dengan harga total
+      const menuItems = order.orders
+        .map(
+          (item) =>
+            `<p><strong>${item.menu_name}</strong> (${item.quantity}x) - Rp${(
+              item.price * item.quantity
+            ).toLocaleString("id-ID")}</p>`
+        )
+        .join("");
+  
       cardBody.innerHTML = `
         <p><strong>Nama Pemesan:</strong> ${order.user_info.name}</p>
         <p><strong>Whatsapp:</strong> ${order.user_info.whatsapp}</p>
-        <p><strong>Pesanan:</strong> ${menuItems}</p>
+        <div><strong>Pesanan:</strong></div>
+        ${menuItems}
         <p><strong>Total:</strong> Rp${order.total.toLocaleString("id-ID")}</p>
+        <p><strong>Metode Pembayaran:</strong> ${order.paymentMethod}</p>
       `;
   
-      // Menambahkan footer
+      // Footer Card
       const cardFooter = document.createElement("div");
       cardFooter.className = "card-footer";
       cardFooter.innerHTML = `
@@ -121,10 +130,21 @@ function displayOrders(orders) {
       orderCard.appendChild(cardBody);
       orderCard.appendChild(cardFooter);
   
-      // Menambahkan order card ke dalam contentElement
-      contentElement.appendChild(orderCard);
+      // Menambahkan order card ke dalam orderHistoryElement
+      orderHistoryElement.appendChild(orderCard);
     });
-  }
+  }  
+
+//   function displayOrders(orders) {
+//     const orderHistory = document.getElementById("orderHistory")
+//     orderHistory.forEach((order) => {
+//         const orderHistory = document.createElement("div");
+//         orderHistory.className = "order-history";
+//         orderHistory.innerHTML = `
+//         <img src= "./assets/logo_logic
+//         `
+//     })
+//   }
   
 
 // Fungsi logout
