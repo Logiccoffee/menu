@@ -4,6 +4,7 @@ import { onClick } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.j
 import { getJSON } from "https://cdn.jsdelivr.net/gh/jscroot/api@0.0.7/croot.js";
 import { redirect } from "https://cdn.jsdelivr.net/gh/jscroot/url@0.0.9/croot.js";
 
+
 // onclick
 onClick("buttonsimpaninfouser", saveUserInfo);
 onClick("buttonbatalinfouser", closeUserModal);
@@ -106,16 +107,16 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = `${cname}=${cvalue};expires=${d.toUTCString()};path=/`;
 }
 
-function getCookie(cname) {
-  const name = cname + "=";
-  const decodedCookie = decodeURIComponent(document.cookie);
-  const ca = decodedCookie.split(";");
-  for (let c of ca) {
-    while (c.charAt(0) == " ") c = c.substring(1);
-    if (c.indexOf(name) == 0) return c.substring(name.length);
-  }
-  return "";
-}
+// function getCookie(cname) {
+//   const name = cname + "=";
+//   const decodedCookie = decodeURIComponent(document.cookie);
+//   const ca = decodedCookie.split(";");
+//   for (let c of ca) {
+//     while (c.charAt(0) == " ") c = c.substring(1);
+//     if (c.indexOf(name) == 0) return c.substring(name.length);
+//   }
+//   return "";
+// }
 
 // Open modal with edit title when editing information
 document
