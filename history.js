@@ -57,7 +57,7 @@ getJSON("https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/ord
 
 function displayOrders(orders) {
     // Pastikan orders adalah array
-    if (!Array.isArray(orders)) {
+    if (!Array.isArray(orders.data)) {
       console.error("Data orders bukan array:", orders);
       return;
     }
@@ -74,7 +74,7 @@ function displayOrders(orders) {
     orderHistoryElement.innerHTML = "";
   
     // Iterasi setiap pesanan
-    orders.forEach((order) => {
+    orders.data.forEach((order) => {
       const formattedDate = new Date(order.orderDate).toLocaleDateString("id-ID", {
         day: "2-digit",
         month: "2-digit",
@@ -137,6 +137,7 @@ function displayOrders(orders) {
       orderHistoryElement.appendChild(orderCard);
     });
   }
+  
   
 //   function displayOrders(orders) {
 //     const orderHistory = document.getElementById("orderHistory")
