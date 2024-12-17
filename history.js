@@ -55,51 +55,77 @@ if (getCookie("login") === "") {
   // get data order by user id
 getJSON("https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order", "login", getCookie("login"), displayOrders);
 
-// Fungsi untuk menampilkan data pesanan
 function displayOrders(orders) {
     const contentElement = document.querySelector(".content");
+  
+    // Validasi elemen
+    if (!contentElement) {
+      console.error("Elemen dengan class 'content' tidak ditemukan di DOM.");
+      return;
+    }
+  
+    // Membersihkan konten sebelumnya
     contentElement.innerHTML = "";
-
+  
+    // Iterasi setiap pesanan
     orders.forEach((order) => {
-        const formattedDate = new Date(order.orderDate).toLocaleDateString("id-ID", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-        });
-
-        const menuItems = order.orders
-            .map((item) => `${item.quantity}x ${item.menu_name}`)
-            .join(", ");
-
-        const orderCard = `
-            <div class="order-card">
-                <div class="card-header">
-                    <div class="header-content">
-                        <img src="assets/logo_logic.png" alt="Logo Logic Coffee" class="logo">
-                        <h3>Pesanan Logic Coffee</h3>
-                    </div>
-                    <div class="order-info">
-                        <div class="order-date">Tanggal Pesanan: ${formattedDate}</div>
-                        <div class="divider"></div>
-                        <div class="order-code">Kode Pesanan: ${order.orderNumber}</div>
-                        <div class="order-queue">No. Antrian: ${order.queueNumber}</div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p><strong>Nama Pemesan:</strong> ${order.user_info.name}</p>
-                    <p><strong>Whatsapp:</strong> ${order.user_info.whatsapp}</p>
-                    <p><strong>Pesanan:</strong> ${menuItems}</p>
-                    <p><strong>Total:</strong> Rp${order.total.toLocaleString("id-ID")}</p>
-                </div>
-                <div class="card-footer">
-                    <span class="status ${order.status.toLowerCase()}">${order.status}</span>
-                </div>
-            </div>
-        `;
-
-        contentElement.innerHTML += orderCard;
+      const formattedDate = new Date(order.orderDate).toLocaleDateString("id-ID", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
+  
+      const menuItems = order.orders
+        .map((item) => `${item.quantity}x ${item.menu_name}`)
+        .join(", ");
+  
+      // Membuat elemen utama order card
+      const orderCard = document.createElement("div");
+      orderCard.className = "order-card";
+  
+      // Menambahkan header
+      const cardHeader = document.createElement("div");
+      cardHeader.className = "card-header";
+      cardHeader.innerHTML = `
+        <div class="header-content">
+            <img src="assets/logo_logic.png" alt="Logo Logic Coffee" class="logo">
+            <h3>Pesanan Logic Coffee</h3>
+        </div>
+        <div class="order-info">
+            <div class="order-date">Tanggal Pesanan: ${formattedDate}</div>
+            <div class="divider"></div>
+            <div class="order-code">Kode Pesanan: ${order.orderNumber}</div>
+            <div class="order-queue">No. Antrian: ${order.queueNumber}</div>
+        </div>
+      `;
+  
+      // Menambahkan body
+      const cardBody = document.createElement("div");
+      cardBody.className = "card-body";
+      cardBody.innerHTML = `
+        <p><strong>Nama Pemesan:</strong> ${order.user_info.name}</p>
+        <p><strong>Whatsapp:</strong> ${order.user_info.whatsapp}</p>
+        <p><strong>Pesanan:</strong> ${menuItems}</p>
+        <p><strong>Total:</strong> Rp${order.total.toLocaleString("id-ID")}</p>
+      `;
+  
+      // Menambahkan footer
+      const cardFooter = document.createElement("div");
+      cardFooter.className = "card-footer";
+      cardFooter.innerHTML = `
+        <span class="status ${order.status.toLowerCase()}">${order.status}</span>
+      `;
+  
+      // Menyatukan header, body, dan footer ke dalam card
+      orderCard.appendChild(cardHeader);
+      orderCard.appendChild(cardBody);
+      orderCard.appendChild(cardFooter);
+  
+      // Menambahkan order card ke dalam contentElement
+      contentElement.appendChild(orderCard);
     });
-}
+  }
+  
 
 // Fungsi logout
 function logout(event) {
