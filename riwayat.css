@@ -212,10 +212,15 @@ h4.phone {
     height: 30px;
 }
 
+.status-icon {
+    width: 100px;
+    height: auto;
+}
 .status {
     font-size: 24px;
     color: #09431f;
     font-weight: bold;
+    font-family: "Signika", sans-serif;
 }
 
 .cancel-button {
