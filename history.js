@@ -134,7 +134,7 @@ function displayOrders(orders) {
       </div>
   
       <!-- Right Section -->
-      <div class="right-section">
+      <div class="right-section" data-status="${order.status}">
           <p class="queue-number">No. Antrian<br>${order.queueNumber}</p>
           <i class="status-icon"></i>
           <p class="status">${order.status}</p>
