@@ -245,6 +245,9 @@ h4.phone {
     h4.pc {
         display: none;
     }
+    h4.phone {
+        margin: 0;
+    }
     
     .order-card {
         flex-direction: column; /* Tata letak vertikal untuk layar kecil */
@@ -272,8 +275,13 @@ h4.phone {
         height: 40px;
     }
 
-    .left-header .brand-logo h4 {
+    .left-header .brand-logo h4.phone {
         font-size: 20px;
+    }
+
+    .status-icon {
+        width: 80px;
+        height: auto;
     }
 }
 
@@ -282,8 +290,7 @@ h4.phone {
     flex: 2;
     display: flex;
     flex-direction: column;
-    border-right: 2px solid #ddd;
-    padding-right: 20px;
+    border-bottom: 2px solid #ddd;
 }
 
 .left-header {
@@ -329,6 +336,7 @@ h4.phone {
     font-weight: bold;
     color: #805700;
     margin: 10px 0;
+    justify-content: center;
 }
 
 .order-details p {
