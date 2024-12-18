@@ -120,13 +120,13 @@ function displayOrders(orders) {
               ${menuItems}
           </div>
   
-          <p class="total">Total : Rp${order.total.toLocaleString("id-ID")}</p>
+          <p class="total">Total : Rp ${order.total.toLocaleString("id-ID")}</p>
       </div>
   
       <!-- Right Section -->
       <div class="right-section">
           <p class="queue-number">No. Antrian<br>${order.queueNumber}</p>
-          <img src="icon.png" alt="Status Icon">
+          <i class="status-icon"></i>
           <p class="status">${order.status}</p>
       </div>
     `;
@@ -135,6 +135,56 @@ function displayOrders(orders) {
     orderHistoryElement.appendChild(orderCard);
   });
 } 
+
+// pengaturan icon status
+document.addEventListener("DOMContentLoaded", function () {
+  setStatusIcons(); // Panggil fungsi untuk menetapkan ikon status
+});
+
+function setStatusIcons() {
+  const rightSections = document.querySelectorAll(".right-section");
+
+  rightSections.forEach((section) => {
+    const statusIcon = section.querySelector(".status-icon");
+    const statusText = section.getAttribute("data-status"); // Ambil status dari atribut
+
+    // Reset semua class ikon terlebih dahulu
+    statusIcon.className = "status-icon";
+
+    // Tambahkan ikon berdasarkan status
+    switch (statusText) {
+      case "terkirim":
+        statusIcon.classList.add("fa-regular", "fa-paper-plane");
+        break;
+      case "diproses":
+        statusIcon.classList.add("fa-solid", "fa-hourglass-half");
+        break;
+      case "selesai":
+        statusIcon.classList.add("fa-solid", "fa-circle-check");
+        break;
+      case "dibatalkan":
+        statusIcon.classList.add("fa-solid", "fa-circle-xmark");
+        break;
+      default:
+        statusIcon.classList.add("fa-solid", "fa-question");
+        break;
+    }
+
+    // Tambahkan warna berdasarkan status
+    if (statusText === "terkirim") {
+      statusIcon.style.color = "#09431f"; // Hijau gelap
+    } else if (statusText === "diproses") {
+      statusIcon.style.color = "#f1c40f"; // Kuning
+    } else if (statusText === "selesai") {
+      statusIcon.style.color = "#27ae60"; // Hijau
+    } else if (statusText === "dibatalkan") {
+      statusIcon.style.color = "#e74c3c"; // Merah
+    } else {
+      statusIcon.style.color = "#7f8c8d"; // Abu-abu untuk default
+    }
+  });
+}
+
   
 // Fungsi logout
 function logout(event) {

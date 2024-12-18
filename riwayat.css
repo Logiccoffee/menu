@@ -89,7 +89,7 @@ a {
 h4 {
     margin: 0;
 }
-h4 .phone {
+h4.phone {
     display: none;
 }
 
