@@ -56,101 +56,86 @@ if (getCookie("login") === "") {
 getJSON("https://asia-southeast2-awangga.cloudfunctions.net/logiccoffee/data/order", "login", getCookie("login"), displayOrders);
 
 function displayOrders(orders) {
-    // Pastikan orders adalah array
-    if (!Array.isArray(orders.data)) {
-      console.error("Data orders bukan array:", orders);
-      return;
-    }
-  
-    const orderHistoryElement = document.getElementById("orderHistory");
-  
-    // Validasi elemen
-    if (!orderHistoryElement) {
-      console.error("Elemen dengan ID 'orderHistory' tidak ditemukan di DOM.");
-      return;
-    }
-  
-    // Membersihkan konten sebelumnya
-    orderHistoryElement.innerHTML = "";
-  
-    // Iterasi setiap pesanan
-    orders.data.forEach((order) => {
-      const formattedDate = new Date(order.orderDate).toLocaleDateString("id-ID", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      });
-  
-      const orderCard = document.createElement("div");
-      orderCard.className = "order-card";
-  
-      // Header Card
-      const cardHeader = document.createElement("div");
-      cardHeader.className = "card-header";
-      cardHeader.innerHTML = `
-        <div class="header-content">
-          <img src="assets/logo_logic.png" alt="Logo Logic Coffee" class="logo">
-          <h3>Pesanan Logic Coffee</h3>
-        </div>
-        <div class="order-info">
-          <div class="order-date">Tanggal Pesanan: ${formattedDate}</div>
-          <div class="divider"></div>
-          <div class="order-code">Kode Pesanan: ${order.orderNumber}</div>
-          <div class="order-queue">No. Antrian: ${order.queueNumber}</div>
-        </div>
-      `;
-  
-      // Body Card
-      const cardBody = document.createElement("div");
-      cardBody.className = "card-body";
-      const menuItems = order.orders
-        .map(
-          (item) =>
-            `<p><strong>${item.menu_name}</strong> (${item.quantity}x) - Rp${(
-              item.price * item.quantity
-            ).toLocaleString("id-ID")}</p>`
-        )
-        .join("");
-  
-      cardBody.innerHTML = `
-        <p><strong>Nama Pemesan:</strong> ${order.user_info.name}</p>
-        <p><strong>Whatsapp:</strong> ${order.user_info.whatsapp}</p>
-        <div><strong>Pesanan:</strong></div>
-        ${menuItems}
-        <p><strong>Total:</strong> Rp${order.total.toLocaleString("id-ID")}</p>
-        <p><strong>Metode Pembayaran:</strong> ${order.paymentMethod}</p>
-      `;
-  
-      // Footer Card
-      const cardFooter = document.createElement("div");
-      cardFooter.className = "card-footer";
-      cardFooter.innerHTML = `
-        <span class="status ${order.status.toLowerCase()}">${order.status}</span>
-      `;
-  
-      // Menyatukan header, body, dan footer ke dalam card
-      orderCard.appendChild(cardHeader);
-      orderCard.appendChild(cardBody);
-      orderCard.appendChild(cardFooter);
-  
-      // Menambahkan order card ke dalam orderHistoryElement
-      orderHistoryElement.appendChild(orderCard);
-    });
+  // Pastikan orders adalah array
+  if (!Array.isArray(orders.data)) {
+    console.error("Data orders bukan array:", orders);
+    return;
   }
-  
-  
-//   function displayOrders(orders) {
-//     const orderHistory = document.getElementById("orderHistory")
-//     orderHistory.forEach((order) => {
-//         const orderHistory = document.createElement("div");
-//         orderHistory.className = "order-history";
-//         orderHistory.innerHTML = `
-//         <img src= "./assets/logo_logic
-//         `
-//     })
-//   }
-  
 
+  const orderHistoryElement = document.getElementById("orderHistory");
+
+  // Validasi elemen
+  if (!orderHistoryElement) {
+    console.error("Elemen dengan ID 'orderHistory' tidak ditemukan di DOM.");
+    return;
+  }
+
+  // Membersihkan konten sebelumnya
+  orderHistoryElement.innerHTML = "";
+
+  // Iterasi setiap pesanan
+  orders.data.forEach((order) => {
+    const formattedDate = new Date(order.orderDate).toLocaleDateString("id-ID", {
+      day: "2-digit",
+      month: "long", // Menampilkan nama bulan dalam bentuk panjang (contoh: Desember)
+      year: "numeric",
+    });    
+
+    const menuItems = order.orders
+      .map(
+        (item) =>
+          `<p>${item.menu_name} <span>(${item.quantity}x) - Rp${(
+            item.price * item.quantity
+          ).toLocaleString("id-ID")}</span></p>`
+      )
+      .join("");
+
+    // Buat elemen order-card
+    const orderCard = document.createElement("div");
+    orderCard.className = "order-card";
+
+    orderCard.innerHTML = `
+      <!-- Left Section -->
+      <div class="left-section">
+          <div class="left-header">
+              <div class="brand-logo">
+                  <img src="assets/logo_logic.png" alt="Logo">
+                  <h4 class="pc">Logic Coffee - Kopinya Mahasiswa</h4>
+                  <h4 class="phone">Receipt</h4>
+              </div>
+              <p class="order-date">${formattedDate}</p>
+          </div>
+  
+          <p class="order-code">${order.orderNumber}</p>
+  
+          <div class="order-details">
+              <p><strong>Nama Pemesan :</strong> ${order.user_info.name}</p>
+              <p><strong>Whatsapp :</strong> ${order.user_info.whatsapp}</p>
+              <p><strong>Note :</strong> ${order.user_info.note || "-"}</p>
+              <p><strong>Metode Pembayaran :</strong> ${order.payment_method}</p>
+          </div>
+  
+          <div class="order-items">
+              <p><strong>Pesanan :</strong></p>
+              ${menuItems}
+          </div>
+  
+          <p class="total">Total : Rp${order.total.toLocaleString("id-ID")}</p>
+      </div>
+  
+      <!-- Right Section -->
+      <div class="right-section">
+          <p class="queue-number">No. Antrian<br>${order.queueNumber}</p>
+          <img src="icon.png" alt="Status Icon">
+          <p class="status">${order.status}</p>
+      </div>
+    `;
+
+    // Menambahkan card ke dalam container
+    orderHistoryElement.appendChild(orderCard);
+  });
+} 
+  
 // Fungsi logout
 function logout(event) {
     event.preventDefault(); // Mencegah perilaku default link

@@ -1,3 +1,7 @@
+.body {
+    font-family: "Nunito", Arial, sans-serif;
+}
+
 a {
     text-decoration: none;
     color: #333;
@@ -5,22 +9,6 @@ a {
 
 h4 {
     margin: 0;
-}
-
-/* General Layout */
-main {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-}
-
-/* Main Content Layout */
-.main-content-container {
-    display: flex;
-    /* Menggunakan flexbox untuk menyusun sidebar dan content sejajar */
-    margin: 20px;
 }
 
 /* Sidebar Styles */
@@ -32,12 +20,6 @@ main {
 .profile {
     text-align: center;
     margin-bottom: 20px;
-}
-
-.profile-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
 }
 
 .profile-picture {
@@ -53,7 +35,6 @@ main {
     flex-direction: column;
     gap: 5px;
 }
-
 
 .profile-name {
     font-size: 18px;
@@ -91,10 +72,6 @@ main {
     gap: 10px;
 }
 
-.menu-icon {
-    font-size: 18px;
-}
-
 .menu-item:hover {
     background-color: #d6d6d6;
 }
@@ -103,547 +80,155 @@ main {
     font-weight: bold;
     color: #ffc107;
 }
-
-.profile img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-.profile h3 {
-    margin: 10px 0;
-    font-size: 18px;
-}
-
-.profile .edit-profile {
-    display: inline-block;
-    margin: 10px 0;
-    color: #00543d;
-    font-size: 14px;
-}
-
-.profile nav a {
-    display: block;
-    margin: 10px 0;
-    padding: 8px;
+/* General Styles */
+a {
+    text-decoration: none;
     color: #333;
-    border-radius: 5px;
 }
 
-.profile nav a.active {
-    background: #00543d;
-    color: #fff;
+h4 {
+    margin: 0;
+}
+h4 .phone {
+    display: none;
 }
 
-/* Content Styles */
-.content {
-    margin-left: 0;
-    padding: 20px;
-    flex: 1;
-}
-
-/* Tabs */
-.tabs {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    padding: 0;
-    background-color: #ffff;
-    border-bottom: 2px solid #ddd;
-}
-
-.tab {
-    flex-grow: 1;
-    text-align: center;
-    padding: 10px 0;
-    background: none;
-    border: none;
-    color: #555;
-    font-size: 16px;
-    position: relative;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-    margin: 0 5px;
-}
-
-.tab.active {
-    font-weight: bold;
-    color: #00543d;
-}
-
-.tab.active::after {
-    content: '';
-    /* Pseudo-element untuk garis bawah */
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background-color: #09431F;
-    /* Warna hijau untuk garis */
-    border-radius: 2px;
-    /* Membuat garis lebih halus */
-}
-
-.tab:hover {
-    color: #09431F;
-}
-
-.tab:hover::after {
-    content: '';
-    /* Pseudo-element untuk garis bawah */
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background-color: #09431F;
-    /* Warna hijau untuk garis saat hover */
-    border-radius: 2px;
-    /* Membuat garis lebih halus */
-    opacity: 0.7;
-    /* Sedikit transparan untuk membedakan dengan active */
-    transition: all 0.3s ease;
-}
-
-.content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
+/* Order Card */
 .order-card {
     display: flex;
-    justify-content: space-between;
     border: 1px solid #ddd;
     border-radius: 10px;
-    padding: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     font-family: Arial, sans-serif;
     position: relative;
+    padding: 20px;
 }
 
-.card-left {
-    width: 70%;
+/* Left Section */
+.left-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid #ddd;
+    padding-right: 20px;
 }
 
-.card-right {
-    width: 25%;
-    text-align: center;
-    border-left: 2px solid #ddd;
-    padding-left: 1rem;
+.left-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Memastikan elemen memenuhi seluruh lebar */
 }
 
-.order-header {
+.left-header .brand-logo {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 10px;
+    flex: 1; /* Membuat brand logo menyesuaikan lebar yang tersedia */
 }
 
-.order-header img {
+.left-header .brand-logo img {
+    width: 50px;
+    height: 50px;
+}
+
+.left-header .brand-logo h4 {
+    font-family: "Signika", sans-serif;
+    white-space: nowrap; /* Mencegah pemisahan baris */
+    overflow: hidden; /* Menghindari overflow */
+    text-overflow: ellipsis; /* Tambahkan elipsis jika teks terlalu panjang */
+    font-size: 26px;
+    color: #09431f;
+    font-weight: bold;
+}
+
+.left-header .order-date {
+    font-family: "Nunito", Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #09431f;
+    flex-shrink: 0; /* Mencegah elemen ini mengecil */
+}
+
+
+.order-code {
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #805700;
+    margin: 10px 0;
+}
+
+.order-details p {
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+
+.order-details p strong {
+    color: #333;
+}
+
+/* Order Items */
+.order-items {
+    margin: 10px 0;
+    font-size: 0.9rem;
+}
+
+.order-items p {
+    display: flex;
+    justify-content: space-between;
+}
+
+.total {
+    font-family: "Signika", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: #09431f;
+    text-align: right;
+}
+
+/* Right Section */
+.right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    gap: 10px;
+    padding-left: 20px;
+    text-align: center;
+}
+
+.right-section .queue-number {
+    font-family: "Poppins", Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #805700;
+}
+
+.right-section img {
     width: 30px;
     height: 30px;
 }
 
-.order-number {
-    color: #3e8e41; /* Warna hijau */
-    font-weight: bold;
-}
-
-.order-items {
-    margin-top: 10px;
-}
-
-.total {
-    margin-top: 15px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    color: #3e8e41;
-}
-
-.queue-number {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-}
-
 .status {
-    margin-top: 1rem;
-    color: #3e8e41;
-    font-weight: bold;
-}
-
-.cancel-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 5px 10px;
-    background-color: red;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 0.9rem;
-}
-
-.cancel-btn:hover {
-    background-color: darkred;
-}
-
-/* Header konten */
-.header-content {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Logo Styling */
-.logo {
-    width: 40px;
-    /* Ukuran logo */
-    height: 40px;
-    /* Pastikan logo berbentuk persegi */
-    object-fit: cover;
-    /* Mengatur gambar agar tidak terdistorsi */
-    border-radius: 50%;
-    /* Membuat logo berbentuk lingkaran */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* Menambahkan sedikit bayangan */
-}
-
-.order-code {
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #555;
-}
-
-/* Order Status Section */
-.order-status {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-/* Elemen lainnya */
-.order-date {
-    transform: translateX(-50%);
-    /* Center secara horizontal */
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #555;
-    white-space: nowrap;
-    /* Mencegah teks membungkus */
-    text-align: center;
-}
-
-.order-date,
-.order-code {
-    flex: 1;
-    /* Agar elemen membagi ruang dengan proporsional */
-}
-
-/* Order Info */
-.order-info {
-    display: flex;
-    /* Elemen berjajar horizontal */
-    align-items: center !important;
-    justify-content: center !important;
-    /* Horizontally center */
-    gap: 10px;
-    position: relative;
-    z-index: 1;
-    /* Pastikan elemen tetap terlihat */
-}
-
-/* Garis putus-putus */
-.divider {
-    text-align: center;
-    position: absolute;
-    top: -29px;
-    bottom: 0;
-    left: calc(45% - 1px);
-    /* Di tengah antara .order-date dan .order-code */
-    width: 2px;
-    /* Lebar garis */
-    height: calc(100% + 227px);
-    /* Tambah tinggi sedikit agar penuh */
-    background: repeating-linear-gradient(to bottom,
-            #09431F 0,
-            #09431F 4px,
-            transparent 4px,
-            transparent 8px);
-    z-index: 1;
-    /* Pastikan garis berada di atas */
-}
-
-.card-body p {
-    margin: 5px 0;
-    color: #555;
-    padding: 0px 0;
-}
-
-.card-body strong {
-    color: #333;
-}
-
-.card-footer {
-    margin-top: 10px;
-    text-align: right;
-}
-
-.status {
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #fff;
-}
-
-/* Status Icon and Text */
-.status-icon {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    /* Jarak antara ikon dan teks */
-    margin-top: 5px;
-}
-
-.status-icon-fa {
     font-size: 24px;
-    /* Ukuran ikon */
-    color: #805700;
-    /* Warna ikon */
-    line-height: 1;
+    color: #09431f;
+    font-weight: bold;
 }
 
-.status.sent {
-    color: #00543d;
+.cancel-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 10px;
 }
 
-/* Untuk perangkat mobile (max-width 480px) */
-@media (max-width: 480px) {
-    main {
-        flex-direction: column;
-        padding: 10px;
-    }
-
-    .main-content-container {
-        flex-direction: column;
-        margin: 0;
-    }
-
-    .sidebar {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .content {
-        margin-left: 0;
-        padding: 10px;
-    }
-
-    /* Card Layout Responsiveness */
-    .order-card {
-        padding: 15px;
-        margin-bottom: 15px;
-        width: 100%;
-        box-shadow: none;
-        /* Mengurangi shadow agar lebih ringan di perangkat kecil */
-    }
-
-    .card-header h3 {
-        font-size: 1.2rem;
-    }
-
-    .card-body p {
-        font-size: 0.85rem;
-    }
-
-    .order-status {
-        flex-direction: column;
-    }
-
-    .order-info {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .order-date,
-    .order-code {
-        flex: unset;
-        /* Agar elemen tidak membagi ruang */
-        text-align: center;
-        font-size: 0.8rem;
-    }
-
-    /* Status text dan icon */
-    .status-icon {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .status-icon-fa {
-        font-size: 20px;
-    }
-
-    /* Profile sidebar */
-    .profile img {
-        width: 80px;
-        height: 80px;
-    }
-
-    .menu-item {
-        font-size: 14px;
-        padding: 8px;
-    }
-
-    .tabs {
-        flex-direction: column;
-    }
-
-    .tab {
-        font-size: 14px;
-        padding: 8px;
-    }
-}
-
-/* Untuk perangkat tablet (max-width 768px) */
-@media (max-width: 768px) {
-    .main-content-container {
-        flex-direction: column;
-        margin: 0;
-    }
-
-    /* Header konten */
-    .header-content {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        justify-content: flex-start;
-        /* Posisi logo dan teks di kiri */
-        margin-bottom: 10px;
-        /* Jarak antara header dan order info */
-    }
-    .profile-header {
-        justify-content: center;
-    }
-    .card-header h3 {
-        font-size: 1.3rem;
-        margin: 0;
-        text-align: left;
-        /* Pastikan teks berada di kiri */
-    }
-
-    .content {
-        margin-left: 0;
-        padding: 15px;
-        width: 100%;
-        height: auto;
-    }
-
-    .order-card {
-        padding: 15px;
-        margin-bottom: 15px;
-        width: 100%;
-        font-size: 0.9rem;
-        max-width: 600px;
-        /* Batas maksimum ukuran card */
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        /* Tambahkan shadow agar terlihat menarik */
-        border-radius: 10px;
-        /* Border untuk tampilan yang modern */
-    }
-
-    /* Header */
-    .card-header {
-        display: flex;
-        align-items: stretch;
-        /* Agar logo dan teks sejajar secara vertikal */
-        justify-content: flex-start;
-        /* Menggeser elemen ke kiri */
-        padding-bottom: 15px;
-        flex-direction: column;
-    }
-
-    .card-header h3 {
-        font-size: 1.2rem;
-        /* Ukuran heading lebih kecil */
-        margin: 0;
-    }
-
-    /* Logo dalam Card */
-    .logo {
-        width: 20px;
-        height: 20px;
-        margin-bottom: 10px;
-    }
-
-    .order-info {
-        display: flex;
-        justify-content: flex-start !important;
-        /* Sebarkan elemen di kiri dan kanan */
-        align-items: center !important;
-        /* Selaraskan elemen secara vertikal */
-        flex-direction: column;
-        /* Bungkus elemen jika ruang terlalu kecil */
-        gap: 10px;
-        /* Tambahkan jarak antar elemen */
-    }
-
-    .order-date,
-    .order-code {
-        flex: 1;
-        /* Setiap elemen akan mengambil ruang seimbang */
-        min-width: 120px;
-        /* Lebar minimum agar tidak terlalu kecil */
-    }
-
-    .order-code {
-        flex: initial;
-        /* Menghindari ukuran elemen membesar otomatis */
-        font-size: 0.8rem;
-    }
-
-    /* Profile sidebar */
-    .profile img {
-        width: 90px;
-        height: 90px;
-    }
-
-    .menu-item {
-        font-size: 15px;
-        padding: 9px;
-    }
-
-    .order-date {
-        margin-left: auto;
-        /* Pindahkan ke sisi kanan */
-        text-align: right;
-        /* Atur teks rata kanan */
-        font-size: 0.8rem;
-        /* Sesuaikan ukuran font */
-        white-space: nowrap;
-        /* Hindari teks terpotong menjadi baris baru */
-    }
-
-    .card-body p {
-        font-size: 0.8rem;
-        /* Ukuran teks body lebih kecil */
-        margin: 3px 0;
-    }
-
-    .divider {
-        display: none;
-        left: calc(120% - 1px) !important;
-        /* Posisi divider tetap di tengah */
-        height: calc(100% + 50px);
-        /* Tinggi divider lebih kecil */
-    }
+.cancel-button:hover {
+    background-color: #c82333;
 }
